@@ -6,13 +6,14 @@
 #    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 17:07:24 by lbastien          #+#    #+#              #
-#    Updated: 2024/04/16 14:48:20 by lbastien         ###   ########.fr        #
+#    Updated: 2024/04/16 14:52:28 by lbastien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Compiler settings
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
+MLX_FLAGS =	-Lmlx -lmlx -framework OpenGL -framework AppKit
 
 # Directories
 SRC_DIR = src
@@ -34,9 +35,9 @@ TARGET = cub3d
 # Default target
 all: $(TARGET)
 
-# Run target
+# Run target executable
 run: all
-	./$(TARGET)
+	@./$(TARGET)
 
 # Compile .cpp files into .o object files. Check that obj/ is created.
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
