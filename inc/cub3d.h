@@ -6,8 +6,9 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 14:46:38 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/16 14:46:45 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/04/16 16:46:20 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include<stdio.h>
+#include "lib.h"
+#include "struct.h"
