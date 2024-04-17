@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 14:45:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/17 14:47:27 by damendez         ###   ########.fr       */
+/*   Updated: 2024/04/17 17:47:00 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int main(int argc, char **argv)
 	data = init_main_struct();
 	if (!data)
 		return (1);
-	check_map(argc, argv, &data);
+	check_scene(argc, argv, &data);
 	parse_map(&data);
 	init_game(&data);
 	free_all(&data);

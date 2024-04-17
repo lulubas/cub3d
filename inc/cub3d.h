@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 14:46:38 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/17 14:47:27 by damendez         ###   ########.fr       */
+/*   Updated: 2024/04/17 17:47:00 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_data
 }		t_data;
 
 t_data	*init_main_struct(void);
-void	check_map(int argc, char **argv, t_data *data);
+void	check_scene(int argc, char **argv, t_data *data);
 void	parse_map(t_data *data);
 void	init_game(t_data *data);
 void	free_all(t_data *data);
