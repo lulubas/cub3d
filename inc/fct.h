@@ -6,13 +6,14 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:22:04 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/17 17:47:35 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/04/17 19:24:17 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FCT_H
 #define FCT_H
 
-t_data *init_data_struct(void);
+t_data 	*init_data_struct(void);
+void	free_and_exit(t_data *data);
 
 #endif

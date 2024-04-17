@@ -6,7 +6,7 @@
 #    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 17:07:24 by lbastien          #+#    #+#              #
-#    Updated: 2024/04/17 18:48:06 by lbastien         ###   ########.fr        #
+#    Updated: 2024/04/17 19:26:44 by lbastien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ MLX_DIR = lib/mlx
 LIB_DIR = lib/libft
 
 # Source filenames
-FILES = cub3d init
+FILES = cub3d init free
 
 # Generating source objects and depedency files
 SRC = $(FILES:%=$(SRC_DIR)/%.c)
