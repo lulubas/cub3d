@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 16:39:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/17 16:33:09 by lbastien         ###   ########.fr       */
+/*   Created: 2022/10/27 18:08:35 by lbastien          #+#    #+#             */
+/*   Updated: 2022/11/08 14:12:01 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#ifndef STRUCT_H
-#define STRUCT_H
-
-typedef struct s_data
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	char 		*filepath;
-	void		*mlx;
-	void		*win;
-}	t_data;
+	t_list	*tmp;
 
-#endif
+	if (!*lst)
+	{
+		*lst = new;
+		return ;
+	}
+	tmp = ft_lstlast(*lst);
+	tmp->next = new;
+	return ;
+}

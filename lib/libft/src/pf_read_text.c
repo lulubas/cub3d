@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   ft_read_text.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 16:39:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/17 16:33:09 by lbastien         ###   ########.fr       */
+/*   Created: 2023/06/07 09:01:13 by agheredi          #+#    #+#             */
+/*   Updated: 2023/09/15 11:56:51 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-#define STRUCT_H
+#include "libft.h"
 
-typedef struct s_data
+int	pf_read_text(t_sc *sc, char format)
 {
-	char 		*filepath;
-	void		*mlx;
-	void		*win;
-}	t_data;
-
-#endif
+	if (write(1, &format, 1) == -1)
+	{
+		sc->error = -1;
+		return (-1);
+	}
+	sc->len++;
+	return (1);
+}

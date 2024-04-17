@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 16:39:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/17 16:33:09 by lbastien         ###   ########.fr       */
+/*   Created: 2022/10/27 19:19:03 by lbastien          #+#    #+#             */
+/*   Updated: 2022/11/08 14:50:22 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#ifndef STRUCT_H
-#define STRUCT_H
-
-typedef struct s_data
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	char 		*filepath;
-	void		*mlx;
-	void		*win;
-}	t_data;
+	t_list	*tmp;
+	t_list	*scan;
 
-#endif
+	if (!lst || !del)
+		return ;
+	tmp = *lst;
+	while (tmp)
+	{
+		scan = tmp;
+		tmp = tmp->next;
+		ft_lstdelone(scan, del);
+	}	
+	*lst = NULL;
+}

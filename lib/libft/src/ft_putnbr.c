@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 16:39:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/17 16:33:09 by lbastien         ###   ########.fr       */
+/*   Created: 2023/09/15 12:25:01 by agheredi          #+#    #+#             */
+/*   Updated: 2024/04/17 17:33:45 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-#define STRUCT_H
+#include "libft.h"
 
-typedef struct s_data
+int	ft_putnbr(int nb)
 {
-	char 		*filepath;
-	void		*mlx;
-	void		*win;
-}	t_data;
+	char	a;
 
-#endif
+	if (nb == -2147483648)
+		return (write(1, "-2147483648", 11));
+	if (nb < 0)
+	{
+		nb = -nb;
+		if (write(1, "-", 1) == -1)
+			return (-1);
+	}
+	if (nb >= 10)
+	{
+		if (ft_putnbr(nb / 10) == -1)
+			return (-1);
+	}
+	a = nb % 10 + '0';
+	if (write(1, &a, 1) == -1)
+		return (-1);
+	return (1);
+}

@@ -1,23 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 16:39:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/17 16:33:09 by lbastien         ###   ########.fr       */
+/*   Created: 2023/09/15 12:22:16 by agheredi          #+#    #+#             */
+/*   Updated: 2024/04/17 17:35:31 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-#define STRUCT_H
-
-typedef struct s_data
+int	ft_putchar(char c)
 {
-	char 		*filepath;
-	void		*mlx;
-	void		*win;
-}	t_data;
-
-#endif
+	return (write(1, &c, 1));
+}

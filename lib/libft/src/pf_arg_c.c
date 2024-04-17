@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   ft_arg_c.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 16:39:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/17 16:33:09 by lbastien         ###   ########.fr       */
+/*   Created: 2023/06/01 10:58:59 by agheredi          #+#    #+#             */
+/*   Updated: 2023/09/15 11:49:40 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-#define STRUCT_H
+#include "libft.h"
 
-typedef struct s_data
+int	pf_arg_c(t_sc *sc)
 {
-	char 		*filepath;
-	void		*mlx;
-	void		*win;
-}	t_data;
+	char	ch;
 
-#endif
+	ch = va_arg(sc->arg, int);
+	if (write(1, &ch, 1) == -1)
+	{
+		sc->error = -1;
+		return (-1);
+	}
+	sc -> len += 1;
+	return (1);
+}

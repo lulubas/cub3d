@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 16:39:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/17 16:33:09 by lbastien         ###   ########.fr       */
+/*   Created: 2022/09/05 13:18:14 by lbastien          #+#    #+#             */
+/*   Updated: 2024/04/17 16:56:27 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-#define STRUCT_H
-
-typedef struct s_data
+int	ft_isalnum(int c)
 {
-	char 		*filepath;
-	void		*mlx;
-	void		*win;
-}	t_data;
+	char	a;
 
-#endif
+	a = c;
+	if ((a < 'A' || a > 'Z') && (a < 'a' || a > 'z') && (a < '0' || a > '9'))
+		return (0);
+	return (1);
+}

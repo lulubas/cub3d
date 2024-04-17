@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 11:00:10 by agheredi          #+#    #+#             */
-/*   Updated: 2024/01/30 17:31:19 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/04/17 17:39:40 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ char	*ft_move_line(char *stash)
 	if (stash[i] == '\0')
 		return (ft_fail(&stash));
 	i += (stash[i] == '\n');
-	nwstash = (char *) malloc((ft_strlen_gnl(stash) - i + 1));
+	nwstash = (char *) malloc((ft_strlen(stash) - i + 1));
 	if (!nwstash)
 		return (ft_fail(&stash));
 	j = 0;

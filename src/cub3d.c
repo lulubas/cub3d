@@ -6,23 +6,24 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 14:45:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/16 16:42:38 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/04/17 16:25:28 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "cub3d.h"
 
-int main(int argc, char **argv)
+int main(void)
 {
 	t_data	*data;
-	char 	*filepath;
+	// char 	*filepath;
 
 	data = init_data_struct();
 	if (!data)
+	ft_printf("Structure creeated\n");
 		return (1);
-	check_map(argc, argv, data);
-	parse_map(data);
-	init_game(data);
-	free_all(data);
+	// check_map(argc, argv, data);
+	// parse_map(data);
+	// init_game(data);
+	// free_all(data);
 	return (0);
 }

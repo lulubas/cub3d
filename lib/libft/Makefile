@@ -5,55 +5,39 @@
 #                                                     +:+ +:+         +:+      #
 #    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/03/27 17:07:24 by lbastien          #+#    #+#              #
-#    Updated: 2024/04/17 17:53:27 by lbastien         ###   ########.fr        #
+#    Created: 2023/05/08 10:23:30 by agheredi          #+#    #+#              #
+#    Updated: 2024/04/17 17:33:28 by lbastien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Compiler settings/flags
 CC = gcc
+AR = ar rcs
 CFLAGS = -Wall -Werror -Wextra
-MLX_FLAGS =	-L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 
 # Directories
 SRC_DIR = src
 INC_DIR = inc
 OBJ_DIR = obj
-MLX_DIR = lib/mlx
-LIB_DIR = lib/libft
 
 # Source filenames
-FILES = cub3d init
+FILES = ft_printf pf_arg_c pf_arg_d pf_arg_p pf_arg_s pf_arg_u pf_arg_x pf_read_text pf_search_arg \
+		get_next_line get_next_line_utils \
+		ft_strlen ft_nbrlen ft_putnbr
 
 # Generating source objects and depedency files
 SRC = $(FILES:%=$(SRC_DIR)/%.c)
 OBJ = $(FILES:%=$(OBJ_DIR)/%.o)
 DEP = $(OBJ:.o=.d)
 
-# Required local libraries
-LIBFT = $(LIB_DIR)/libft.a
-MLX = $(MLX_DIR)/libmlx.a
-
 # Includes file
-INCLUDES = -I$(INC_DIR) -I$(LIB_DIR)/inc -I$(MLX_DIR)
+INCLUDES = -I$(INC_DIR)
 
 # Target executable name
-TARGET = cub3d
+TARGET = libft.a
 
-# Check for required librairies and generate default target
-all: $(LIBFT) $(MLX) $(TARGET)
-
-# Build the libft library
-$(LIBFT):
-	make -C $(LIB_DIR)
-
-# Build the MiniLibX library
-$(MLX):
-	make -C $(MLX_DIR)
-
-# Run target executable
-run: all
-	@./$(TARGET)
+# Check for required librqiries and generate default target
+all: $(TARGET)
 
 # Compile .cpp files into .o object files. Check that obj/ is created.
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
@@ -63,19 +47,17 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
-# Link object files into the target executable
+# Create target sstatic library from object files
 $(TARGET): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX) -o $(TARGET)
+	$(AR) $@ $(OBJ)
 
 # Clean up objects and dependency files
 clean:
 	rm -rf $(OBJ_DIR)
-	$(MAKE) -C $(LIB_DIR) clean
-	$(MAKE) -C $(MLX_DIR) clean
 	
 # Also clean up the target executable
 fclean: clean
-	rm $(TARGET) $(LIBFT) $(MLX)
+	rm $(TARGET)
 
 # Clean up and recompile
 re: fclean all
@@ -84,4 +66,4 @@ re: fclean all
 -include $(DEP)
 
 # List of phony targets
-.PHONY: all run clean fclean re
+.PHONY: all clean fclean re

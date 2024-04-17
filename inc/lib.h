@@ -6,9 +6,14 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:45:39 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/16 16:45:55 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/04/17 16:30:37 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef LIB_H
+#define LIB_H
+
 #include <unistd.h>
 #include <stdlib.h>
+
+#endif

@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   ft_nbrlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 16:39:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/17 16:33:09 by lbastien         ###   ########.fr       */
+/*   Created: 2023/09/15 12:20:59 by agheredi          #+#    #+#             */
+/*   Updated: 2024/04/17 17:32:10 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-#define STRUCT_H
-
-typedef struct s_data
+int	pf_nbrlen(int n)
 {
-	char 		*filepath;
-	void		*mlx;
-	void		*win;
-}	t_data;
+	int	len;
 
-#endif
+	len = 1;
+	if (n < 0)
+		len++;
+	while ((n / 10) != 0)
+	{
+		n = n / 10;
+		len++;
+	}
+	return (len);
+}

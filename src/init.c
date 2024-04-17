@@ -6,11 +6,11 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:41:19 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/16 16:46:28 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/04/17 18:00:28 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "cub3d.h"
 
 t_data *init_data_struct(void)
 {

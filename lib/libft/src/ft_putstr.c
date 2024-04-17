@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 16:39:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/17 16:33:09 by lbastien         ###   ########.fr       */
+/*   Created: 2023/09/15 12:27:40 by agheredi          #+#    #+#             */
+/*   Updated: 2024/04/17 17:40:25 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-#define STRUCT_H
-
-typedef struct s_data
+int	pf_putstr(char *s)
 {
-	char 		*filepath;
-	void		*mlx;
-	void		*win;
-}	t_data;
+	int		i;
 
-#endif
+	i = 0;
+	while (s[i] != '\0')
+	{
+		if (write(1, &s[i], 1) == -1)
+			return (-1);
+		i++;
+	}
+	return (i);
+}
