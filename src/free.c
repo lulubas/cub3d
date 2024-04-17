@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:59:26 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/17 19:25:18 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/04/17 19:45:10 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,5 @@ void	free_and_exit(t_data *data)
 			free(data->win);
 	}
 	ft_printf("Exiting\n");
+	exit (0);
 }
