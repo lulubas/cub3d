@@ -6,11 +6,13 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 12:27:40 by agheredi          #+#    #+#             */
-/*   Updated: 2024/04/17 17:40:25 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/04/17 18:26:33 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	pf_putstr(char *s)
+#include "libft.h"
+
+int	ft_putstr(char *s)
 {
 	int		i;
 

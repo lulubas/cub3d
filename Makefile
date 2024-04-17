@@ -6,7 +6,7 @@
 #    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 17:07:24 by lbastien          #+#    #+#              #
-#    Updated: 2024/04/17 17:53:27 by lbastien         ###   ########.fr        #
+#    Updated: 2024/04/17 18:48:06 by lbastien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,13 +43,9 @@ TARGET = cub3d
 # Check for required librairies and generate default target
 all: $(LIBFT) $(MLX) $(TARGET)
 
-# Build the libft library
-$(LIBFT):
-	make -C $(LIB_DIR)
-
-# Build the MiniLibX library
-$(MLX):
-	make -C $(MLX_DIR)
+# Buld the librairies if
+$(LIBFT) $(MLX):
+	$(MAKE) -C $(@D)
 
 # Run target executable
 run: all
@@ -75,7 +71,7 @@ clean:
 	
 # Also clean up the target executable
 fclean: clean
-	rm $(TARGET) $(LIBFT) $(MLX)
+	rm $(TARGET) $(LIBFT)
 
 # Clean up and recompile
 re: fclean all
@@ -84,4 +80,4 @@ re: fclean all
 -include $(DEP)
 
 # List of phony targets
-.PHONY: all run clean fclean re
+.PHONY: $(LIBFT) $(MLX) all clean fclean re run

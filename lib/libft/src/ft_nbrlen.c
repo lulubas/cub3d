@@ -6,11 +6,11 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 12:20:59 by agheredi          #+#    #+#             */
-/*   Updated: 2024/04/17 17:32:10 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/04/17 18:26:17 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	pf_nbrlen(int n)
+int	ft_nbrlen(int n)
 {
 	int	len;
 
