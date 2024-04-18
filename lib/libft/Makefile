@@ -6,7 +6,7 @@
 #    By: damendez <damendez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/08 10:23:30 by agheredi          #+#    #+#              #
-#    Updated: 2024/04/18 14:22:25 by damendez         ###   ########.fr        #
+#    Updated: 2024/04/18 16:44:48 by damendez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ OBJ_DIR = obj
 # Source filenames
 FILES = ft_printf pf_arg_c pf_arg_d pf_arg_p pf_arg_s pf_arg_u pf_arg_x pf_read_text pf_search_arg \
 		get_next_line get_next_line_utils \
-		ft_strlen ft_nbrlen ft_putnbr ft_putchar ft_putstr
+		ft_strlen ft_nbrlen ft_putnbr ft_putchar ft_putstr ft_strncmp
 
 # Generating source objects and depedency files
 SRC = $(FILES:%=$(SRC_DIR)/%.c)
