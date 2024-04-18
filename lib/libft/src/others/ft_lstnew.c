@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 14:45:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/18 14:22:25 by damendez         ###   ########.fr       */
+/*   Created: 2022/10/26 15:33:33 by lbastien          #+#    #+#             */
+/*   Updated: 2022/11/02 21:19:36 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include"libft.h"
 
-#include "../inc/cub3d.h"
-
-int main(int argc, char **argv)
+t_list	*ft_lstnew(void *content)
 {
-	t_data	*data;
+	t_list	*lst;
 
-	data = init_main_struct();
-	if (!data)
-		return (1);
-	check_scene(argc, argv, &data);
-	parse_map(&data);
-	init_game(&data);
-	free_all(&data);
-	return (0);
+	lst = (t_list *)malloc(sizeof(t_list));
+	if (!lst)
+		return (0);
+	lst->content = content;
+	lst->next = NULL;
+	return (lst);
 }

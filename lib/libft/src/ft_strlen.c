@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 14:45:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/18 14:22:25 by damendez         ###   ########.fr       */
+/*   Created: 2022/09/05 16:10:11 by lbastien          #+#    #+#             */
+/*   Updated: 2024/04/17 17:39:29 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "libft.h"
 
-int main(int argc, char **argv)
+size_t	ft_strlen(const char *str)
 {
-	t_data	*data;
+	int	i;
 
-	data = init_main_struct();
-	if (!data)
-		return (1);
-	check_scene(argc, argv, &data);
-	parse_map(&data);
-	init_game(&data);
-	free_all(&data);
-	return (0);
+	i = 0;
+	while (*str)
+	{
+		i++;
+		str++;
+	}
+	return (i);
 }

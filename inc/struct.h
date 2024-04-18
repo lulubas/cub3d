@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 14:45:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/18 14:22:25 by damendez         ###   ########.fr       */
+/*   Created: 2024/04/16 16:39:20 by lbastien          #+#    #+#             */
+/*   Updated: 2024/04/17 16:33:09 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#ifndef STRUCT_H
+#define STRUCT_H
 
-int main(int argc, char **argv)
+typedef struct s_data
 {
-	t_data	*data;
+	char 		*filepath;
+	void		*mlx;
+	void		*win;
+}	t_data;
 
-	data = init_main_struct();
-	if (!data)
-		return (1);
-	check_scene(argc, argv, &data);
-	parse_map(&data);
-	init_game(&data);
-	free_all(&data);
-	return (0);
-}
+#endif

@@ -3,37 +3,49 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
+#    By: damendez <damendez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 17:07:24 by lbastien          #+#    #+#              #
-#    Updated: 2024/04/16 15:43:41 by lbastien         ###   ########.fr        #
+#    Updated: 2024/04/18 14:22:25 by damendez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Compiler settings
+# Compiler settings/flags
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
-MLX_FLAGS =	-Lmlx -lmlx -framework OpenGL -framework AppKit
+MLX_FLAGS =	-L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 
 # Directories
 SRC_DIR = src
 INC_DIR = inc
 OBJ_DIR = obj
-MLX_DIR = mlx
+MLX_DIR = lib/mlx
+LIB_DIR = lib/libft
 
 # Source filenames
-FILES = cub3d
+FILES = cub3d init free
 
 # Generating source objects and depedency files
 SRC = $(FILES:%=$(SRC_DIR)/%.c)
 OBJ = $(FILES:%=$(OBJ_DIR)/%.o)
 DEP = $(OBJ:.o=.d)
 
+# Required local libraries
+LIBFT = $(LIB_DIR)/libft.a
+MLX = $(MLX_DIR)/libmlx.a
+
+# Includes file
+INCLUDES = -I$(INC_DIR) -I$(LIB_DIR)/inc -I$(MLX_DIR)
+
 # Target executable name
 TARGET = cub3d
 
-# Default target
-all: $(TARGET)
+# Check for required librairies and generate default target
+all: $(LIBFT) $(MLX) $(TARGET)
+
+# Buld the librairies if
+$(LIBFT) $(MLX):
+	$(MAKE) -C $(@D)
 
 # Run target executable
 run: all
@@ -41,7 +53,7 @@ run: all
 
 # Compile .cpp files into .o object files. Check that obj/ is created.
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) -MMD -MP -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -MMD -MP -c $< -o $@
 
 #Creates the obj directory if it does not exist
 $(OBJ_DIR):
@@ -49,15 +61,17 @@ $(OBJ_DIR):
 
 # Link object files into the target executable
 $(TARGET): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(TARGET)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX) -o $(TARGET)
 
 # Clean up objects and dependency files
 clean:
 	rm -rf $(OBJ_DIR)
+	$(MAKE) -C $(LIB_DIR) clean
+	$(MAKE) -C $(MLX_DIR) clean
 	
 # Also clean up the target executable
 fclean: clean
-	rm $(TARGET)
+	rm $(TARGET) $(LIBFT)
 
 # Clean up and recompile
 re: fclean all
@@ -66,4 +80,4 @@ re: fclean all
 -include $(DEP)
 
 # List of phony targets
-.PHONY: all run clean fclean re
+.PHONY: $(LIBFT) $(MLX) all clean fclean re run

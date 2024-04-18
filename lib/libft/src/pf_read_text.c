@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   ft_read_text.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 14:45:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/18 14:22:25 by damendez         ###   ########.fr       */
+/*   Created: 2023/06/07 09:01:13 by agheredi          #+#    #+#             */
+/*   Updated: 2023/09/15 11:56:51 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "libft.h"
 
-int main(int argc, char **argv)
+int	pf_read_text(t_sc *sc, char format)
 {
-	t_data	*data;
-
-	data = init_main_struct();
-	if (!data)
-		return (1);
-	check_scene(argc, argv, &data);
-	parse_map(&data);
-	init_game(&data);
-	free_all(&data);
-	return (0);
+	if (write(1, &format, 1) == -1)
+	{
+		sc->error = -1;
+		return (-1);
+	}
+	sc->len++;
+	return (1);
 }

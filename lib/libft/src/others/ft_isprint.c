@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 14:45:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/18 14:22:25 by damendez         ###   ########.fr       */
+/*   Created: 2022/09/05 15:50:00 by lbastien          #+#    #+#             */
+/*   Updated: 2022/10/14 17:50:10 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
-
-int main(int argc, char **argv)
+int	ft_isprint(int a)
 {
-	t_data	*data;
-
-	data = init_main_struct();
-	if (!data)
-		return (1);
-	check_scene(argc, argv, &data);
-	parse_map(&data);
-	init_game(&data);
-	free_all(&data);
-	return (0);
+	if (a < 32 || a > 126)
+		return (0);
+	return (1);
 }
