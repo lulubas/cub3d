@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 22:45:05 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/18 16:43:48 by damendez         ###   ########.fr       */
+/*   Updated: 2024/04/18 22:18:53 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,29 +25,14 @@
 //Libft functions
 size_t	ft_strlen(const char *str);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int 	ft_strcmp(const char *s1, const char *s2);
+char	*ft_strdup(const char *s1);
 int		ft_putnbr(int nb);
 int		ft_nbrlen(int n);
 int		ft_putchar(char c);
 int		ft_putstr(char *s);
-
-//Printf
-typedef struct s_sc
-{
-	va_list	arg;
-	int		len;
-	int		width;
-	int		error;
-}				t_sc;
-int		ft_printf(char const *format, ...);
-int		pf_arg_c(t_sc *sc);
-int		pf_arg_d(t_sc *sc);
-int		pf_arg_d(t_sc *sc);
-int		pf_arg_p(t_sc *sc);
-int		pf_arg_s(t_sc *sc);
-int		pf_arg_u(t_sc *sc);
-int		pf_arg_x(t_sc *sc, char c);
-int		pf_search_arg(const char format, t_sc *sc);
-int		pf_read_text(t_sc *sc, char format);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	**ft_split(char const *s, char c);
 
 //Get_next_line
 char	*ft_strchr_gnl(char *s, int c);

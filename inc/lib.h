@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:45:39 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/17 16:30:37 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/04/18 22:10:35 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #endif
