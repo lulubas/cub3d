@@ -6,7 +6,7 @@
 #    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/08 10:23:30 by agheredi          #+#    #+#              #
-#    Updated: 2024/04/18 21:12:35 by lbastien         ###   ########.fr        #
+#    Updated: 2024/04/18 21:15:30 by lbastien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,7 @@ INC_DIR = inc
 OBJ_DIR = obj
 
 # Source filenames
-FILES = ft_printf pf_arg_c pf_arg_d pf_arg_p pf_arg_s pf_arg_u pf_arg_x pf_read_text pf_search_arg \
-		get_next_line get_next_line_utils \
+FILES = get_next_line get_next_line_utils \
 		ft_strlen ft_nbrlen ft_putnbr ft_putchar ft_putstr ft_strncmp
 
 # Generating source objects and depedency files
