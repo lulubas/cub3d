@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 22:45:05 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/18 22:18:53 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/04/19 03:23:56 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,12 @@ int		ft_putnbr(int nb);
 int		ft_nbrlen(int n);
 int		ft_putchar(char c);
 int		ft_putstr(char *s);
+char	*ft_strchr(char *s, int c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	**ft_split(char const *s, char c);
 
 //Get_next_line
-char	*ft_strchr_gnl(char *s, int c);
+char	*get_next_line(int fd);
 char	*ft_strjoin_gnl(char *s1, char *s2);
 char	*ft_fail(char **str);
 

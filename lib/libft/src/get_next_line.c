@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 11:00:10 by agheredi          #+#    #+#             */
-/*   Updated: 2024/04/17 17:39:40 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/04/19 03:03:30 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_readfile(int fd, char *stash)
 	tmp = (char *) malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!tmp)
 		return (ft_fail(&stash));
-	while ((!ft_strchr_gnl(stash, '\n') && fd_read != 0))
+	while ((!ft_strchr(stash, '\n') && fd_read != 0))
 	{
 		fd_read = read(fd, tmp, BUFFER_SIZE);
 		if (fd_read == -1)
