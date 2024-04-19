@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 22:45:05 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/19 03:23:56 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/04/19 15:57:48 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 
 //Libft functions
 size_t	ft_strlen(const char *str);
+int		ft_strlen_n(const char *str);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int 	ft_strcmp(const char *s1, const char *s2);
 char	*ft_strdup(const char *s1);
