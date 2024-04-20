@@ -6,35 +6,33 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:59:26 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/19 03:22:10 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/04/20 03:37:52 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	free_and_exit(t_data *data, char *str, int status)
+void	ft_error(t_data *data, char *str, int status)
 {
-	if (data)
-	{
-		if (data->filepath)
-			free(data->filepath);
-		if (data->no_texture)
-			free(data->no_texture);
-		if (data->so_texture)
-			free(data->so_texture);
-		if (data->ea_texture)
-			free(data->ea_texture);
-		if (data->we_texture)
-			free(data->we_texture);
-		if (data->mlx)
-			free(data->mlx);
-		if (data->win)
-			free(data->win);
-	}
 	write(2, "Error\n", 6);
 	write(2, str, ft_strlen(str));
 	write(2, "\n", 1);
-	exit (status);
+	free_all(data);
+	exit(status);
+}
+
+void	free_map(t_tile ***map, t_data *data)
+{
+	int	y;
+
+	y = 0;
+	while (y < data->map_y)
+	{
+		free((*map)[y]);
+		y++;
+	}
+	free(*map);
+	*map = NULL;
 }
 
 void	free_2darray(char ***array)
@@ -49,4 +47,34 @@ void	free_2darray(char ***array)
 	}
 	free(*array);
 	*array = NULL;
+}
+
+void	free_all(t_data *data)
+{
+	if (data)
+	{
+		if (data->filepath)
+			free(data->filepath);
+		if (data->no_texture)
+			free(data->no_texture);
+		if (data->so_texture)
+			free(data->so_texture);
+		if (data->ea_texture)
+			free(data->ea_texture);
+		if (data->we_texture)
+			free(data->we_texture);
+		if (data->C_color)
+			free_2darray(&data->C_color);
+		if (data->F_color)
+			free_2darray(&data->F_color);
+		if (data->map)
+			free_map(&data->map, data);
+		if (data->mlx)
+			free(data->mlx);
+		if (data->win)
+			free(data->win);
+		if (data->lst)
+			free_list(&data->lst);
+	}
+	free(data);
 }

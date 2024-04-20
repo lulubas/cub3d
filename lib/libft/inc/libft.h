@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 22:45:05 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/19 03:23:56 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/04/20 00:27:32 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 
 //Libft functions
 size_t	ft_strlen(const char *str);
+void	ft_trimnl(char *str);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int 	ft_strcmp(const char *s1, const char *s2);
 char	*ft_strdup(const char *s1);

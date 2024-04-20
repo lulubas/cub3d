@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:41:40 by damendez          #+#    #+#             */
-/*   Updated: 2024/04/18 21:58:11 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/04/20 03:10:43 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@ void	check_scene(int argc, char **argv, t_data *data)
 	int	fd;
 
 	if (argc != 2)
-		free_and_exit(data, "Invalid number of arguments", 1);
+		ft_error(data, "Invalid number of arguments", 1);
 	if (check_file_type(argv[1]))
-		free_and_exit(data, "Map file extension must be '.cub'", 1);
+		ft_error(data, "Map file extension must be '.cub'", 1);
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
-		free_and_exit(data, "Map file could not be opened", 1);
+		ft_error(data, "Map file could not be opened", 1);
 	//check_textures_and_colors(/*data, */fd); // TO-DO
 	//check_map(/*data, */fd); // TO_DO
 	
