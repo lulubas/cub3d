@@ -6,7 +6,11 @@
 #    By: damendez <damendez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/08 10:23:30 by agheredi          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2024/04/19 15:57:48 by damendez         ###   ########.fr        #
+=======
+#    Updated: 2024/04/20 00:27:27 by lbastien         ###   ########.fr        #
+>>>>>>> main
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +26,13 @@ OBJ_DIR = obj
 
 # Source filenames
 FILES = get_next_line get_next_line_utils \
+<<<<<<< HEAD
 		ft_strlen ft_strlen_n ft_nbrlen ft_putnbr ft_putchar ft_putstr ft_strncmp \
 		ft_strdup ft_split ft_strcmp ft_substr ft_strchr
+=======
+		ft_strlen ft_nbrlen ft_putnbr ft_putchar ft_putstr ft_strncmp \
+		ft_strdup ft_split ft_strcmp ft_substr ft_strchr ft_trimnl
+>>>>>>> main
 
 # Generating source objects and depedency files
 SRC = $(FILES:%=$(SRC_DIR)/%.c)

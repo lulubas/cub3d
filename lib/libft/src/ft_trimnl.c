@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   ft_trimnl.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 14:45:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/20 03:40:10 by lbastien         ###   ########.fr       */
+/*   Created: 2024/04/20 00:25:48 by lbastien          #+#    #+#             */
+/*   Updated: 2024/04/20 00:27:21 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int main(int argc, char **argv)
+void	ft_trimnl(char *str)
 {
-	t_data	*data;
+	int len;
 
-	data = init_data_struct();
-	if (!data)
-		return (1);
-	check_scene(argc, argv, data);
-	parse_scene(data);
-	//Use function below to print the content of data struct
-	//print_data(data);
-	free_all(data);
-	return (0);
+	if (!str)
+		return ;
+	len = ft_strlen(str);
+	if (str[len - 1] == '\n')
+		str[len-1] = '\0';
 }
