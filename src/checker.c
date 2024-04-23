@@ -6,26 +6,22 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:41:40 by damendez          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/04/19 16:29:17 by damendez         ###   ########.fr       */
-=======
-/*   Updated: 2024/04/20 03:10:43 by lbastien         ###   ########.fr       */
->>>>>>> main
+/*   Updated: 2024/04/23 17:35:02 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	is_texorcolor(char *line, int *i)
+static void	is_texorcolor(t_data *data, char *line, int *i)
 {
 	if (ft_strlen_n(line) == 2)
 	{
-		check_if_tex(line);
+		check_if_tex(data, line);
 		++*i;
 	}
 	if (ft_strlen_n(line) == 1)
 	{
-		check_if_color(line);
+		check_if_color(data, line);
 		++*i;
 	}
 }
@@ -44,13 +40,13 @@ static void	check_textures_and_colors(t_data *data, int fd)
 	while (line && i < 6)
 	{
 		if (*line != '\n' && line && !is_map_line(line))
-			is_texorcolor(line, &i);
+			is_texorcolor(data, line, &i);
 		free(line);
 		if (i < 6)
 		line = get_next_line(fd);
 	}
 	if (i != 6)
-		free_and_exit(data, "Could not find 4 textures and 2 colors before the map", 1);
+		ft_error(data, "Could not find 4 textures and 2 colors before the map", 1);
 }
 
 static int	check_file_type(char *str)
@@ -70,12 +66,11 @@ static int	check_file_type(char *str)
 /*
 !!I think if better if the checker function sticks to checking if map
  * 1. Check number of input arguments 
- * 2. Check if input argument file type is valid (.cub) 						-> TO-DO
+ * 2. Check if input argument file type is valid (.cub)
  * 3. Open file checking for error
  * 4. Find/check for textures and colors from scene file						-> TO-DO
- * 5. Find map in scene file and save to struct (rows, columns, map itself)		-> TO-DO
- * 6. Check if parsed map is valid (invalid player count, ...)		 			-> TO-DO 
- * 
+ * 5. Find map in scene file and check if its invalid							-> TO-DO
+ *
  * !!SUGGESTION!!: I think in the checker we should just check that the scene is  correct 
  * (textures/map files, walls, playercount etc.) and fill up the struct only in the parser.
  *  The only thing to fill up here would be the filepath (argv[1]) as it is needed for the parser.
@@ -90,13 +85,8 @@ void	check_scene(int argc, char **argv, t_data *data)
 		ft_error(data, "Map file extension must be '.cub'", 1);
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
-<<<<<<< HEAD
-		free_and_exit(data, "Map file could not be opened", 1);
-	check_textures_and_colors(data, fd); // TO-DO
-=======
 		ft_error(data, "Map file could not be opened", 1);
-	//check_textures_and_colors(/*data, */fd); // TO-DO
->>>>>>> main
+	check_textures_and_colors(data, fd); // TO-DO
 	//check_map(/*data, */fd); // TO_DO
 	
 	//Adding filepath to the struct for the parser and closing the fd

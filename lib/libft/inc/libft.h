@@ -6,11 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 22:45:05 by lbastien          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/04/19 15:57:48 by damendez         ###   ########.fr       */
-=======
-/*   Updated: 2024/04/20 00:27:32 by lbastien         ###   ########.fr       */
->>>>>>> main
+/*   Updated: 2024/04/23 17:49:59 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +24,7 @@
 
 //Libft functions
 size_t	ft_strlen(const char *str);
-<<<<<<< HEAD
-int		ft_strlen_n(const char *str);
-=======
 void	ft_trimnl(char *str);
->>>>>>> main
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int 	ft_strcmp(const char *s1, const char *s2);
 char	*ft_strdup(const char *s1);
@@ -43,6 +35,7 @@ int		ft_putstr(char *s);
 char	*ft_strchr(char *s, int c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	**ft_split(char const *s, char c);
+int		ft_atoi(const char *str);
 
 //Get_next_line
 char	*get_next_line(int fd);

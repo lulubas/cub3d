@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fct.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:22:04 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/20 03:27:55 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/04/23 17:41:07 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,9 @@ void	print_list(t_list *lst);
 t_list	*list_new(char *str);
 void	list_addback(t_list *new, t_list **lst, t_data *data);
 void	free_list(t_list **lst);
+
+/*		utils.c		*/
+void	free_split(char **split);
+int		ft_ptrlen(char **str);
 
 #endif
