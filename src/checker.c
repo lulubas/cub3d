@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:41:40 by damendez          #+#    #+#             */
-/*   Updated: 2024/04/24 13:37:45 by damendez         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:34:12 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@ static void	is_texorcolor(t_data *data, char *line, int *i)
 	{
 		check_if_tex(data, line);
 		++*i;
+		printf("tex counter: i = %i\n", *i);
 	}
 	if (ft_strlen_n(line) == 1)
 	{
 		check_if_color(data, line);
 		++*i;
+		printf("color counter: i = %i\n", *i);
 	}
 }
 
@@ -41,12 +43,15 @@ static void	check_textures_and_colors(t_data *data, int fd)
 	{
 		if (*line != '\n' && line && !is_map_line(line))
 			is_texorcolor(data, line, &i);
+		if (line && *line != '\n' && is_map_line(line) && i < 6)
+			ft_error(data, "Could not find 4 textures and 2 colors before the map", 1);
 		free(line);
 		if (i < 6)
-		line = get_next_line(fd);
+			line = get_next_line(fd);
 	}
 	if (i != 6)
-		ft_error(data, "Could not find 4 textures and 2 colors before the map", 1);
+		ft_error(data, "Could not find 4 textures \
+		and 2 colors before the map", 1);
 }
 
 static int	check_file_type(char *str)
@@ -57,11 +62,6 @@ static int	check_file_type(char *str)
 		return (1);
 	return (0);
 }
-
-// static void	check_map(t_data *data, int fd)
-// {
-
-// }
 
 /*
  * 1. Check number of input arguments 
@@ -83,7 +83,6 @@ void	check_scene(int argc, char **argv, t_data *data)
 		ft_error(data, "Map file could not be opened", 1);
 	check_textures_and_colors(data, fd); // TO-DO
 	//check_map(data, fd); // TO_DO
-
 	//Adding filepath to the struct for the parser and closing the fd
 	data->filepath = ft_strdup(argv[1]);
 	close(fd);
