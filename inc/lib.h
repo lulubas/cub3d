@@ -6,15 +6,19 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:45:39 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/18 22:10:35 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:14:12 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIB_H
 #define LIB_H
 
-#include <unistd.h>
-#include <stdlib.h>
+#include <stdlib.h>	// malloc, free, exit
+#include <unistd.h>	// close, read, write
+#include <stdio.h>	// printf, perror
+#include <string.h>	// strerror
+#include <fcntl.h>	// open
+#include <math.h>
 #include <stdbool.h>
 
-#endif
+#endif /* LIB_H */

@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   vars.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 14:45:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/24 18:00:30 by lbastien         ###   ########.fr       */
+/*   Created: 2024/04/24 18:14:55 by lbastien          #+#    #+#             */
+/*   Updated: 2024/04/24 18:15:33 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef VARS_H
+#define VARS_H
 
-int main(int argc, char **argv)
-{
-	t_data	*data;
+#define ESCAPE 53
 
-	data = init_data_struct();
-	if (!data)
-		return (1);
-	check_scene(argc, argv, data);
-	parse_scene(data);
-	render_scene(data);
-	//Use function below to print the content of data struct
-	//print_data(data);
-	free_all(data);
-	return (0);
-}
+#endif /* VARS_H */
