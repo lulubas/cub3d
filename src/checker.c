@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:41:40 by damendez          #+#    #+#             */
-/*   Updated: 2024/04/23 17:35:02 by damendez         ###   ########.fr       */
+/*   Updated: 2024/04/24 13:37:45 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,11 @@ static int	check_file_type(char *str)
 // }
 
 /*
-!!I think if better if the checker function sticks to checking if map
  * 1. Check number of input arguments 
  * 2. Check if input argument file type is valid (.cub)
  * 3. Open file checking for error
  * 4. Find/check for textures and colors from scene file						-> TO-DO
  * 5. Find map in scene file and check if its invalid							-> TO-DO
- *
- * !!SUGGESTION!!: I think in the checker we should just check that the scene is  correct 
- * (textures/map files, walls, playercount etc.) and fill up the struct only in the parser.
- *  The only thing to fill up here would be the filepath (argv[1]) as it is needed for the parser.
 */
 void	check_scene(int argc, char **argv, t_data *data)
 {
@@ -87,8 +82,8 @@ void	check_scene(int argc, char **argv, t_data *data)
 	if (fd < 0)
 		ft_error(data, "Map file could not be opened", 1);
 	check_textures_and_colors(data, fd); // TO-DO
-	//check_map(/*data, */fd); // TO_DO
-	
+	//check_map(data, fd); // TO_DO
+
 	//Adding filepath to the struct for the parser and closing the fd
 	data->filepath = ft_strdup(argv[1]);
 	close(fd);
