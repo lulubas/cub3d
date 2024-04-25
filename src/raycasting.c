@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 17:39:01 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/25 18:09:24 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:16:13 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	get_player_position(t_data *data)
 
 	x = 0;
 	y = 0;
-	while (data->map[y])
+	while (y < data->map_y)
 	{
-		while(data->map[y][x])
+		while(x < data->map_x)
 		{
 			if (data->map[y][x] == NORTH || data->map[y][x] == SOUTH || \
 				data->map[y][x] == EAST || data->map[y][x] == WEST)
@@ -30,7 +30,10 @@ void	get_player_position(t_data *data)
 				data->posY = y;
 				break ;
 			}
+			x++;
 		}
+		x = 0;
+		y++;
 	}
 }
 

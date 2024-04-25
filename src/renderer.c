@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 17:35:15 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/25 18:10:54 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:16:38 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ void	init_mlx(t_data *data)
 
 void	render_scene(t_data *data)
 {
-	init_mlx(data);
+	//init_mlx(data);
 	raycast_and_render(data);
 	// while (1)
 	// {
 	// 	mlx_clear_window(data->mlx, data->win);
 	// 	raycast_and_render(data);
 	// }
-	mlx_loop(data->mlx);
+	//mlx_loop(data->mlx);
 }

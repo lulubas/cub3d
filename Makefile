@@ -6,13 +6,13 @@
 #    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 17:07:24 by lbastien          #+#    #+#              #
-#    Updated: 2024/04/25 18:08:38 by lbastien         ###   ########.fr        #
+#    Updated: 2024/04/25 18:16:29 by lbastien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Compiler settings/flags
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra #-fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -fsanitize=address
 MLX_FLAGS =	-L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 
 # Directories
