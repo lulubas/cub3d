@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:41:19 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/24 17:42:48 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:59:06 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ t_data *init_data_struct(void)
 	new_data->map = NULL;
 	new_data->mlx = NULL;
 	new_data->win = NULL;
+	new_data->map_x = -1;
+	new_data->map_y = -1;
 	return(new_data);
 }
