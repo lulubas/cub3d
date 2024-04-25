@@ -6,23 +6,12 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:39:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/20 03:20:26 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/04/25 15:09:44 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 #define STRUCT_H
-
-typedef enum s_tile
-{
-	SPACE,
-	WALL,
-	EMPTY,
-	NORTH,
-	SOUTH,
-	EAST,
-	WEST
-}	t_tile;
 
 typedef struct s_list
 {
@@ -47,4 +36,4 @@ typedef struct s_data
 	void		*win;
 }	t_data;
 
-#endif
+#endif /* STRUCT_H */
