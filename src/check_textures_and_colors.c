@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:04:28 by damendez          #+#    #+#             */
-/*   Updated: 2024/04/24 16:04:38 by damendez         ###   ########.fr       */
+/*   Updated: 2024/04/26 14:04:12 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,20 @@ void	check_if_tex(t_data *data, char *line)
 	else
 		ft_error(data, "Invalid identifier used for texture", 1);
 	free_split(split);
+}
+
+void	is_texorcolor(t_data *data, char *line, int *i)
+{
+	if (ft_strlen_n(line) == 2)
+	{
+		check_if_tex(data, line);
+		++*i;
+		printf("tex counter: i = %i\n", *i);
+	}
+	if (ft_strlen_n(line) == 1)
+	{
+		check_if_color(data, line);
+		++*i;
+		printf("color counter: i = %i\n", *i);
+	}
 }
