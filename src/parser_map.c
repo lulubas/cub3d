@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 17:25:43 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/25 18:11:22 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/04/26 09:16:39 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,13 +103,17 @@ t_tile	**parse_list_to_array(t_list *lst, t_data *data)
 		while (tmp->str[x])
 		{
 			process_tile(tmp->str[x], &map[y][x]);
-
+			if (map[y][x] == NORTH || map[y][x] == SOUTH || \
+				map[y][x] == EAST || map[y][x] == WEST)
+			{
+				data->posX = x;
+				data->posY = y;
+			}
 			x++;
 		}
 		x = 0;
 		y++;
 		tmp = tmp->next;
 	}
-
 	return (map);
 }
