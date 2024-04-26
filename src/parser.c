@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:22:37 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/25 17:29:42 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/04/26 08:54:54 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ t_list *parse_map_to_list(int fd, t_data *data)
 		free(line);
 		line = get_next_line(fd);
 	}
+	free(line);
 	return (lst);
 }
 
