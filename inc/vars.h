@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lib.h                                              :+:      :+:    :+:   */
+/*   vars.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 16:45:39 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/26 08:43:55 by lbastien         ###   ########.fr       */
+/*   Created: 2024/04/24 18:14:55 by lbastien          #+#    #+#             */
+/*   Updated: 2024/04/25 15:11:44 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIB_H
-#define LIB_H
+#ifndef VARS_H
+#define VARS_H
 
-#include <stdlib.h>	// malloc, free, exit
-#include <unistd.h>	// close, read, write
-#include <stdio.h>	// printf, perror
-#include <string.h>	// strerror
-#include <fcntl.h>	// open
-#include <math.h>
-#include <stdbool.h>
+#define ESCAPE 53
 
-#endif /* LIB_H */
+#endif /* VARS_H */

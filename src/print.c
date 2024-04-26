@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 02:39:50 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/20 03:25:05 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:59:51 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ void    print_data(t_data *data)
 	print_2darray(data->C_color);
 	printf("map_x=%d\n", data->map_x);
 	printf("map_y=%d\n", data->map_y);
+	printf("posX=%d\n", data->posX);
+	printf("posY=%d\n", data->posY);
 	printf("-----MAP ARRAY------\n");
 	print_map(data);
 	printf("--------------------\n");

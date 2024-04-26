@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:39:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/25 15:09:44 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/04/26 08:43:40 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef struct s_data
 	t_tile		**map;
 	void		*mlx;
 	void		*win;
+	int			posX;
+	int			posY;
 }	t_data;
 
 #endif /* STRUCT_H */

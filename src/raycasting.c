@@ -1,29 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 14:45:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/25 18:00:12 by lbastien         ###   ########.fr       */
+/*   Created: 2024/04/25 17:39:01 by lbastien          #+#    #+#             */
+/*   Updated: 2024/04/25 18:16:13 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int main(int argc, char **argv)
+void	get_player_position(t_data *data)
 {
-	t_data	*data;
+	int	x;
+	int	y;
 
-	data = init_data_struct();
-	if (!data)
-		return (1);
-	check_scene(argc, argv, data);
-	parse_scene(data);
-	render_scene(data);
-	//Use function below to print the content of data struct
-	print_data(data);
-	free_all(data);
-	return (0);
+	x = 0;
+	y = 0;
+	while (y < data->map_y)
+	{
+		while(x < data->map_x)
+		{
+			if (data->map[y][x] == NORTH || data->map[y][x] == SOUTH || \
+				data->map[y][x] == EAST || data->map[y][x] == WEST)
+			{
+				data->posX = x;
+				data->posY = y;
+				break ;
+			}
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+}
+
+void	raycast_and_render(t_data *data)
+{
+	get_player_position(data);
 }
