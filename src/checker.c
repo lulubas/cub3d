@@ -6,24 +6,18 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:41:40 by damendez          #+#    #+#             */
-/*   Updated: 2024/04/26 14:28:48 by damendez         ###   ########.fr       */
+/*   Updated: 2024/04/29 15:17:26 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/*
- * 1. Read file until first map line is found (considering textures and colors are found correctly before)
- * 2. Keep reading lines from the map, first line must be all 1s and next line must be same length
- * 3. For each line inside the map, check that it has only valid chars and keeps the map closed off with walls
- * 4. The last map line must be all 1s and the next line must not be a map line
- * 
- * doubts:	How do we handle if the map changes in size after the first line?
- *			...?
-*/
-static void	check_map(t_data *data, int fd)
+void	check_map(t_data *data)
 {
-
+	find_player(data);
+	//find_player_dir(data);
+	//check_closed(data);
+	//check_playable(data);
 }
 
 /*
@@ -66,7 +60,6 @@ static int	check_file_type(char *str)
  * 2. Check if input argument file type is valid (.cub)
  * 3. Open file checking for error
  * 4. Find/check for textures and colors from scene file
- * 5. Find map in scene file and check if its invalid			-> TO-DO
 */
 void	check_scene(int argc, char **argv, t_data *data)
 {
@@ -80,7 +73,6 @@ void	check_scene(int argc, char **argv, t_data *data)
 	if (fd < 0)
 		ft_error(data, "Map file could not be opened", 1);
 	check_textures_and_colors(data, fd);
-	check_map(data, fd); // TO_DO
 	//Adding filepath to the struct for the parser and closing the fd
 	data->filepath = ft_strdup(argv[1]);
 	close(fd);

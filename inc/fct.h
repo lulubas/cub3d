@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:22:04 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/26 14:04:15 by damendez         ###   ########.fr       */
+/*   Updated: 2024/04/29 15:10:35 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	check_if_tex(t_data *data, char *line);
 void	check_if_color(t_data *data, char *line);
 int		is_map_line(char *line);
 void	is_texorcolor(t_data *data, char *line, int *i);
+void	check_map(t_data *data);
+void	find_player(t_data *data);
 
 /*		utils.c		*/
 void	free_split(char **split);
