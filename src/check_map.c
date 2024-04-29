@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 13:27:58 by damendez          #+#    #+#             */
-/*   Updated: 2024/04/29 15:26:15 by damendez         ###   ########.fr       */
+/*   Updated: 2024/04/29 16:34:51 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,17 @@ static int	is_player(char c)
 	return (0);
 }
 
-void	find_player(t_data *data)
+static int	all_ones(char *str)
+{
+	while (*str == '1')
+
+		str++;
+	if (*str == '\0')
+		return (1);
+	return (0);
+}
+
+void	check_player_count(t_data *data)
 {
 	int	x;
 	int	flag;
@@ -48,9 +58,38 @@ void	find_player(t_data *data)
 			{
 				flag++;
 				if (flag > 1)
-					ft_error(data, "Too many players", 1);
+					ft_error(data, "Error: Too many players in map", 1);
 			}
 		}
+		data->lst = data->lst->next;
+	}
+	if (flag == 0)
+		ft_error(data, "Error: Player needed in map", 1);
+}
+/*
+ * 1. First and last line must all be 1s (or spaces)
+ * 2. Every line needs to start and end with 1
+*/
+void	check_closed(t_data *data)
+{
+	int	i;
+	int	row;
+
+	i = 0;
+	row = 0;
+	while (data->lst != NULL)
+	{
+		if (row == 0 || row == data->map_y)
+		{
+			if (!all_ones(data->lst->str))
+				ft_error(data, "Error: Map not closed, Invalid map", 1);
+		}
+		else if (data->lst->str[0] != '1' || 
+		data->lst->str[ft_strlen(data->lst->str - 1)] != '1')
+		{
+			ft_error(data, "Error: Map not closed, Invalid map", 1);
+		}
+		row++;
 		data->lst = data->lst->next;
 	}
 }
