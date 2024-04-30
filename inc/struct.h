@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:39:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/30 15:23:39 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/04/30 18:51:20 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,27 @@ typedef struct s_data
 	int			map_y;
 	t_list		*lst;
 	t_tile		**map;
+	int			res_width;
+	int			res_length;
 	void		*mlx;
 	void		*win;
-	int			posX;
-	int			posY;
+	double		posX;
+	double		posY;
+	int			mapX;
+	int			mapY;
 	int			dirX;
 	int			dirY;
 	int			planeX;
 	int			planeY;
+	double		camX;
+	double		rayDirX;
+	double		rayDirY;
+	double		sideDistX;
+	double		sideDistY;
+	double		deltaDistX;
+	double		deltaDistY;
+	int			stepX;
+	int			stepY;
 	int			time;
 	int			old_time;
 }	t_data;

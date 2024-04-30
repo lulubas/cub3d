@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 02:39:50 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/25 17:59:51 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/04/30 16:00:38 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,13 @@ void    print_data(t_data *data)
 	printf("map_y=%d\n", data->map_y);
 	printf("posX=%d\n", data->posX);
 	printf("posY=%d\n", data->posY);
+	printf("dirX=%d\n", data->dirX);
+	printf("dirY=%d\n", data->dirY);
+	printf("planeX=%d\n", data->planeX);
+	printf("planeY=%d\n", data->planeY);
+	printf("camX=%d\n", data->camX);
+	printf("rayDirX=%d\n", data->rayDirX);
+	printf("rayDirY=%d\n", data->rayDirY);
 	printf("-----MAP ARRAY------\n");
 	print_map(data);
 	printf("--------------------\n");
