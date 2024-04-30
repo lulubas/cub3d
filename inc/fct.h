@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:22:04 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/29 16:22:18 by damendez         ###   ########.fr       */
+/*   Updated: 2024/04/30 15:10:47 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,10 @@ void	free_split(char **split);
 int		ft_ptrlen(char **str);
 int		ft_strlen_n(const char *str);
 int		ft_ptrlen(char **str);
+
+/*		map_utils.c		*/
+int		is_map_line(char *line);
+int		is_player(char c);
+int		all_ones(char *str);
 
 #endif

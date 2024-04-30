@@ -6,7 +6,7 @@
 #    By: damendez <damendez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 17:07:24 by lbastien          #+#    #+#              #
-#    Updated: 2024/04/24 16:10:19 by damendez         ###   ########.fr        #
+#    Updated: 2024/04/30 15:09:52 by damendez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ LIB_DIR = lib/libft
 
 # Source filenames
 FILES = cub3d init free checker check_map check_textures_and_colors \
-		parser print list_utils utils
+		parser print list_utils utils map_utils
 
 # Generating source objects and depedency files
 SRC = $(FILES:%=$(SRC_DIR)/%.c)
