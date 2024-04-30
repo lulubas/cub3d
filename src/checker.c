@@ -6,18 +6,11 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:41:40 by damendez          #+#    #+#             */
-/*   Updated: 2024/04/30 15:11:32 by damendez         ###   ########.fr       */
+/*   Updated: 2024/04/30 15:42:38 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	check_map(t_data *data)
-{
-	check_player_count(data);
-	check_closed(data);
-	//check_playable(data);
-}
 
 /*
  * 1. Keep getting_next_line from fd until we found 6 lines that are textures/colors

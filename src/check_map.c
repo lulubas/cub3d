@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 13:27:58 by damendez          #+#    #+#             */
-/*   Updated: 2024/04/30 15:09:52 by damendez         ###   ########.fr       */
+/*   Updated: 2024/04/30 15:42:38 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,29 @@ void	check_closed(t_data *data)
 		row++;
 		data->lst = data->lst->next;
 	}
+}
+
+void	check_playable(t_data *data)
+{
+	int	i;
+	int	flag;
+
+	flag = 0;
+	while (data->lst != NULL)
+	{
+		i = 0;
+		while (data->lst->str[i++])
+			if (data->lst->str[i] == '0')
+				flag++;
+		data->lst = data->lst->next;
+	}
+	if (flag < 1)
+		ft_error(data, "Error: Map not playable, Invalid map", 1);
+}
+
+void	check_map(t_data *data)
+{
+	check_player_count(data);
+	check_closed(data);
+	check_playable(data);
 }
