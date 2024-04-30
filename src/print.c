@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 02:39:50 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/20 03:25:05 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/04/30 17:56:55 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,20 @@ void    print_data(t_data *data)
 	print_map(data);
 	printf("--------------------\n");
 	printf("====================\n");
+	// int		i;
+	// t_list	*tmp;
+
+	// tmp = data->lst;
+	// while (tmp != NULL)
+	// {
+	// 	printf("jdjid");
+	// 	i = 0;
+	// 	while (tmp->str[i] != '\0')
+	// 	{
+	// 		printf("%c char", tmp->str[i]);
+	// 		i++;
+	// 	}
+	// 	tmp = tmp->next;
+	// 	printf("\n");
+	// }
 }

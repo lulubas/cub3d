@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:22:37 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/20 03:39:14 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/04/30 18:02:21 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ t_list *parse_map_to_list(int fd, t_data *data)
 	}
 	while (line && ft_strchr(line, '1'))
 	{
+		ft_trimnl(line);
 		list_addback(list_new(line), &lst, data);
 		free(line);
 		line = get_next_line(fd);

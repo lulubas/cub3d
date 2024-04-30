@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 13:27:58 by damendez          #+#    #+#             */
-/*   Updated: 2024/04/30 15:42:38 by damendez         ###   ########.fr       */
+/*   Updated: 2024/04/30 17:34:21 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,43 +40,46 @@ void	 check_player_count(t_data *data)
  * 1. First and last line must all be 1s (or spaces)
  * 2. Every line needs to start and end with 1
 */
-void	check_closed(t_data *data)
-{
-	int	i;
-	int	row;
+// void	check_closed(t_data *data)
+// {
+// 	int	y;
 
-	i = 0;
-	row = 0;
-	while (data->lst != NULL)
-	{
-		if (row == 0 || row == data->map_y)
-		{
-			if (!all_ones(data->lst->str))
-				ft_error(data, "Error: Map not closed, Invalid map", 1);
-		}
-		else if (data->lst->str[0] != '1' || 
-		data->lst->str[ft_strlen(data->lst->str - 1)] != '1')
-		{
-			ft_error(data, "Error: Map not closed, Invalid map", 1);
-		}
-		row++;
-		data->lst = data->lst->next;
-	}
-}
+// 	y = 0;
+// 	while (y <= data->map_y)
+// 	{
+// 		if (y == 0 || y == data->map_y)
+// 		{
+// 			if (!all_walls(data->map[y], ))
+// 				ft_error(data, "Error: Map not closed, Invalid map", 1);
+// 		}
+// 		else if (data->lst->str[0] != '1' || 
+// 		data->lst->str[ft_strlen(data->lst->str - 1)] != '1')
+// 		{
+// 			ft_error(data, "Error: Map not closed, Invalid map", 1);
+// 		}
+// 		row++;
+// 		data->lst = data->lst->next;
+// 	}
+// }
 
 void	check_playable(t_data *data)
 {
-	int	i;
+	int	x;
+	int	y;
 	int	flag;
 
+	y = 0;
 	flag = 0;
-	while (data->lst != NULL)
+	while (y < data->map_y)
 	{
-		i = 0;
-		while (data->lst->str[i++])
-			if (data->lst->str[i] == '0')
+		x = 0;
+		while (x < data->map_x)
+		{
+			if (data->map[y][x] == EMPTY)
 				flag++;
-		data->lst = data->lst->next;
+			x++;
+		}
+		y++;
 	}
 	if (flag < 1)
 		ft_error(data, "Error: Map not playable, Invalid map", 1);
@@ -85,6 +88,6 @@ void	check_playable(t_data *data)
 void	check_map(t_data *data)
 {
 	check_player_count(data);
-	check_closed(data);
+	//check_closed(data);
 	check_playable(data);
 }
