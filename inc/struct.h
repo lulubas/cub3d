@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:39:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/26 08:47:36 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/04/30 15:23:39 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,12 @@ typedef struct s_data
 	void		*win;
 	int			posX;
 	int			posY;
+	int			dirX;
+	int			dirY;
+	int			planeX;
+	int			planeY;
+	int			time;
+	int			old_time;
 }	t_data;
 
 #endif /* STRUCT_H */
