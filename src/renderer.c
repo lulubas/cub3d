@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 17:35:15 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/30 16:03:36 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/01 16:51:17 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	key_hook(int keycode, t_data *data)
 void	init_mlx(t_data *data)
 {
 	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, data->res_width, data->res_length, "cub3d");
+	data->win = mlx_new_window(data->mlx, data->width, data->height, "cub3d");
 	if (!data->mlx || !data->win)
 		ft_error(data, "Failed to initialise MLX", 1);
 	mlx_key_hook(data->win, &key_hook, data);

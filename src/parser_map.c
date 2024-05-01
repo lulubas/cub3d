@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 17:25:43 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/30 15:03:34 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/01 16:57:58 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,8 @@ t_tile	**parse_list_to_array(t_list *lst, t_data *data)
 			if (map[y][x] == NORTH || map[y][x] == SOUTH || \
 				map[y][x] == EAST || map[y][x] == WEST)
 			{
-				data->posX = x;
-				data->posY = y;
+				data->player_x = x;
+				data->player_y = y;
 			}
 			x++;
 		}

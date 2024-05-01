@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 02:39:50 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/30 16:00:38 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/01 16:26:27 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,15 +81,15 @@ void    print_data(t_data *data)
 	print_2darray(data->C_color);
 	printf("map_x=%d\n", data->map_x);
 	printf("map_y=%d\n", data->map_y);
-	printf("posX=%d\n", data->posX);
-	printf("posY=%d\n", data->posY);
+	printf("posX=%f\n", data->posX);
+	printf("posY=%f\n", data->posY);
 	printf("dirX=%d\n", data->dirX);
 	printf("dirY=%d\n", data->dirY);
-	printf("planeX=%d\n", data->planeX);
-	printf("planeY=%d\n", data->planeY);
-	printf("camX=%d\n", data->camX);
-	printf("rayDirX=%d\n", data->rayDirX);
-	printf("rayDirY=%d\n", data->rayDirY);
+	printf("planeX=%f\n", data->planeX);
+	printf("planeY=%f\n", data->planeY);
+	printf("camX=%f\n", data->camX);
+	printf("rayDirX=%f\n", data->rayDirX);
+	printf("rayDirY=%f\n", data->rayDirY);
 	printf("-----MAP ARRAY------\n");
 	print_map(data);
 	printf("--------------------\n");

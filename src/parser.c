@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:22:37 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/30 16:10:45 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/01 17:06:54 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,28 +76,28 @@ t_list *parse_map_to_list(int fd, t_data *data)
 
 void	parse_direction_and_plane(t_data *data)
 {
-	if(data->map[data->map_y][data->map_x] == NORTH)
+	if(data->map[data->player_y][data->player_y] == NORTH)
 	{
 		data->dirX = 0;
 		data->dirY = -1;
 		data->planeX = 0.66;
 		data->planeY = 0;
 	}
-	else if(data->map[data->map_y][data->map_x] == SOUTH)
+	else if(data->map[data->player_y][data->player_y] == SOUTH)
 	{
 		data->dirX = 0;
 		data->dirY = 1;
 		data->planeX = 0.66;
 		data->planeY = 0;
 	}
-	else if(data->map[data->map_y][data->map_x] == EAST)
+	else if(data->map[data->player_y][data->player_y] == EAST)
 	{
 		data->dirX = 1;
 		data->dirY = 0;
 		data->planeX = 0;
 		data->planeY = 0.66;
 	}
-	else if(data->map[data->map_y][data->map_x] == SOUTH)
+	else if(data->map[data->player_y][data->player_y] == SOUTH)
 	{
 		data->dirX = -1;
 		data->dirY = 0;
@@ -115,5 +115,4 @@ void	parse_scene(t_data *data)
 	data->lst = parse_map_to_list(fd, data);
 	data->map = parse_list_to_array(data->lst, data);
 	parse_direction_and_plane(data);
-	
 }
