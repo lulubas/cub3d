@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:22:04 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/30 17:34:21 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/01 14:47:54 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	check_map(t_data *data);
 
 /*		checker_map.c		*/
 void	check_player_count(t_data *data);
-//void	check_closed(t_data *data);
+void	check_closed(t_data *data);
 void	check_playable(t_data *data);
 
 /*		utils.c		*/

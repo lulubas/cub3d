@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:07:45 by damendez          #+#    #+#             */
-/*   Updated: 2024/04/30 17:31:58 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/01 14:47:27 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ int	is_player(char c)
 	return (0);
 }
 
-// int	all_walls(char *str)
-// {
-// 	int i;
+int	all_ones(char *str)
+{
+	int i;
 
-// 	i = 0;
-// 	while (str[i] == WALL && i < )
-// 		i++;
-// 	if ()
-// 		return (1);
-// 	return (0);
-// }
+	i = 0;
+	while (str[i] == '1')
+		i++;
+	if (str[i] == '\0')
+		return (1);
+	return (0);
+}
