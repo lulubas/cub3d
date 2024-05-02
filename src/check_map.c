@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 13:27:58 by damendez          #+#    #+#             */
-/*   Updated: 2024/05/01 15:00:57 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/02 17:48:45 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,34 +37,27 @@ void	 check_player_count(t_data *data)
 	if (flag == 0)
 		ft_error(data, "Error: Player needed in map", 1);
 }
-/*
- * 1. First and last line must all be 1s (or spaces)
- * 2. Every line needs to start and end with 1
-*/
+
 void	check_closed(t_data *data)
 {
+	int	x;
 	int	y;
-	t_list *tmp;
 
+	x = 0;
 	y = 0;
-	tmp = data->lst;
-	while (tmp != NULL)
+	while (y < data->map_y)
 	{
-		printf("Map row being checked: %i\n", y);
-		if (y == 0 || y == data->map_y)
+		x = 0;
+		while (x < data->map_x)
 		{
-			if (!all_ones(tmp->str))
-				ft_error(data, "Error: Map not closed 1, Invalid map", 1);
-		}
-		else if (tmp->str[0] != '1')
-			ft_error(data, "Error: Map not closed 2, Invalid map", 1);
-		else if (tmp->str[ft_strlen(tmp->str) - 1] != '1')
-		{
-			//printf("Map row n.%i last positon: %c\n", y, tmp->str[ft_strlen(tmp->str) - 1]);
-			ft_error(data, "Error: Map not closed 3, Invalid map", 1);
+			if (data->map[y][x] == SPACE)
+			{
+				if (!is_surrounded_space_or_wall(data->map, y, x))
+					ft_error(data, "Error: Map is not closed, Invalid map", 1);
+			}
+			x++;
 		}
 		y++;
-		tmp = tmp->next;
 	}
 }
 
@@ -93,7 +86,7 @@ void	check_playable(t_data *data)
 
 void	check_map(t_data *data)
 {
-	check_player_count(data);
 	check_closed(data);
+	check_player_count(data);
 	check_playable(data);
 }

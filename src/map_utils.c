@@ -6,11 +6,50 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:07:45 by damendez          #+#    #+#             */
-/*   Updated: 2024/05/01 14:47:27 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/02 17:48:45 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	is_space()
+{
+
+}
+
+int	is_wall()
+{
+	
+}
+
+/*
+ * map[y - 1][x - 1]	map[y - 1][x]	map[y - 1][x + 1]
+ * map  [y]  [x - 1]	map  [y]  [x]	map  [y]  [x + 1]
+ * map[y + 1][x - 1]	map[y + 1][x]	map[y + 1][x + 1]
+*/
+int	is_surrounded_space_or_wall(t_tile **map, int y, int x)
+{
+	int	tmpy;
+	int	tmpx;
+
+	tmpy = y - 1;
+	tmpx = x - 1;
+	while (tmpy <= y + 1)
+	{
+		tmpx = x - 1;
+		while (tmpx <= x + 1)
+		{
+			if (tmpx != x && tmpy != y)
+			{
+				if (!is_space(map[tmpy][tmpx]) && !is_wall(map[tmpy][tmpx])) // TO-DO
+					return (0);
+			}
+			tmpx++;		
+		}
+		tmpy++;
+	}
+	return (1);
+}
 
 int	is_map_line(char *line)
 {
