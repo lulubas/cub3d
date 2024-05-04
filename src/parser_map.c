@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 17:25:43 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/04 12:25:04 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/04 20:37:58 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,8 @@ t_tile	**parse_list_to_array(t_list *lst, t_data *data)
 			{
 				data->player_x = x;
 				data->player_y = y;
+				data->playerPosX = x + 0.5;
+				data->playerPosY = y + 0.5;
 			}
 			x++;
 		}

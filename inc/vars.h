@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:14:55 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/04 14:28:47 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/04 19:36:18 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 #define COLOR_BLUE		0x0000FF
 #define COLOR_WHITE 	0xFFFFFF
 #define COLOR_YELLOW	0xFFFF00
-#define MOVE_SPEED		0.1
-#define ROT_SPEED		0.05
+#define MOVE_SPEED		0.2
+#define ROT_SPEED		0.1
 
 #endif /* VARS_H */

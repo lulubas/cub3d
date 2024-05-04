@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 17:39:01 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/04 16:00:55 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/04 20:42:44 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,6 @@ void get_rays(int x, double *rayDirX, double *rayDirY, t_data *data)
 	camX = 2 * x / data->height - 1;
 	*rayDirX = data->playerDirX + data->planeX * camX;
 	*rayDirY = data->playerDirY + data->planeY * camX;
-
-	//Player's initial position (middle of the grid case)
-	data->playerPosX = data->player_x + 0.5;
-	data->playerPosY = data->player_y + 0.5;
 
 	//Ray's initial grid position
 	data->mapX = data->player_x;
@@ -142,8 +138,8 @@ int	raycast_and_render(t_data *data)
 	double	perpWallDist;
 
 	x = 0;
-	process_input(data);
 	mlx_clear_window(data->mlx, data->win);
+	process_input(data);
 	while (x < data->width)
 	{
 		get_rays(x, &rayDirX, &rayDirY, data);

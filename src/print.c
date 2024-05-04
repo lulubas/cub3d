@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 02:39:50 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/04 12:18:12 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/04 20:22:21 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ void    print_data(t_data *data)
 	printf("mapY=%d\n", data->mapY);
 	printf("playerPosX=%f\n", data->playerPosX);
 	printf("playerPosY=%f\n", data->playerPosY);
-	printf("playerDirX=%d\n", data->playerDirX);
-	printf("playerDirY=%d\n", data->playerDirY);
+	printf("playerDirX=%f\n", data->playerDirX);
+	printf("playerDirY=%f\n", data->playerDirY);
 	printf("planeX=%f\n", data->planeX);
 	printf("planeY=%f\n", data->planeY);
 	printf("sideDistX=%f\n", data->sideDistX);
