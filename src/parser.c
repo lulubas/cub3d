@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:22:37 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/01 17:06:54 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/03 17:56:50 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,29 +78,29 @@ void	parse_direction_and_plane(t_data *data)
 {
 	if(data->map[data->player_y][data->player_y] == NORTH)
 	{
-		data->dirX = 0;
-		data->dirY = -1;
+		data->playerDirX = 0;
+		data->playerDirY = -1;
 		data->planeX = 0.66;
 		data->planeY = 0;
 	}
 	else if(data->map[data->player_y][data->player_y] == SOUTH)
 	{
-		data->dirX = 0;
-		data->dirY = 1;
+		data->playerDirX = 0;
+		data->playerDirY = 1;
 		data->planeX = 0.66;
 		data->planeY = 0;
 	}
 	else if(data->map[data->player_y][data->player_y] == EAST)
 	{
-		data->dirX = 1;
-		data->dirY = 0;
+		data->playerDirX = 1;
+		data->playerDirY = 0;
 		data->planeX = 0;
 		data->planeY = 0.66;
 	}
 	else if(data->map[data->player_y][data->player_y] == SOUTH)
 	{
-		data->dirX = -1;
-		data->dirY = 0;
+		data->playerDirX = -1;
+		data->playerDirY = 0;
 		data->planeX = 0;
 		data->planeY = 0.66;
 	}
