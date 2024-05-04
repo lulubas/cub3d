@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:39:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/04 12:05:17 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/04 15:54:12 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,13 @@ typedef struct s_data
 	double		sideDistY;
 	double		deltaDistX;
 	double		deltaDistY;
+	double		perpWallDist;
 	int			stepX;
 	int			stepY;
-	int			time;
-	int			old_time;
+	bool		up_pressed;
+	bool		down_pressed;
+	bool		left_pressed;
+	bool		right_pressed;
 }	t_data;
 
 #endif /* STRUCT_H */

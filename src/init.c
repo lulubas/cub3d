@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:41:19 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/04 12:08:42 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/04 15:54:31 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,12 @@ t_data *init_data_struct(void)
 	new_data->sideDistY = -99;
 	new_data->deltaDistX = -99;
 	new_data->deltaDistY = -99;
+	new_data->perpWallDist = -99;
 	new_data->stepX = -99;
 	new_data->stepY = -99;
-	new_data->time = 0;
-	new_data->old_time = 0;
+	new_data->up_pressed = false;
+	new_data->down_pressed = false;
+	new_data->left_pressed = false;
+	new_data->right_pressed = false;
 	return(new_data);
 }

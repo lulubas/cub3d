@@ -6,7 +6,7 @@
 #    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 17:07:24 by lbastien          #+#    #+#              #
-#    Updated: 2024/04/26 09:19:11 by lbastien         ###   ########.fr        #
+#    Updated: 2024/05/04 16:01:13 by lbastien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ LIB_DIR = lib/libft
 
 # Source filenames
 FILES = cub3d init free checker parser print list_utils renderer \
-		parser_map raycasting
+		parser_map raycasting input
 
 # Generating source objects and depedency files
 SRC = $(FILES:%=$(SRC_DIR)/%.c)

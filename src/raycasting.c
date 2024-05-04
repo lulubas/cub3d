@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 17:39:01 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/04 12:26:18 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/04 16:00:55 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ double get_walldist(int side, t_data *data)
 }
 
 //DDA aLgorythm to find which wall is hit first
-double	perform_dda(t_data *data)
+int	perform_dda(t_data *data)
 {
 	int hit;
 	int side;
@@ -103,7 +103,7 @@ double	perform_dda(t_data *data)
 		if (data->map[data->mapY][data->mapX] == WALL)
 			hit =1;
 	}
-	return (get_walldist(side, data));
+	return(side);
 }
 
 void draw_line(void *mlx, void *win, int x, int start, int end, int color)
@@ -116,7 +116,7 @@ void draw_line(void *mlx, void *win, int x, int start, int end, int color)
 }
 
 //Calculate how the wall length to print on the verical line
-void	draw_wall(int x, double perpWallDist, t_data *data)
+void	draw_wall(int x, int side, double perpWallDist, t_data *data)
 {
 	int lineHeight = (int)(data->height / perpWallDist);
 	int drawStart = -lineHeight / 2 + data->height / 2;
@@ -125,27 +125,34 @@ void	draw_wall(int x, double perpWallDist, t_data *data)
 	int drawEnd = lineHeight / 2 + data->height / 2;
 	if(drawEnd >= data->height)
 		drawEnd = data->height - 1;
-	draw_line(data->mlx, data->win, x, drawStart, drawEnd, COLOR_GREEN);
+	if (side == 1)
+		draw_line(data->mlx, data->win, x, drawStart, drawEnd, COLOR_GREEN);
+	else
+		draw_line(data->mlx, data->win, x, drawStart, drawEnd, COLOR_RED);
 	x++;
 }
 
 
-void	raycast_and_render(t_data *data)
+int	raycast_and_render(t_data *data)
 {	
 	int 	x;
 	double	rayDirX;
 	double	rayDirY;
-	double 	perpWallDist;
+	int		side;
+	double	perpWallDist;
 
 	x = 0;
+	process_input(data);
+	mlx_clear_window(data->mlx, data->win);
 	while (x < data->width)
 	{
 		get_rays(x, &rayDirX, &rayDirY, data);
 		get_deltadist(rayDirX, rayDirY, data);
 		get_sidedist(rayDirX, rayDirY, data);
-		perpWallDist = perform_dda(data);
-		//printf("perpWallDist=%f\n", perpWallDist);
-		draw_wall(x, perpWallDist, data);
+		side = perform_dda(data);
+		perpWallDist = get_walldist(side, data);
+		draw_wall(x, side, perpWallDist, data);
 		x++;
 	}
+	return (0);
 }
