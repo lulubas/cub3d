@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:41:19 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/03 17:59:04 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/04 12:08:42 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ t_data *init_data_struct(void)
 	new_data->playerDirY = -99;
 	new_data->planeX = -99;
 	new_data->planeY = -99;
-	new_data->rayDirX = -99;
-	new_data->rayDirY = -99;
 	new_data->sideDistX = -99;
 	new_data->sideDistY = -99;
 	new_data->deltaDistX = -99;

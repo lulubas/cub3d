@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:22:37 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/03 17:56:50 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/04 12:24:42 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,28 +76,28 @@ t_list *parse_map_to_list(int fd, t_data *data)
 
 void	parse_direction_and_plane(t_data *data)
 {
-	if(data->map[data->player_y][data->player_y] == NORTH)
+	if(data->map[data->player_y][data->player_x] == NORTH)
 	{
 		data->playerDirX = 0;
 		data->playerDirY = -1;
 		data->planeX = 0.66;
 		data->planeY = 0;
 	}
-	else if(data->map[data->player_y][data->player_y] == SOUTH)
+	else if(data->map[data->player_y][data->player_x] == SOUTH)
 	{
 		data->playerDirX = 0;
 		data->playerDirY = 1;
 		data->planeX = 0.66;
 		data->planeY = 0;
 	}
-	else if(data->map[data->player_y][data->player_y] == EAST)
+	else if(data->map[data->player_y][data->player_x] == EAST)
 	{
 		data->playerDirX = 1;
 		data->playerDirY = 0;
 		data->planeX = 0;
 		data->planeY = 0.66;
 	}
-	else if(data->map[data->player_y][data->player_y] == SOUTH)
+	else if(data->map[data->player_y][data->player_x] == SOUTH)
 	{
 		data->playerDirX = -1;
 		data->playerDirY = 0;

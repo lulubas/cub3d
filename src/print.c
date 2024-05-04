@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 02:39:50 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/03 17:59:04 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/04 12:18:12 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,17 +79,22 @@ void    print_data(t_data *data)
 	print_2darray(data->F_color);
 	printf("C_color=");
 	print_2darray(data->C_color);
-	printf("map_x=%d\n", data->map_x);
-	printf("map_y=%d\n", data->map_y);
-	printf("posX=%f\n", data->playerPosX);
-	printf("posY=%f\n", data->playerPosY);
-	printf("dirX=%d\n", data->playerDirX);
-	printf("dirY=%d\n", data->playerDirY);
+	printf("player_x=%d\n", data->player_x);
+	printf("player_y=%d\n", data->player_y);
+	printf("mapX=%d\n", data->mapX);
+	printf("mapY=%d\n", data->mapY);
+	printf("playerPosX=%f\n", data->playerPosX);
+	printf("playerPosY=%f\n", data->playerPosY);
+	printf("playerDirX=%d\n", data->playerDirX);
+	printf("playerDirY=%d\n", data->playerDirY);
 	printf("planeX=%f\n", data->planeX);
 	printf("planeY=%f\n", data->planeY);
-	printf("camX=%f\n", data->camX);
-	printf("rayDirX=%f\n", data->rayDirX);
-	printf("rayDirY=%f\n", data->rayDirY);
+	printf("sideDistX=%f\n", data->sideDistX);
+	printf("sideDistY=%f\n", data->sideDistY);
+	printf("deltaDistX=%f\n", data->deltaDistX);
+	printf("deltaDistY=%f\n", data->deltaDistY);
+	printf("stepX=%d\n", data->stepX);
+	printf("stepY=%d\n", data->stepY);
 	printf("-----MAP ARRAY------\n");
 	print_map(data);
 	printf("--------------------\n");

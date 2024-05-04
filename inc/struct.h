@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:39:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/03 17:59:26 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/04 12:05:17 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,6 @@ typedef struct s_data
 	int			playerDirY;
 	double		planeX;
 	double		planeY;
-	double		camX;
-	double		rayDirX;
-	double		rayDirY;
 	double		sideDistX;
 	double		sideDistY;
 	double		deltaDistX;
