@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 17:39:01 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/06 15:44:09 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/06 16:09:47 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void draw_line(int x, int start, int end, int color, t_data *data)
 		mlx_pixel_put(data->mlx, data->win, x, y++, data->C_color);
 	while (y <= end)
         mlx_pixel_put(data->mlx, data->win, x, y++, color);
-	while (y <= data->height)
+	while (y <= SCREEN_HEIGHT)
 		mlx_pixel_put(data->mlx, data->win, x, y++, data->F_color);
 }
 
@@ -118,13 +118,13 @@ void	draw_wall(int x, int side, t_data *data)
 	int lineHeight;
 	int drawStart;
 	
-	lineHeight = (int)((double)data->height / data->scene->perpWallDist);
-	drawStart = -lineHeight / 2 + data->height / 2;
+	lineHeight = (int)((double)SCREEN_HEIGHT / data->scene->perpWallDist);
+	drawStart = -lineHeight / 2 + SCREEN_HEIGHT / 2;
 	if(drawStart < 0)
 		drawStart = 0;
-	int drawEnd = lineHeight / 2 + data->height / 2;
-	if(drawEnd >= data->height)
-		drawEnd = data->height - 1;
+	int drawEnd = lineHeight / 2 + SCREEN_HEIGHT / 2;
+	if(drawEnd >= SCREEN_HEIGHT)
+		drawEnd = SCREEN_HEIGHT - 1;
 	if (side == 1)
 		draw_line(x, drawStart, drawEnd, COLOR_BLUE, data);
 	else
@@ -141,9 +141,9 @@ int	raycast_and_render(t_data *data)
 	x = 0;
 	mlx_clear_window(data->mlx, data->win);
 	process_input(data);
-	while (x < data->width)
+	while (x < SCREEN_WIDTH)
 	{
-		get_rays(x, data->width, data->scene);
+		get_rays(x, SCREEN_WIDTH, data->scene);
 		get_deltadist(data->scene);
 		get_sidedist(data->scene);
 		side = perform_dda(data->scene, data->map);

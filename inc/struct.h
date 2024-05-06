@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:39:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/06 15:21:29 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/06 16:10:15 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ typedef struct s_data
 	t_list		*lst;
 	t_tile		**map;
 	t_scene		*scene;
-	int			width;
-	int			height;
 	void		*mlx;
 	void		*win;
 	int			player_x;
