@@ -6,13 +6,13 @@
 #    By: damendez <damendez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 17:07:24 by lbastien          #+#    #+#              #
-#    Updated: 2024/04/30 15:09:52 by damendez         ###   ########.fr        #
+#    Updated: 2024/05/06 14:30:27 by damendez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Compiler settings/flags
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra #-fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -fsanitize=address
 MLX_FLAGS =	-L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 
 # Directories
@@ -23,8 +23,9 @@ MLX_DIR = lib/mlx
 LIB_DIR = lib/libft
 
 # Source filenames
-FILES = cub3d init free checker check_map check_textures_and_colors \
-		parser print list_utils utils map_utils
+FILES = check_map check_textures_and_colors checker cub3d free \
+		init input list_utils map_utils parser_map parser print \
+		raycasting renderer utils
 
 # Generating source objects and depedency files
 SRC = $(FILES:%=$(SRC_DIR)/%.c)
@@ -54,7 +55,7 @@ run: all
 
 # Compile .cpp files into .o object files. Check that obj/ is created.
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) $(INCLUDES) -MMD -MP -c $< -o $@
+	$(CC) $(CFLAGS)  $(INCLUDES) -MMD -MP -c $< -o $@
 
 #Creates the obj directory if it does not exist
 $(OBJ_DIR):
@@ -62,7 +63,7 @@ $(OBJ_DIR):
 
 # Link object files into the target executable
 $(TARGET): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX) -o $(TARGET)
+	$(CC) $(CFLAGS) $(MLX_FLAGS) $(OBJ) $(LIBFT) $(MLX) -o $(TARGET)
 
 # Clean up objects and dependency files
 clean:

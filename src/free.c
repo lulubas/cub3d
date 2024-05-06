@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:59:26 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/20 03:37:52 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:03:15 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	ft_error(t_data *data, char *str, int status)
 {
-	write(2, "Error\n", 6);
+	if (status)
+		write(2, "Error\n", 6);
 	write(2, str, ft_strlen(str));
 	write(2, "\n", 1);
 	free_all(data);
@@ -49,10 +50,17 @@ void	free_2darray(char ***array)
 	*array = NULL;
 }
 
+void	free_mlx(t_data *data )
+{
+	if (data->win)
+		mlx_destroy_window(data->mlx, data->win);
+}
+
 void	free_all(t_data *data)
 {
 	if (data)
 	{
+		free_mlx(data);
 		if (data->filepath)
 			free(data->filepath);
 		if (data->no_texture)
@@ -69,10 +77,6 @@ void	free_all(t_data *data)
 			free_2darray(&data->F_color);
 		if (data->map)
 			free_map(&data->map, data);
-		if (data->mlx)
-			free(data->mlx);
-		if (data->win)
-			free(data->win);
 		if (data->lst)
 			free_list(&data->lst);
 	}

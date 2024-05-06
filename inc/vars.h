@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lib.h                                              :+:      :+:    :+:   */
+/*   vars.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 16:45:39 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/26 08:43:55 by lbastien         ###   ########.fr       */
+/*   Created: 2024/04/24 18:14:55 by lbastien          #+#    #+#             */
+/*   Updated: 2024/05/04 19:36:18 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIB_H
-#define LIB_H
+#ifndef VARS_H
+#define VARS_H
 
-#include <stdlib.h>	// malloc, free, exit
-#include <unistd.h>	// close, read, write
-#include <stdio.h>	// printf, perror
-#include <string.h>	// strerror
-#include <fcntl.h>	// open
-#include <math.h>
-#include <stdbool.h>
+#define ESCAPE			53
+#define ARROW_UP		126
+#define ARROW_DOWN		125
+#define ARROW_LEFT		123
+#define ARROW_RIGHT		124
+#define COLOR_RED		0xFF0000
+#define COLOR_GREEN		0x00FF00
+#define COLOR_BLUE		0x0000FF
+#define COLOR_WHITE 	0xFFFFFF
+#define COLOR_YELLOW	0xFFFF00
+#define MOVE_SPEED		0.2
+#define ROT_SPEED		0.1
 
-#endif /* LIB_H */
+#endif /* VARS_H */

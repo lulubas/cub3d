@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:39:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/20 03:20:26 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:25:59 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,31 @@ typedef struct s_data
 	int			map_y;
 	t_list		*lst;
 	t_tile		**map;
+	int			width;
+	int			height;
 	void		*mlx;
 	void		*win;
+	int			player_x;
+	int			player_y;
+	double		playerPosX;
+	double		playerPosY;
+	int			mapX;
+	int			mapY;
+	double		playerDirX;
+	double		playerDirY;
+	double		planeX;
+	double		planeY;
+	double		sideDistX;
+	double		sideDistY;
+	double		deltaDistX;
+	double		deltaDistY;
+	double		perpWallDist;
+	int			stepX;
+	int			stepY;
+	bool		up_pressed;
+	bool		down_pressed;
+	bool		left_pressed;
+	bool		right_pressed;
 }	t_data;
 
-#endif
+#endif /* STRUCT_H */

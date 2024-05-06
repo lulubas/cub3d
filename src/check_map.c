@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 13:27:58 by damendez          #+#    #+#             */
-/*   Updated: 2024/05/02 17:48:45 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/06 19:15:41 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	check_playable(t_data *data)
 
 void	check_map(t_data *data)
 {
-	check_closed(data);
+	//check_closed(data);
 	check_player_count(data);
 	check_playable(data);
 }

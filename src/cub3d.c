@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 14:45:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/02 16:20:46 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/06 15:44:53 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int main(int argc, char **argv)
 		return (1);
 	check_scene(argc, argv, data);
 	parse_scene(data);
-	//check_map(data);
+	//render_scene(data);
+	check_map(data);
 	printf("Map is valid !\n");
 	//Use function below to print the content of data struct
 	print_data(data);

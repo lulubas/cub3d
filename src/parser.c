@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:22:37 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/30 18:02:21 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/06 19:37:34 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void parse_textures(int fd, t_data *data)
 t_list *parse_map_to_list(int fd, t_data *data)
 {
 	char 	*line;
-	// char	**new_map;
 	t_list	*lst;
 
 	lst = NULL;
@@ -68,112 +67,44 @@ t_list *parse_map_to_list(int fd, t_data *data)
 	while (line && ft_strchr(line, '1'))
 	{
 		ft_trimnl(line);
-		list_addback(list_new(line), &lst, data);
+		list_addback(list_new(line, data), &lst, data);
 		free(line);
 		line = get_next_line(fd);
 	}
+	free(line);
 	return (lst);
 }
 
-int	get_max_x(t_list *lst)
+void	parse_direction_and_plane(t_data *data)
 {
-	t_list	*tmp;
-	size_t	max_length;
-
-	max_length = 0;
-	tmp = lst;
-	while (tmp)
+	if(data->map[data->player_y][data->player_x] == NORTH)
 	{
-		if (ft_strlen(tmp->str) > max_length)
-			max_length = ft_strlen(tmp->str);
-		tmp = tmp->next;
+		data->playerDirX = 0;
+		data->playerDirY = -1;
+		data->planeX = 0.66;
+		data->planeY = 0;
 	}
-	return (max_length);
-}
-
-int	get_y(t_list *lst)
-{
-	t_list	*tmp;
-	int		index;
-
-	index = 0;
-	tmp = lst;
-	while (tmp)
+	else if(data->map[data->player_y][data->player_x] == SOUTH)
 	{
-		index++;
-		tmp = tmp->next;
+		data->playerDirX = 0;
+		data->playerDirY = 1;
+		data->planeX = 0.66;
+		data->planeY = 0;
 	}
-	return (index);
-}
-
-t_tile	**init_map(t_list *lst, t_data *data)
-{
-	t_tile	**new_map;
-	int		i;
-	int		j;
-	
-	i = 0;
-	j = 0;
-	data->map_x = get_max_x(lst);
-	data->map_y = get_y(lst);
-	new_map = (t_tile **)malloc(sizeof(t_tile *) * data->map_y);
-	if (!new_map)
-		ft_error(data, "Failed to allocate map", 1);
-	while (i < data->map_y)
+	else if(data->map[data->player_y][data->player_x] == EAST)
 	{
-		new_map[i] = (t_tile *)malloc(sizeof(t_tile) * data->map_x);
-		if (!new_map[i])
-			ft_error(data, "Failed to allocate map tiles", 1);
-		while (j < data->map_x)
-			new_map[i][j++] = SPACE;
-		j = 0;
-		i++;
+		data->playerDirX = 1;
+		data->playerDirY = 0;
+		data->planeX = 0;
+		data->planeY = 0.66;
 	}
-	return (new_map);
-}
-
-void	process_tile(char c, t_tile *tile)
-{
-	if (c == ' ')
-		*tile = SPACE;
-	else if (c == '1')
-		*tile = WALL;
-	else if (c == '0')
-		*tile = EMPTY;
-	else if (c == 'N')
-		*tile = NORTH;
-	else if (c == 'S')
-		*tile = SOUTH;
-	else if (c == 'E')
-		*tile = EAST;
-	else if (c == 'W')
-		*tile = WEST;		
-}
-
-t_tile	**parse_list_to_array(t_list *lst, t_data *data)
-{
-	t_tile	**map;
-	t_list	*tmp;
-	int		x;
-	int		y;
-
-	map = init_map(lst, data);
-	tmp = lst;
-	x = 0;
-	y = 0;
-	while(tmp)
+	else if(data->map[data->player_y][data->player_x] == SOUTH)
 	{
-		while (tmp->str[x])
-		{
-			process_tile(tmp->str[x], &map[y][x]);
-			x++;
-		}
-		x = 0;
-		y++;
-		tmp = tmp->next;
+		data->playerDirX = -1;
+		data->playerDirY = 0;
+		data->planeX = 0;
+		data->planeY = 0.66;
 	}
-
-	return (map);
 }
 
 void	parse_scene(t_data *data)
@@ -184,4 +115,5 @@ void	parse_scene(t_data *data)
 	parse_textures(fd, data);
 	data->lst = parse_map_to_list(fd, data);
 	data->map = parse_list_to_array(data->lst, data);
+	parse_direction_and_plane(data);
 }

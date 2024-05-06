@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:22:04 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/01 14:47:54 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/06 19:39:54 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,16 @@
 t_data 	*init_data_struct(void);
 void	ft_error(t_data *data, char *str, int status);
 void	parse_scene(t_data *data);
-void	init_game(int fd, t_data *data);
+t_tile	**parse_list_to_array(t_list *lst, t_data *data);
+void	render_scene(t_data *data);
+int		raycast_and_render(t_data *data);
+void	process_input(t_data *data);
 void	free_all(t_data *data);
 void	free_2darray(char ***array);
 void    print_data(t_data *data);
 void	print_list(t_list *lst);
-t_list	*list_new(char *str);
+char	*tile_to_string(t_tile tile);
+t_list	*list_new(char *str, t_data *data);
 void	list_addback(t_list *new, t_list **lst, t_data *data);
 void	free_list(t_list **lst);
 
@@ -48,5 +52,6 @@ int		ft_ptrlen(char **str);
 int		is_map_line(char *line);
 int		is_player(char c);
 int		all_ones(char *str);
+int		is_surrounded_space_or_wall(t_tile **map, int y, int x);
 
 #endif

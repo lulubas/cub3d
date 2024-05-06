@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:41:19 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/20 03:03:31 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/06 13:25:20 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,30 @@ t_data *init_data_struct(void)
 	new_data->map_y = 0;
 	new_data->lst = NULL;
 	new_data->map = NULL;
+	new_data->width = 600;
+	new_data->height = 400;
 	new_data->mlx = NULL;
 	new_data->win = NULL;
+	new_data->playerPosX = -99;
+	new_data->playerPosY = -99;
+	new_data->mapX = -99;
+	new_data->mapY = -99;
+	new_data->map_x = -99;
+	new_data->map_y = -99;
+	new_data->playerDirX = -99;
+	new_data->playerDirY = -99;
+	new_data->planeX = -99;
+	new_data->planeY = -99;
+	new_data->sideDistX = -99;
+	new_data->sideDistY = -99;
+	new_data->deltaDistX = -99;
+	new_data->deltaDistY = -99;
+	new_data->perpWallDist = -99;
+	new_data->stepX = -99;
+	new_data->stepY = -99;
+	new_data->up_pressed = false;
+	new_data->down_pressed = false;
+	new_data->left_pressed = false;
+	new_data->right_pressed = false;
 	return(new_data);
 }
