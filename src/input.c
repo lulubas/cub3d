@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 14:00:02 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/04 20:42:45 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/06 11:45:46 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	rotate_left(t_data *data)
 	double old_playerDirX;
 	double old_planeX;
 
-	printf("LEFT\n");
+	printf("LEFT playerPosX=%f playerPosY=%f\n", data->playerPosX, data->playerPosY);
 	old_playerDirX = data->playerDirX;
 	old_planeX = data->planeX;
 	data->playerDirX = data->playerDirX * cos(ROT_SPEED) - data->playerDirY * sin(ROT_SPEED);
@@ -31,7 +31,7 @@ void	rotate_right(t_data *data)
 	double old_playerDirX;
 	double old_planeX;
 
-	printf("RIGHT\n");
+	printf("RIGHT playerPosX=%f playerPosY=%f\n", data->playerPosX, data->playerPosY);
 	old_playerDirX = data->playerDirX;
 	old_planeX = data->planeX;
 	data->playerDirX = data->playerDirX * cos(-ROT_SPEED) - data->playerDirY * sin(-ROT_SPEED);
@@ -45,15 +45,15 @@ void	move_forward(t_data *data)
 	double new_playerPosX;
 	double new_playerPosY;
 
-	printf("UP\n");
+	printf("FORWARD playerPosX=%f playerPosY=%f\n", data->playerPosX, data->playerPosY);
 	new_playerPosX = data->playerPosX + (data->playerDirX * MOVE_SPEED);
 	new_playerPosY = data->playerPosY + (data->playerDirY * MOVE_SPEED);
-	printf("playerPosY=%f new_playerPosY=%f playerDirY=%f\n", data->playerPosY, new_playerPosY, data->playerDirY);
+
 	if(data->map[(int)new_playerPosY][(int)new_playerPosX] != WALL)
 	{
-		printf("NO WALL\n");
 		data->playerPosX = new_playerPosX;
 		data->playerPosY = new_playerPosY;
+		// printf("FORWARD2 playerPosX=%f playerPosY=%f\n", data->playerPosX, data->playerPosY);
 	}
 }
 
@@ -62,9 +62,9 @@ void	move_backward(t_data *data)
 	double new_playerPosX;
 	double new_playerPosY;
 
-	printf("DOWN\n");
-	new_playerPosX = data->playerPosX - data->playerDirX * MOVE_SPEED;
-	new_playerPosY = data->playerPosY - data->playerDirY * MOVE_SPEED;
+	printf("BACKWARD playerPosX=%f playerPosY=%f\n", data->playerPosX, data->playerPosY);
+	new_playerPosX = data->playerPosX - (data->playerDirX * MOVE_SPEED);
+	new_playerPosY = data->playerPosY - (data->playerDirY * MOVE_SPEED);
 	if(data->map[(int)new_playerPosY][(int)new_playerPosX] != WALL)
 	{
 		data->playerPosX = new_playerPosX;
