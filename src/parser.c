@@ -6,11 +6,26 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:22:37 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/06 12:24:01 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/06 15:37:59 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	rgb_to_int(char **rgb)
+{
+	int	red;
+	int green;
+	int blue;
+	int color;
+
+	red = ft_atoi(rgb[0]) << 16;
+	green = ft_atoi(rgb[1]) << 8;
+	blue = ft_atoi(rgb[2]);
+	color = (red | green | blue);
+	free(rgb);
+	return(color);
+}
 
 void	process_line(char **array, t_data *data)
 {
@@ -23,9 +38,9 @@ void	process_line(char **array, t_data *data)
 	else if (!ft_strcmp(array[0], "WE"))
 		data->we_texture = strdup(array[1]);
 	else if (!ft_strcmp(array[0], "F"))
-		data->F_color = ft_split(array[1], ',');
+		data->F_color = rgb_to_int(ft_split(array[1], ','));
 	else if (!ft_strcmp(array[0], "C"))
-		data->C_color = ft_split(array[1], ',');
+		data->C_color = rgb_to_int(ft_split(array[1], ','));
 }
 
 void parse_textures(int fd, t_data *data)
@@ -79,31 +94,31 @@ void	parse_direction_and_plane(t_data *data)
 {
 	if(data->map[data->player_y][data->player_x] == NORTH)
 	{
-		data->playerDirX = 0;
-		data->playerDirY = -1;
-		data->planeX = 0.66;
-		data->planeY = 0;
+		data->scene->playerDirX = 0;
+		data->scene->playerDirY = -1;
+		data->scene->planeX = 0.66;
+		data->scene->planeY = 0;
 	}
 	else if(data->map[data->player_y][data->player_x] == SOUTH)
 	{
-		data->playerDirX = 0;
-		data->playerDirY = 1;
-		data->planeX = 0.66;
-		data->planeY = 0;
+		data->scene->playerDirX = 0;
+		data->scene->playerDirY = 1;
+		data->scene->planeX = 0.66;
+		data->scene->planeY = 0;
 	}
 	else if(data->map[data->player_y][data->player_x] == EAST)
 	{
-		data->playerDirX = 1;
-		data->playerDirY = 0;
-		data->planeX = 0;
-		data->planeY = 0.66;
+		data->scene->playerDirX = 1;
+		data->scene->playerDirY = 0;
+		data->scene->planeX = 0;
+		data->scene->planeY = 0.66;
 	}
 	else if(data->map[data->player_y][data->player_x] == SOUTH)
 	{
-		data->playerDirX = -1;
-		data->playerDirY = 0;
-		data->planeX = 0;
-		data->planeY = 0.66;
+		data->scene->playerDirX = -1;
+		data->scene->playerDirY = 0;
+		data->scene->planeX = 0;
+		data->scene->planeY = 0.66;
 	}
 }
 

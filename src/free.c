@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:59:26 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/25 18:03:15 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/06 15:38:32 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,6 @@ void	free_all(t_data *data)
 			free(data->ea_texture);
 		if (data->we_texture)
 			free(data->we_texture);
-		if (data->C_color)
-			free_2darray(&data->C_color);
-		if (data->F_color)
-			free_2darray(&data->F_color);
 		if (data->map)
 			free_map(&data->map, data);
 		if (data->lst)

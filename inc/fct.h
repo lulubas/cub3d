@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:22:04 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/04 15:59:04 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/06 14:41:42 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	process_input(t_data *data);
 void	free_all(t_data *data);
 void	free_2darray(char ***array);
 void    print_data(t_data *data);
+void    print_scene(t_scene *scene);
 void	print_list(t_list *lst);
 char	*tile_to_string(t_tile tile);
 t_list	*list_new(char *str);

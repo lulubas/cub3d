@@ -6,76 +6,73 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 17:39:01 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/06 12:25:03 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/06 15:44:09 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void get_rays(int x, double *rayDirX, double *rayDirY, t_data *data)
+void get_rays(int x, int width, t_scene *scene)
 {
 	double camX;
 	
 	//Rays vectors from the Player through the plane
-	camX = 2 * x / data->height - 1;
-	*rayDirX = data->playerDirX + data->planeX * camX;
-	*rayDirY = data->playerDirY + data->planeY * camX;
+	camX = 2 * x / (double)width - 1;
+	scene->rayDirX = scene->playerDirX + scene->planeX * camX;
+	scene->rayDirY = scene->playerDirY + scene->planeY * camX;
 
 	//Ray's initial grid position
-	data->mapX = data->player_x;
-	data->mapY = data->player_y;
+	scene->mapX = scene->playerPosX;
+	scene->mapY = scene->playerPosY;
 }
 //Distances between each grid lines
-void	get_deltadist(double rayDirX, double rayDirY, t_data *data)
+void	get_deltadist(t_scene *scene)
 {
-	if (rayDirX == 0)
-		data->deltaDistX = 1e42;
+	if (scene->rayDirX == 0)
+		scene->deltaDistX = 1e42;
 	else
-		data->deltaDistX = fabs(1 / rayDirX);
-	if (rayDirY == 0)
-		data->deltaDistY = 1e42;
+		scene->deltaDistX = fabs(1 / scene->rayDirX);
+	if (scene->rayDirY == 0)
+		scene->deltaDistY = 1e42;
 	else
-		data->deltaDistY = fabs(1 / rayDirY);
+		scene->deltaDistY = fabs(1 / scene->rayDirY);
 }
 
 //Side distances from Player to next grid lines
-void	get_sidedist(double rayDirX, double rayDirY, t_data *data)
+void	get_sidedist(t_scene *scene)
 {
-	if (rayDirX < 0)
+	if (scene->rayDirX < 0)
 		{
-			data->stepX = -1;
-			data->sideDistX = (data->playerPosX - data->mapX) * data->deltaDistX;
+			scene->stepX = -1;
+			scene->sideDistX = (scene->playerPosX - scene->mapX) * scene->deltaDistX;
 		}
 		else
 		{
-			data->stepX =   1;
-			data->sideDistX = (data->mapX + 1 - data->playerPosX) * data->deltaDistX;
+			scene->stepX =   1;
+			scene->sideDistX = (scene->mapX + 1 - scene->playerPosX) * scene->deltaDistX;
 		}
-	if (rayDirY < 0)
+	if (scene->rayDirY < 0)
 		{
-			data->stepY = -1;
-			data->sideDistY = (data->playerPosY - data->mapY) * data->deltaDistY;
+			scene->stepY = -1;
+			scene->sideDistY = (scene->playerPosY - scene->mapY) * scene->deltaDistY;
 		}
 		else
 		{
-			data->stepY = 1;
-			data->sideDistY = (data->mapY + 1.0 - data->playerPosY) * data->deltaDistY;
+			scene->stepY = 1;
+			scene->sideDistY = (scene->mapY + 1.0 - scene->playerPosY) * scene->deltaDistY;
 		}
 }
 
-double get_walldist(int side, t_data *data)
+void	get_walldist(int side, t_scene *scene)
 {
-	double perpWallDist;
-	
 	if (side == 1)
-		perpWallDist = data->sideDistX - data->deltaDistX;
+		scene->perpWallDist = scene->sideDistX - scene->deltaDistX;
 	else
-		perpWallDist = data->sideDistY - data->deltaDistY;
-	return (perpWallDist);
+		scene->perpWallDist = scene->sideDistY - scene->deltaDistY;
 }
 
 //DDA aLgorythm to find which wall is hit first
-int	perform_dda(t_data *data)
+int	perform_dda(t_scene *scene, t_tile **map)
 {
 	int hit;
 	int side;
@@ -84,47 +81,54 @@ int	perform_dda(t_data *data)
 	side = 0;
 	while (hit == 0)
 	{
-		if (data->sideDistX < data->sideDistY)
+		if (scene->sideDistX < scene->sideDistY)
 		{
-			data->sideDistX += data->deltaDistX;
-			data->mapX += data->stepX;
+			scene->sideDistX += scene->deltaDistX;
+			scene->mapX += scene->stepX;
 			side = 1;
 		}
 		else
 		{
-			data->sideDistY += data->deltaDistY;
-			data->mapY += data->stepY;
+			scene->sideDistY += scene->deltaDistY;
+			scene->mapY += scene->stepY;
 			side = 2;
 		}
-		if (data->map[data->mapY][data->mapX] == WALL)
+		if (map[scene->mapY][scene->mapX] == WALL)
 			hit =1;
 	}
 	return(side);
 }
 
-void draw_line(void *mlx, void *win, int x, int start, int end, int color)
+void draw_line(int x, int start, int end, int color, t_data *data)
 {
 	int	y;
 
-	y = start;
+	y = 0;
+	while (y <= start)
+		mlx_pixel_put(data->mlx, data->win, x, y++, data->C_color);
 	while (y <= end)
-        mlx_pixel_put(mlx, win, x, y++, color);
+        mlx_pixel_put(data->mlx, data->win, x, y++, color);
+	while (y <= data->height)
+		mlx_pixel_put(data->mlx, data->win, x, y++, data->F_color);
 }
 
 //Calculate how the wall length to print on the verical line
-void	draw_wall(int x, int side, double perpWallDist, t_data *data)
+void	draw_wall(int x, int side, t_data *data)
 {
-	int lineHeight = (int)(data->height / perpWallDist);
-	int drawStart = -lineHeight / 2 + data->height / 2;
+	int lineHeight;
+	int drawStart;
+	
+	lineHeight = (int)((double)data->height / data->scene->perpWallDist);
+	drawStart = -lineHeight / 2 + data->height / 2;
 	if(drawStart < 0)
 		drawStart = 0;
 	int drawEnd = lineHeight / 2 + data->height / 2;
 	if(drawEnd >= data->height)
 		drawEnd = data->height - 1;
 	if (side == 1)
-		draw_line(data->mlx, data->win, x, drawStart, drawEnd, COLOR_GREEN);
+		draw_line(x, drawStart, drawEnd, COLOR_BLUE, data);
 	else
-		draw_line(data->mlx, data->win, x, drawStart, drawEnd, COLOR_RED);
+		draw_line(x, drawStart, drawEnd, COLOR_WHITE, data);
 	x++;
 }
 
@@ -132,22 +136,19 @@ void	draw_wall(int x, int side, double perpWallDist, t_data *data)
 int	raycast_and_render(t_data *data)
 {	
 	int 	x;
-	double	rayDirX;
-	double	rayDirY;
 	int		side;
-	double	perpWallDist;
 
 	x = 0;
 	mlx_clear_window(data->mlx, data->win);
 	process_input(data);
 	while (x < data->width)
 	{
-		get_rays(x, &rayDirX, &rayDirY, data);
-		get_deltadist(rayDirX, rayDirY, data);
-		get_sidedist(rayDirX, rayDirY, data);
-		side = perform_dda(data);
-		perpWallDist = get_walldist(side, data);
-		draw_wall(x, side, perpWallDist, data);
+		get_rays(x, data->width, data->scene);
+		get_deltadist(data->scene);
+		get_sidedist(data->scene);
+		side = perform_dda(data->scene, data->map);
+		get_walldist(side, data->scene);
+		draw_wall(x, side, data);
 		x++;
 	}
 	return (0);

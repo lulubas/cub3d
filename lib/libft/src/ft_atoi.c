@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42barcel>       +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:40:21 by lbastien          #+#    #+#             */
-/*   Updated: 2022/10/12 21:09:20 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/06 15:27:49 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+
 
 int	ft_isspace(int c)
 {
@@ -41,19 +41,3 @@ int	ft_atoi(const char *str)
 	return (r * n);
 }
 
-/* Main
-#include <stdio.h>
-int	main(void)
-{
-	char	str[50];
-	
-	printf("Enter the string to try : ");
-	scanf("%s", str);
-	printf("Returned Value = %d\n", ft_atoi(str));
-	printf("Expected Value = %d\n", atoi(str));
-
-	if (ft_atoi(str) == atoi(str))
-		printf("\nSuccess !! Well done !!\n");
-	return(0);
-}
-*/

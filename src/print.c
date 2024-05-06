@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 02:39:50 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/04 20:22:21 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/06 15:49:25 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,28 +75,33 @@ void    print_data(t_data *data)
     printf("so_texture=%s\n", data->so_texture);
     printf("ea_texture=%s\n", data->ea_texture);
     printf("we_texture=%s\n", data->we_texture);
-	printf("F_color=");
-	print_2darray(data->F_color);
-	printf("C_color=");
-	print_2darray(data->C_color);
+	printf("F_color=%d\n", data->F_color);
+	printf("C_color=%d\n", data->C_color);
 	printf("player_x=%d\n", data->player_x);
 	printf("player_y=%d\n", data->player_y);
-	printf("mapX=%d\n", data->mapX);
-	printf("mapY=%d\n", data->mapY);
-	printf("playerPosX=%f\n", data->playerPosX);
-	printf("playerPosY=%f\n", data->playerPosY);
-	printf("playerDirX=%f\n", data->playerDirX);
-	printf("playerDirY=%f\n", data->playerDirY);
-	printf("planeX=%f\n", data->planeX);
-	printf("planeY=%f\n", data->planeY);
-	printf("sideDistX=%f\n", data->sideDistX);
-	printf("sideDistY=%f\n", data->sideDistY);
-	printf("deltaDistX=%f\n", data->deltaDistX);
-	printf("deltaDistY=%f\n", data->deltaDistY);
-	printf("stepX=%d\n", data->stepX);
-	printf("stepY=%d\n", data->stepY);
 	printf("-----MAP ARRAY------\n");
 	print_map(data);
 	printf("--------------------\n");
 	printf("====================\n");
+}
+
+void	print_scene(t_scene *scene)
+{
+	printf("playerPosX=%f\n", scene->playerPosX);
+	printf("playerPosY=%f\n", scene->playerPosY);
+	printf("playerDirX=%f\n", scene->playerDirX);
+	printf("playerDirY=%f\n", scene->playerDirY);
+	printf("rayDirX=%f\n", scene->rayDirX);
+	printf("rayDirY=%f\n", scene->rayDirY);
+	printf("planeX=%f\n", scene->planeX);
+	printf("planeY=%f\n", scene->planeY);
+	printf("sideDistX=%f\n", scene->sideDistX);
+	printf("sideDistY=%f\n", scene->sideDistY);
+	printf("deltaDistX=%f\n", scene->deltaDistX);
+	printf("deltaDistY=%f\n", scene->deltaDistY);
+	printf("mapX=%d\n", scene->mapX);
+	printf("mapY=%d\n", scene->mapY);
+	printf("stepX=%d\n", scene->stepX);
+	printf("stepY=%d\n", scene->stepY);
+	printf("perpWallDist=%f\n", scene->perpWallDist);
 }
