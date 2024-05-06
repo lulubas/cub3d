@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:39:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/06 16:10:15 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/06 17:17:52 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@ typedef enum s_tile
 	EAST,
 	WEST
 }	t_tile;
+
+typedef enum s_walldir{
+    NORTH,
+	SOUTH,
+	EAST,
+	WEST
+} t_walldir;
 
 typedef struct s_list
 {
@@ -49,6 +56,11 @@ typedef struct s_scene
 	int			stepX;
 	int			stepY;
 	double		perpWallDist;
+	void		*no_img;
+	void		*so_img;
+	void		*ea_img;
+	void		*we_img;
+
 }	t_scene;
 
 typedef struct s_data
@@ -65,6 +77,7 @@ typedef struct s_data
 	t_list		*lst;
 	t_tile		**map;
 	t_scene		*scene;
+	int			**buffer;
 	void		*mlx;
 	void		*win;
 	int			player_x;

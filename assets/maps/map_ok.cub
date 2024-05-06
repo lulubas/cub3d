@@ -1,14 +1,10 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
-
+NO ./assets/textures/wall_bluesteel.png
+SO ./assets/textures/wall_greybricks.png
+WE ./assets/textures/wall_naziflag.png
+EA ./assets/textures/wall_redbricks.png
 
 F 100,100,100
 C 200,235,255
-
-
 
 
         1111111111111111111111111

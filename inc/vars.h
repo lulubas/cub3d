@@ -6,15 +6,17 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:14:55 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/06 16:10:15 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/06 16:13:18 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VARS_H
 #define VARS_H
 
-#define SCREEN_HEIGHT   600
 #define SCREEN_WIDTH    400
+#define SCREEN_HEIGHT   300
+#define TEXTURE_WIDTH   64
+#define TEXTURE_HEIGHT  64
 #define ESCAPE			53
 #define ARROW_UP		126
 #define ARROW_DOWN		125

@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 17:35:15 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/06 16:09:34 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/06 18:10:11 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ int	key_release(int keycode, t_data *data)
 
 void	init_mlx(t_data *data)
 {
+	int text_height;
+	int text_width ;
+
+	text_height = SCREEN_HEIGHT;
+	text_width = SCREEN_WIDTH;
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "cub3d");
 	if (!data->mlx || !data->win)
@@ -55,6 +60,10 @@ void	init_mlx(t_data *data)
 	mlx_hook(data->win, 2, 0, key_press, data);
 	mlx_hook(data->win, 3, 0, key_release, data);
 	mlx_hook(data->win, 17, 0, exit_hook, data);
+	data->scene->no_img =  mlx_xpm_file_to_image(data->mlx, data->no_texture, &text_width, &text_height);
+	data->scene->so_img =  mlx_xpm_file_to_image(data->mlx, data->so_texture, &text_width, &text_height);
+	data->scene->ea_img =  mlx_xpm_file_to_image(data->mlx, data->ea_texture, &text_width, &text_height);
+	data->scene->we_img =  mlx_xpm_file_to_image(data->mlx, data->we_texture, &text_width, &text_height);
 }
 
 void	render_scene(t_data *data)

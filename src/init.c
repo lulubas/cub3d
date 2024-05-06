@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:41:19 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/06 16:07:48 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/06 16:56:49 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ t_scene *init_scene(void)
 	new_scene->stepX = -99;
 	new_scene->stepY = -99;
 	new_scene->perpWallDist = -99;
+	new_scene->no_img = NULL;
+	new_scene->so_img = NULL;
+	new_scene->ea_img = NULL;
+	new_scene->we_img = NULL;
 	return(new_scene);
 }
 
@@ -54,6 +58,7 @@ t_data *init_data_struct(void)
 	new_data->lst = NULL;
 	new_data->map = NULL;
 	new_data->scene = init_scene();
+	new_data->buffer = NULL;
 	new_data->mlx = NULL;
 	new_data->win = NULL;
 	new_data->map_x = -99;
