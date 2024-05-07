@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 17:25:43 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/06 14:15:52 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/07 15:17:44 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,13 @@ void	process_tile(char c, t_tile *tile)
 	else if (c == '0')
 		*tile = EMPTY;
 	else if (c == 'N')
-		*tile = NORTH;
+		*tile = P_NORTH;
 	else if (c == 'S')
-		*tile = SOUTH;
+		*tile = P_SOUTH;
 	else if (c == 'E')
-		*tile = EAST;
+		*tile = P_EAST;
 	else if (c == 'W')
-		*tile = WEST;		
+		*tile = P_WEST;		
 }
 
 t_tile	**parse_list_to_array(t_list *lst, t_data *data)
@@ -103,8 +103,8 @@ t_tile	**parse_list_to_array(t_list *lst, t_data *data)
 		while (tmp->str[x])
 		{
 			process_tile(tmp->str[x], &map[y][x]);
-			if (map[y][x] == NORTH || map[y][x] == SOUTH || \
-				map[y][x] == EAST || map[y][x] == WEST)
+			if (map[y][x] == P_NORTH || map[y][x] == P_SOUTH || \
+				map[y][x] == P_EAST || map[y][x] == P_WEST)
 			{
 				data->player_x = x;
 				data->player_y = y;

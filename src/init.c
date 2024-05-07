@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:41:19 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/06 16:56:49 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/07 15:58:05 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ t_data *init_data_struct(void)
 	new_data->buffer = NULL;
 	new_data->mlx = NULL;
 	new_data->win = NULL;
+	new_data->img_buffer = NULL;
 	new_data->map_x = -99;
 	new_data->map_y = -99;
 	new_data->up_pressed = false;

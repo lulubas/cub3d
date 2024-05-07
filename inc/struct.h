@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:39:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/06 17:17:52 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/07 15:58:49 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ typedef enum s_tile
 	SPACE,
 	WALL,
 	EMPTY,
-	NORTH,
-	SOUTH,
-	EAST,
-	WEST
+	P_NORTH,
+	P_SOUTH,
+	P_EAST,
+	P_WEST
 }	t_tile;
 
 typedef enum s_walldir{
@@ -80,6 +80,7 @@ typedef struct s_data
 	int			**buffer;
 	void		*mlx;
 	void		*win;
+	void		*img_buffer;
 	int			player_x;
 	int			player_y;
 	bool		up_pressed;

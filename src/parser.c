@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:22:37 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/06 15:37:59 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/07 15:17:46 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,28 +92,28 @@ t_list *parse_map_to_list(int fd, t_data *data)
 
 void	parse_direction_and_plane(t_data *data)
 {
-	if(data->map[data->player_y][data->player_x] == NORTH)
+	if(data->map[data->player_y][data->player_x] == P_NORTH)
 	{
 		data->scene->playerDirX = 0;
 		data->scene->playerDirY = -1;
 		data->scene->planeX = 0.66;
 		data->scene->planeY = 0;
 	}
-	else if(data->map[data->player_y][data->player_x] == SOUTH)
+	else if(data->map[data->player_y][data->player_x] == P_SOUTH)
 	{
 		data->scene->playerDirX = 0;
 		data->scene->playerDirY = 1;
 		data->scene->planeX = 0.66;
 		data->scene->planeY = 0;
 	}
-	else if(data->map[data->player_y][data->player_x] == EAST)
+	else if(data->map[data->player_y][data->player_x] == P_EAST)
 	{
 		data->scene->playerDirX = 1;
 		data->scene->playerDirY = 0;
 		data->scene->planeX = 0;
 		data->scene->planeY = 0.66;
 	}
-	else if(data->map[data->player_y][data->player_x] == SOUTH)
+	else if(data->map[data->player_y][data->player_x] == P_SOUTH)
 	{
 		data->scene->playerDirX = -1;
 		data->scene->playerDirY = 0;
