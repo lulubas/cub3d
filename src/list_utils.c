@@ -6,44 +6,45 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 01:41:06 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/06 19:51:19 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/07 18:30:44 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static char	*add_map_row(char *str, int map_x)
-{
-	char	*tmp;
-	int		i;
-	int		j;
+// static char	*add_map_row(char *str, int map_x)
+// {
+// 	char	*tmp;
+// 	int		i;
+// 	int		j;
 
-	tmp = (char *)malloc(sizeof(char) * (map_x + 1));
-	if (!tmp)
-		return (0);
-	i = 0;
-	j = 0;
-	tmp[j] = ' ';
-	while (str[i] != '\0')
-	{
-		tmp[j] = str[i];
-		j++;
-		i++;
-	}
-	tmp[j] = ' ';
-	tmp[++j] = '\0';
-	return (tmp);
-}
+// 	tmp = (char *)malloc(sizeof(char) * (map_x + 1));
+// 	if (!tmp)
+// 		return (0);
+// 	i = 0;
+// 	j = 0;
+// 	tmp[j] = ' ';
+// 	while (str[i] != '\0')
+// 	{
+// 		tmp[j] = str[i];
+// 		j++;
+// 		i++;
+// 	}
+// 	tmp[j] = ' ';
+// 	tmp[++j] = '\0';
+// 	return (tmp);
+// }
 
-t_list	*list_new(char *str, t_data *data)
+t_list	*list_new(char *str /*, t_data *data*/)
 {
 	t_list	*lst;
 
 	lst = malloc(sizeof(t_list));
 	if (!lst)
 		return (NULL);
-	//lst->str = ft_strdup(str);
-	lst->str = add_map_row(str, data->map_x);
+	lst->str = ft_strdup(str);
+	printf("lst->str: %s\n", lst->str);
+	//lst->str = add_map_row(str, data->map_x);
 	lst->next = NULL;
 	return (lst);
 }

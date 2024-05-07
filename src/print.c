@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 02:39:50 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/06 14:30:27 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/07 18:41:20 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,19 @@ void print_2darray(char **darray)
 char	*tile_to_string(t_tile tile)
 {
 	if (tile == SPACE)
-		return ("SPA");
+		return ("V");
 	else if (tile == WALL)
-		return ("WAL");
+		return ("1");
 	else if (tile == EMPTY)
-		return ("EMP");
+		return ("0");
 	else if (tile == NORTH)
-		return ("NOR");
+		return ("N");
 	else if (tile == SOUTH)
-		return ("SOU");
+		return ("S");
 	else if (tile == EAST)
-		return ("EAS");
+		return ("E");
 	else if (tile == WEST)
-		return ("WES");
+		return ("W");
 	else
 		return ("ERR");
 }

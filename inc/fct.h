@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:22:04 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/06 19:39:54 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/07 18:30:18 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	free_2darray(char ***array);
 void    print_data(t_data *data);
 void	print_list(t_list *lst);
 char	*tile_to_string(t_tile tile);
-t_list	*list_new(char *str, t_data *data);
+t_list	*list_new(char *str /*, t_data *data*/);
 void	list_addback(t_list *new, t_list **lst, t_data *data);
 void	free_list(t_list **lst);
 
