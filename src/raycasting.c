@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 17:39:01 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/07 16:37:57 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/07 16:41:17 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,12 +200,6 @@ void	draw_wall(int x, int side, t_scene *scene, t_data *data)
 		texPos += texStep;
 		int pixel_index = (texY * text_line_bytes) + (texX * (text_pixel_bits / 8));
 		
-		// printf("texY: %d, texX: %d, pixel_index: %d\n", texY, texX, pixel_index);
-		// printf("text_line_bytes: %d, text_pixel_bits: %d\n", text_line_bytes, text_pixel_bits);
-		// printf("TEXTURE_WIDTH: %d, TEXTURE_HEIGHT: %d\n", TEXTURE_WIDTH, TEXTURE_HEIGHT);
-		// if (pixel_index < 0 || pixel_index >= TEXTURE_HEIGHT * text_line_bytes) {
-		// 	printf("Error: pixel_index out of bounds\n");
-		// }
         color = *(unsigned int *)(text_data + pixel_index);
 		int pixel = (y * line_bytes) + (x * 4);
 		if (endian == 1)        // Most significant (Alpha) byte first
