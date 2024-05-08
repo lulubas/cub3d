@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:22:04 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/07 18:30:18 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/08 16:15:56 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ int		ft_ptrlen(char **str);
 int		is_map_line(char *line);
 int		is_player(char c);
 int		all_ones(char *str);
-int		is_surrounded_space_or_wall(t_tile **map, int y, int x);
+int		is_surrounded_space_or_wall(t_data *data, int y, int x);
 
 #endif

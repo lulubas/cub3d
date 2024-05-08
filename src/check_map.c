@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 13:27:58 by damendez          #+#    #+#             */
-/*   Updated: 2024/05/06 19:15:41 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/08 16:21:30 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ void	check_closed(t_data *data)
 		{
 			if (data->map[y][x] == SPACE)
 			{
-				if (!is_surrounded_space_or_wall(data->map, y, x))
+				printf("checking is surrounded by space or wall: map[%i][%i]\n", y, x);
+				if (!is_surrounded_space_or_wall(data, y, x))
 					ft_error(data, "Error: Map is not closed, Invalid map", 1);
 			}
 			x++;
@@ -86,7 +87,7 @@ void	check_playable(t_data *data)
 
 void	check_map(t_data *data)
 {
-	//check_closed(data);
+	check_closed(data);
 	check_player_count(data);
 	check_playable(data);
 }

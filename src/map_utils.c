@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:07:45 by damendez          #+#    #+#             */
-/*   Updated: 2024/05/06 19:15:41 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/08 16:29:20 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * map  [y]  [x - 1]	map  [y]  [x]	map  [y]  [x + 1]
  * map[y + 1][x - 1]	map[y + 1][x]	map[y + 1][x + 1]
 */
-int	is_surrounded_space_or_wall(t_tile **map, int y, int x)
+int	is_surrounded_space_or_wall(t_data *data, int y, int x)
 {
 	int	tmpy;
 	int	tmpx;
@@ -29,13 +29,15 @@ int	is_surrounded_space_or_wall(t_tile **map, int y, int x)
 		tmpx = x - 1;
 		while (tmpx <= x + 1)
 		{
-			if (map[tmpy][tmpx])
+			if (tmpx > -1 && tmpx < data->map_x && tmpy > -1 \
+			&& tmpy < data->map_y)
 			{
-				if (tmpx != x && tmpy != y)
-				{
-					if (map[tmpy][tmpx] != SPACE && map[tmpy][tmpx] != WALL) // TO-DO
+				//if (tmpx != x && tmpy != y)
+				//{
+					printf("map[tmpy: %i][tmpx: %i]\n", tmpy, tmpx);
+					if (data->map[tmpy][tmpx] != SPACE && data->map[tmpy][tmpx] != WALL)
 						return (0);
-				}
+				//}
 			}
 			tmpx++;		
 		}
