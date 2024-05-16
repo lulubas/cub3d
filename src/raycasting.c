@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 17:39:01 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/08 13:49:27 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/16 16:16:34 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,39 +108,6 @@ t_walldir	perform_dda(t_scene *scene, t_tile **map)
 	return(side);
 }
 
-// void draw_line(int x, int start, int end, int color, t_data *data)
-// {
-// 	int	y;
-
-// 	y = 0;
-// 	while (y <= start)
-// 		mlx_pixel_put(data->mlx, data->win, x, y++, data->C_color);
-// 	while (y <= end)
-//         mlx_pixel_put(data->mlx, data->win, x, y++, color);
-// 	while (y <= SCREEN_HEIGHT)
-// 		mlx_pixel_put(data->mlx, data->win, x, y++, data->F_color);
-// }
-
-// //Calculate how the wall length to print on the verical line
-// void	draw_wall(int x, int side, t_data *data)
-// {
-	// int lineHeight;
-	// int drawStart;
-	
-	// lineHeight = (int)((double)SCREEN_HEIGHT / data->scene->perpWallDist);
-	// drawStart = -lineHeight / 2 + SCREEN_HEIGHT / 2;
-	// if(drawStart < 0)
-	// 	drawStart = 0;
-	// int drawEnd = lineHeight / 2 + SCREEN_HEIGHT / 2;
-	// if(drawEnd >= SCREEN_HEIGHT)
-	// 	drawEnd = SCREEN_HEIGHT - 1;
-// 	if (side == 1)
-// 		draw_line(x, drawStart, drawEnd, COLOR_BLUE, data);
-// 	else
-// 		draw_line(x, drawStart, drawEnd, COLOR_WHITE, data);
-// 	x++;
-// }
-
 //Calculate the y of the start and end of the wall
 void	get_lineheight(t_scene *scene)
 {
@@ -177,12 +144,16 @@ void	draw_wall(int x, int side, t_scene *scene, t_data *data)
 	double	texStep;
 	double 	texPos;
 
+	int lineHeight = (int)((double)SCREEN_HEIGHT / scene->perpWallDist);
+
+	//Get the relative position (between 0 & 1) where the ray hists the wall
 	if (side == EAST || side == WEST)
 		wallX = scene->playerDirX + (scene->rayDirX * scene->perpWallDist);
 	else
 		wallX = scene->playerDirY + (scene->rayDirY * scene->perpWallDist);
 	wallX -= (int)wallX;
 
+	//Account for mirroring
 	texX = (int)(wallX * (double)TEXTURE_WIDTH);
 	if ((side == EAST || side == WEST) && scene->rayDirX > 0)
 		texX = TEXTURE_WIDTH - texX - 1;
@@ -193,16 +164,39 @@ void	draw_wall(int x, int side, t_scene *scene, t_data *data)
 	if (texX < 0) texX += TEXTURE_WIDTH; // Handle negative values correctly
 
 	texStep = 1.0 * TEXTURE_HEIGHT/SCREEN_HEIGHT;
-	texPos = (drawStart - (SCREEN_HEIGHT / 2) + (lineHeight / 2)) * texStep;
+	texPos = (scene->drawStart - (SCREEN_HEIGHT / 2) + (lineHeight / 2)) * texStep;
 
-	while (y < drawEnd)
+	while (y < scene->drawEnd)
 	{
 		texY = (int)texPos & (TEXTURE_HEIGHT - 1);
 		texPos += texStep;
+
+		if (texX < 0 || texX >= TEXTURE_WIDTH || texY < 0 || texY >= TEXTURE_HEIGHT) 
+		{
+			printf("Invalid texX or texY: texX=%d, texY=%d\n", texX, texY);
+			continue;
+    	}
+
 		int pixel_index = (texY * text_line_bytes) + (texX * (text_pixel_bits / 8));
 		
+		if (pixel_index < 0 || pixel_index >= text_line_bytes * TEXTURE_HEIGHT)
+		{
+        	printf("Pixel index out of bounds: %d\n", pixel_index);
+        	continue;
+    	}
+
         color = *(unsigned int *)(text_data + pixel_index);
+
+		printf("texX=%d, texY=%d, color=%u\n", texX, texY, color);
+
 		int pixel = (y * line_bytes) + (x * 4);
+
+		if (pixel < 0 || pixel >= line_bytes * SCREEN_HEIGHT)
+		{
+        	printf("Screen pixel index out of bounds: %d\n", pixel);
+        	continue;
+    	}
+
 		if (endian == 1)        // Most significant (Alpha) byte first
 		{
 			buffer[pixel + 0] = (color >> 24) & 0xFF;
@@ -236,7 +230,7 @@ int	raycast_and_render(t_data *data)
 		get_sidedist(data->scene);
 		side = perform_dda(data->scene, data->map);
 		get_walldist(side, data->scene);
-		get_lineheight(p)
+		get_lineheight(data->scene);
 		draw_wall(x, side, data->scene, data);
 		x++;
 	}
