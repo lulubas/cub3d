@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 17:39:01 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/07 16:41:17 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/08 13:49:27 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,25 +141,25 @@ t_walldir	perform_dda(t_scene *scene, t_tile **map)
 // 	x++;
 // }
 
+//Calculate the y of the start and end of the wall
+void	get_lineheight(t_scene *scene)
+{
+	int lineHeight;
+	
+	lineHeight = (int)((double)SCREEN_HEIGHT / scene->perpWallDist);
+	scene->drawStart = -lineHeight / 2 + SCREEN_HEIGHT / 2;
+	if(scene->drawStart < 0)
+		scene->drawStart = 0;
+	scene->drawEnd = lineHeight / 2 + SCREEN_HEIGHT / 2;
+	if(scene->drawEnd >= SCREEN_HEIGHT)
+		scene->drawEnd = SCREEN_HEIGHT - 1;
+}
+
 //Calculate how the wall length to print on the verical line
 void	draw_wall(int x, int side, t_scene *scene, t_data *data)
 {
-	int lineHeight;
-	int drawStart;
 	int		y;
 	int 	color;
-	
-	(void)side;
-	color = COLOR_BLUE;
-	lineHeight = (int)((double)SCREEN_HEIGHT / scene->perpWallDist);
-	drawStart = -lineHeight / 2 + SCREEN_HEIGHT / 2;
-	if(drawStart < 0)
-		drawStart = 0;
-	int drawEnd = lineHeight / 2 + SCREEN_HEIGHT / 2;
-	if(drawEnd >= SCREEN_HEIGHT)
-		drawEnd = SCREEN_HEIGHT - 1;
-	y = drawStart;
-
 	int		pixel_bits;
 	int		line_bytes;
 	int		endian;
@@ -167,9 +167,10 @@ void	draw_wall(int x, int side, t_scene *scene, t_data *data)
 	int		text_line_bytes;
 	int		text_endian;
 
+
 	char *buffer = mlx_get_data_addr(data->img_buffer, &pixel_bits, &line_bytes, &endian);
 	char *text_data = mlx_get_data_addr(scene->no_img, &text_pixel_bits, &text_line_bytes, &text_endian);
-
+	y = scene->drawStart;
 	double	wallX;
 	int		texX;
 	int		texY;
@@ -235,6 +236,7 @@ int	raycast_and_render(t_data *data)
 		get_sidedist(data->scene);
 		side = perform_dda(data->scene, data->map);
 		get_walldist(side, data->scene);
+		get_lineheight(p)
 		draw_wall(x, side, data->scene, data);
 		x++;
 	}

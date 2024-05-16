@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:39:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/07 15:58:49 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/08 13:48:01 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ typedef struct s_scene
 	int			stepX;
 	int			stepY;
 	double		perpWallDist;
+	int			drawStart;
+	int			drawEnd;
 	void		*no_img;
 	void		*so_img;
 	void		*ea_img;
