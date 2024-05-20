@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 17:39:01 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/20 23:38:05 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/20 23:38:40 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,9 @@ void	draw_wall(int x, int side, t_scene *scene, t_data *data)
 }
 
 void	put_pixel(int pixel, )
+{
+	
+}
 
 int	raycast_and_render(t_data *data)
 {	
