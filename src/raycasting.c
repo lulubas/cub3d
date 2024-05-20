@@ -6,25 +6,24 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 17:39:01 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/16 16:16:34 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/20 23:38:05 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+//Get Rays vectors from the Player through the plane
+//and initial position of rays
 void get_rays(int x, int width, t_scene *scene)
 {
 	double camX;
-	
-	//Rays vectors from the Player through the plane
-	camX = 2 * x / (double)width - 1;
+		camX = 2 * x / (double)width - 1;
 	scene->rayDirX = scene->playerDirX + scene->planeX * camX;
 	scene->rayDirY = scene->playerDirY + scene->planeY * camX;
-
-	//Ray's initial grid position
 	scene->mapX = (int)scene->playerPosX;
 	scene->mapY = (int)scene->playerPosY;
 }
+
 //Distances between each grid lines
 void	get_deltadist(t_scene *scene)
 {
@@ -61,14 +60,6 @@ void	get_sidedist(t_scene *scene)
 			scene->stepY = 1;
 			scene->sideDistY = (scene->mapY + 1.0 - scene->playerPosY) * scene->deltaDistY;
 		}
-}
-
-void	get_walldist(int side, t_scene *scene)
-{
-	if (side == EAST || side == WEST)
-		scene->perpWallDist = scene->sideDistX - scene->deltaDistX;
-	else
-		scene->perpWallDist = scene->sideDistY - scene->deltaDistY;
 }
 
 //DDA aLgorythm to find which wall is hit first
@@ -108,11 +99,16 @@ t_walldir	perform_dda(t_scene *scene, t_tile **map)
 	return(side);
 }
 
-//Calculate the y of the start and end of the wall
-void	get_lineheight(t_scene *scene)
+//Calculate perpendicalr distance of the wall to the plane
+//and the lineheight zith the the start and end of the wall slice
+void	get_lineheight(t_walldir side, t_scene *scene)
 {
 	int lineHeight;
 	
+	if (side == EAST || side == WEST)
+		scene->perpWallDist = scene->sideDistX - scene->deltaDistX;
+	else
+		scene->perpWallDist = scene->sideDistY - scene->deltaDistY;
 	lineHeight = (int)((double)SCREEN_HEIGHT / scene->perpWallDist);
 	scene->drawStart = -lineHeight / 2 + SCREEN_HEIGHT / 2;
 	if(scene->drawStart < 0)
@@ -137,6 +133,7 @@ void	draw_wall(int x, int side, t_scene *scene, t_data *data)
 
 	char *buffer = mlx_get_data_addr(data->img_buffer, &pixel_bits, &line_bytes, &endian);
 	char *text_data = mlx_get_data_addr(scene->no_img, &text_pixel_bits, &text_line_bytes, &text_endian);
+
 	y = scene->drawStart;
 	double	wallX;
 	int		texX;
@@ -148,9 +145,9 @@ void	draw_wall(int x, int side, t_scene *scene, t_data *data)
 
 	//Get the relative position (between 0 & 1) where the ray hists the wall
 	if (side == EAST || side == WEST)
-		wallX = scene->playerDirX + (scene->rayDirX * scene->perpWallDist);
+		wallX = scene->playerPosY + (scene->rayDirY * scene->perpWallDist);
 	else
-		wallX = scene->playerDirY + (scene->rayDirY * scene->perpWallDist);
+		wallX = scene->playerPosX + (scene->rayDirX * scene->perpWallDist);
 	wallX -= (int)wallX;
 
 	//Account for mirroring
@@ -163,40 +160,21 @@ void	draw_wall(int x, int side, t_scene *scene, t_data *data)
 	texX = texX % TEXTURE_WIDTH;
 	if (texX < 0) texX += TEXTURE_WIDTH; // Handle negative values correctly
 
-	texStep = 1.0 * TEXTURE_HEIGHT/SCREEN_HEIGHT;
-	texPos = (scene->drawStart - (SCREEN_HEIGHT / 2) + (lineHeight / 2)) * texStep;
+	//Scale texture to the wall size
+	texStep = 1.0 * TEXTURE_HEIGHT / lineHeight;
+	texPos = (scene->drawStart - SCREEN_HEIGHT / 2 + lineHeight / 2) * texStep;
 
 	while (y < scene->drawEnd)
 	{
 		texY = (int)texPos & (TEXTURE_HEIGHT - 1);
 		texPos += texStep;
 
-		if (texX < 0 || texX >= TEXTURE_WIDTH || texY < 0 || texY >= TEXTURE_HEIGHT) 
-		{
-			printf("Invalid texX or texY: texX=%d, texY=%d\n", texX, texY);
-			continue;
-    	}
-
 		int pixel_index = (texY * text_line_bytes) + (texX * (text_pixel_bits / 8));
-		
-		if (pixel_index < 0 || pixel_index >= text_line_bytes * TEXTURE_HEIGHT)
-		{
-        	printf("Pixel index out of bounds: %d\n", pixel_index);
-        	continue;
-    	}
-
         color = *(unsigned int *)(text_data + pixel_index);
-
-		printf("texX=%d, texY=%d, color=%u\n", texX, texY, color);
 
 		int pixel = (y * line_bytes) + (x * 4);
 
-		if (pixel < 0 || pixel >= line_bytes * SCREEN_HEIGHT)
-		{
-        	printf("Screen pixel index out of bounds: %d\n", pixel);
-        	continue;
-    	}
-
+		//Print the pixel color 
 		if (endian == 1)        // Most significant (Alpha) byte first
 		{
 			buffer[pixel + 0] = (color >> 24) & 0xFF;
@@ -215,6 +193,8 @@ void	draw_wall(int x, int side, t_scene *scene, t_data *data)
 	}
 }
 
+void	put_pixel(int pixel, )
+
 int	raycast_and_render(t_data *data)
 {	
 	int 		x;
@@ -229,8 +209,7 @@ int	raycast_and_render(t_data *data)
 		get_deltadist(data->scene);
 		get_sidedist(data->scene);
 		side = perform_dda(data->scene, data->map);
-		get_walldist(side, data->scene);
-		get_lineheight(data->scene);
+		get_lineheight(side, data->scene);
 		draw_wall(x, side, data->scene, data);
 		x++;
 	}
