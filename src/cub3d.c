@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 14:45:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/21 17:27:29 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/21 17:33:21 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int main(int argc, char **argv)
 	init_mlx(data);
 	mlx_loop_hook(data->mlx, raycast_and_render, data);
 	mlx_loop(data->mlx);
-	render_scene(data);
 	free_all(data);
 	return (0);
 }

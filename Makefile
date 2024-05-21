@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
+#    By: damendez <damendez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 17:07:24 by lbastien          #+#    #+#              #
-#    Updated: 2024/05/21 17:29:31 by lbastien         ###   ########.fr        #
+#    Updated: 2024/05/21 17:33:21 by damendez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Compiler settings/flags
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra #-fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -fsanitize=address
 MLX_FLAGS =	-L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 
 # Directories
@@ -24,7 +24,7 @@ LIB_DIR = lib/libft
 
 # Source filenames
 FILES = cub3d init free checker parser print list_utils map_utils check_map \
-		check_textures_and_colors render parser_map raycast input
+		check_textures_and_colors render parser_map raycast input utils mlx_conf draw draw_utils
 
 # Generating source objects and depedency files
 SRC = $(FILES:%=$(SRC_DIR)/%.c)
