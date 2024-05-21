@@ -6,13 +6,13 @@
 #    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 17:07:24 by lbastien          #+#    #+#              #
-#    Updated: 2024/05/04 16:01:13 by lbastien         ###   ########.fr        #
+#    Updated: 2024/05/21 17:09:58 by lbastien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Compiler settings/flags
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra #-fsanitize=address
 MLX_FLAGS =	-L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 
 # Directories
@@ -23,8 +23,8 @@ MLX_DIR = lib/mlx
 LIB_DIR = lib/libft
 
 # Source filenames
-FILES = cub3d init free checker parser print list_utils renderer \
-		parser_map raycasting input
+FILES = cub3d init free checker parser print list_utils render \
+		parser_map mlx_conf raycast input draw draw_utils
 
 # Generating source objects and depedency files
 SRC = $(FILES:%=$(SRC_DIR)/%.c)

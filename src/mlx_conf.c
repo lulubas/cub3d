@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   renderer.c                                         :+:      :+:    :+:   */
+/*   mlx_conf.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/24 17:35:15 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/07 15:27:10 by lbastien         ###   ########.fr       */
+/*   Created: 2024/05/21 15:22:56 by lbastien          #+#    #+#             */
+/*   Updated: 2024/05/21 15:24:30 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,4 @@ void	init_mlx(t_data *data)
 	data->scene->so_img =  mlx_xpm_file_to_image(data->mlx, data->so_texture, &text_width, &text_height);
 	data->scene->ea_img =  mlx_xpm_file_to_image(data->mlx, data->ea_texture, &text_width, &text_height);
 	data->scene->we_img =  mlx_xpm_file_to_image(data->mlx, data->we_texture, &text_width, &text_height);
-}
-
-void	render_scene(t_data *data)
-{
-	init_mlx(data);
-	mlx_loop_hook(data->mlx, raycast_and_render, data);
-	mlx_loop(data->mlx);
 }

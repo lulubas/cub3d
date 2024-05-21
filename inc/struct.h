@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:39:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/21 12:41:45 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/21 15:43:59 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_scene
 	int			mapY;
 	int			stepX;
 	int			stepY;
+	t_walldir	side;
 	double		perpWallDist;
 	int			lineHeight;
 	int			drawStart;
