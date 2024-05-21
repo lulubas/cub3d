@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:39:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/08 13:48:01 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/21 03:06:55 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,14 @@ typedef enum s_walldir{
 	EAST,
 	WEST
 } t_walldir;
+
+typedef struct s_image
+{
+	char	*image;
+	int		pixel_bits;
+	int		line_bytes;
+	int		endian;
+}	t_image;
 
 typedef struct s_list
 {
@@ -62,7 +70,6 @@ typedef struct s_scene
 	void		*so_img;
 	void		*ea_img;
 	void		*we_img;
-
 }	t_scene;
 
 typedef struct s_data
