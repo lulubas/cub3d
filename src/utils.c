@@ -1,30 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 14:45:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/21 17:15:48 by damendez         ###   ########.fr       */
+/*   Created: 2024/04/19 16:18:50 by damendez          #+#    #+#             */
+/*   Updated: 2024/04/23 18:06:19 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int main(int argc, char **argv)
+void	free_split(char **split)
 {
-	t_data	*data;
+	int	i;
 
-	data = init_data_struct();
-	if (!data)
-		return (1);
-	check_scene(argc, argv, data);
-	parse_scene(data);
-	check_map(data);
-	//render_scene(data);
-	//Use function below to print the content of data struct
-	//print_data(data);
-	free_all(data);
-	return (0);
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		++i;
+	}
+	free(split);
+}
+
+int	ft_ptrlen(char **str)
+{
+	int	len;
+
+	len = 0;
+	while (str[len] != NULL)
+	{
+		++len;
+	}
+	return (len);
+}
+
+int	ft_strlen_n(const char *str)
+{
+	int	len;
+
+	len = 0;
+	while (*str != '\0' && *str != ' ')
+	{
+		++str;
+		++len;
+	}
+	return (len);
 }
