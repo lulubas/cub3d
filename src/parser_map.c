@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 17:25:43 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/07 18:51:09 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:10:59 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	get_max_x(t_list *lst)
 			max_length = ft_strlen(tmp->str);
 		tmp = tmp->next;
 	}
-	return (max_length + 2);
+	return (max_length);
 }
 
 int	get_y(t_list *lst)
@@ -40,7 +40,7 @@ int	get_y(t_list *lst)
 		index++;
 		tmp = tmp->next;
 	}
-	return (index + 2);
+	return (index);
 }
 
 t_tile	**init_map(t_list *lst, t_data *data)
@@ -52,9 +52,7 @@ t_tile	**init_map(t_list *lst, t_data *data)
 	i = 0;
 	j = 0;
 	data->map_x = get_max_x(lst);
-	printf("data->map_x = %i\n", data->map_x);
 	data->map_y = get_y(lst);
-	printf("data->map_y = %i\n", data->map_y);
 	new_map = (t_tile **)malloc(sizeof(t_tile *) * data->map_y);
 	if (!new_map)
 		ft_error(data, "Failed to allocate map", 1);
@@ -95,18 +93,16 @@ t_tile	**parse_list_to_array(t_list *lst, t_data *data)
 	t_list	*tmp;
 	int		x;
 	int		y;
-	int		str_x;
 
 	map = init_map(lst, data);
 	tmp = lst;
-	str_x = 0;
-	x = 1;
-	y = 1;
+	x = 0;
+	y = 0;
 	while(tmp)
 	{
-		while (tmp->str[str_x])
+		while (tmp->str[x])
 		{
-			process_tile(tmp->str[str_x], &map[y][x]);
+			process_tile(tmp->str[x], &map[y][x]);
 			if (map[y][x] == NORTH || map[y][x] == SOUTH || \
 				map[y][x] == EAST || map[y][x] == WEST)
 			{
@@ -115,11 +111,9 @@ t_tile	**parse_list_to_array(t_list *lst, t_data *data)
 				data->playerPosX = x + 0.5;
 				data->playerPosY = y + 0.5;
 			}
-			str_x++;
 			x++;
 		}
-		str_x = 0;
-		x = 1;
+		x = 0;
 		y++;
 		tmp = tmp->next;
 	}

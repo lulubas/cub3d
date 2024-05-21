@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 02:39:50 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/07 18:41:20 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/04 20:22:21 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,19 @@ void print_2darray(char **darray)
 char	*tile_to_string(t_tile tile)
 {
 	if (tile == SPACE)
-		return ("V");
+		return ("SPA");
 	else if (tile == WALL)
-		return ("1");
+		return ("WAL");
 	else if (tile == EMPTY)
-		return ("0");
+		return ("EMP");
 	else if (tile == NORTH)
-		return ("N");
+		return ("NOR");
 	else if (tile == SOUTH)
-		return ("S");
+		return ("SOU");
 	else if (tile == EAST)
-		return ("E");
+		return ("EAS");
 	else if (tile == WEST)
-		return ("W");
+		return ("WES");
 	else
 		return ("ERR");
 }
