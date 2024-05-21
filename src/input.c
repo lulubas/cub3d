@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 14:00:02 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/06 15:05:34 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/21 13:17:24 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,14 @@ void	rotate_right(t_scene *scene)
 
 void	move_forward(t_scene *scene, t_tile **map)
 {
-	double new_playerPosX;
-	double new_playerPosY;
+	double	new_playerPosX;
+	double	new_playerPosY;
+	double	player_bound;
 
+	player_bound = 0.1;
 	new_playerPosX = scene->playerPosX + (scene->playerDirX * MOVE_SPEED);
 	new_playerPosY = scene->playerPosY + (scene->playerDirY * MOVE_SPEED);
-	if(map[(int)new_playerPosY][(int)new_playerPosX] != WALL)
+	if(map[(int)(new_playerPosY + player_bound)][(int)(new_playerPosX + player_bound)] != WALL)
 	{
 		scene->playerPosX = new_playerPosX;
 		scene->playerPosY = new_playerPosY;
@@ -56,10 +58,12 @@ void	move_backward(t_scene *scene, t_tile **map)
 {
 	double new_playerPosX;
 	double new_playerPosY;
+	double	player_bound;
 
+	player_bound = 0.1;
 	new_playerPosX = scene->playerPosX - (scene->playerDirX * MOVE_SPEED);
 	new_playerPosY = scene->playerPosY - (scene->playerDirY * MOVE_SPEED);
-	if(map[(int)new_playerPosY][(int)new_playerPosX] != WALL)
+	if(map[(int)(new_playerPosY + player_bound)][(int)(new_playerPosX + player_bound)] != WALL)
 	{
 		scene->playerPosX = new_playerPosX;
 		scene->playerPosY = new_playerPosY;

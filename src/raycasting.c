@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 17:39:01 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/21 03:07:38 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/21 13:15:35 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,36 +101,39 @@ t_walldir	perform_dda(t_scene *scene, t_tile **map)
 
 //Calculate perpendicalr distance of the wall to the plane
 //and the lineheight zith the the start and end of the wall slice
-int	get_lineheight(t_walldir side, t_scene *scene)
+void	parse_slice(t_walldir side, t_scene *scene)
 {	
-	int lineHeight;
-	
 	if (side == EAST || side == WEST)
 		scene->perpWallDist = scene->sideDistX - scene->deltaDistX;
 	else
 		scene->perpWallDist = scene->sideDistY - scene->deltaDistY;
-	lineHeight = (int)((double)SCREEN_HEIGHT / scene->perpWallDist);
-	scene->drawStart = -lineHeight / 2 + SCREEN_HEIGHT / 2;
+	scene->lineHeight = (int)((double)SCREEN_HEIGHT / scene->perpWallDist);
+	scene->drawStart = -scene->lineHeight / 2 + SCREEN_HEIGHT / 2;
 	if(scene->drawStart < 0)
 		scene->drawStart = 0;
-	scene->drawEnd = lineHeight / 2 + SCREEN_HEIGHT / 2;
+	scene->drawEnd = scene->lineHeight / 2 + SCREEN_HEIGHT / 2;
 	if(scene->drawEnd >= SCREEN_HEIGHT)
 		scene->drawEnd = SCREEN_HEIGHT - 1;
-	return (lineHeight);
 }
 
-int get_texX(double wallX, t_walldir side, t_scene *scene)
+int get_texX(t_walldir side, t_scene *scene)
 {
-	int texX;
-
+	int 	texX;
+	double	wallX;
+	
+	if (side == EAST || side == WEST)
+		wallX = scene->playerPosY + (scene->rayDirY * scene->perpWallDist);
+	else
+		wallX = scene->playerPosX + (scene->rayDirX * scene->perpWallDist);
+	wallX -= (int)wallX;
 	texX = (int)(wallX * (double)TEXTURE_WIDTH);
 	if ((side == EAST || side == WEST) && scene->rayDirX > 0)
 		texX = TEXTURE_WIDTH - texX - 1;
 	else if ((side == NORTH || side == SOUTH) && scene->rayDirY > 0)
 		texX = TEXTURE_WIDTH - texX - 1;
-	texX = texX % TEXTURE_WIDTH;
-	if (texX < 0) 
-		texX += TEXTURE_WIDTH; // Handle negative values correctly
+	// texX = texX % TEXTURE_WIDTH;
+	// if (texX < 0) 
+	// 	texX += TEXTURE_WIDTH;
 	return (texX);
 }
 
@@ -162,141 +165,108 @@ void	put_pixel(int pixel, int color, t_image *buffer)
 	}
 }
 
-//Calculate how the wall length to print on the verical line
-void	draw_wall(int x, t_walldir side, int lineHeight, t_scene *scene, t_data *data)
+t_image load_texture(t_walldir side, t_scene *scene, t_data *data)
 {
-	int		y;
-	int 	color;
-	t_image buffer;
 	t_image texture;
-	
-	texture.image = mlx_get_data_addr(scene->no_img, &texture.pixel_bits, &texture.line_bytes, &texture.endian);
-	buffer.image = mlx_get_data_addr(data->img_buffer, &buffer.pixel_bits, &buffer.line_bytes, &buffer.endian);
 
-	y = scene->drawStart;
-	double	wallX;
+	texture.image = NULL;
+    texture.pixel_bits = 0;
+    texture.line_bytes = 0;
+    texture.endian = 0;
+	if (side == NORTH)
+		texture.image = mlx_get_data_addr(scene->no_img, &texture.pixel_bits, &texture.line_bytes, &texture.endian);
+	else if (side == SOUTH)
+		texture.image = mlx_get_data_addr(scene->so_img, &texture.pixel_bits, &texture.line_bytes, &texture.endian);
+	else if (side == EAST)
+		texture.image = mlx_get_data_addr(scene->ea_img, &texture.pixel_bits, &texture.line_bytes, &texture.endian);
+	else if (side == WEST)
+		texture.image = mlx_get_data_addr(scene->we_img, &texture.pixel_bits, &texture.line_bytes, &texture.endian);
+	if (texture.image == NULL)
+		ft_error(data, "Failed to load texture", 1);
+	return (texture);
+}
+
+void	draw_ceiling(int x, int *y, int color, t_image *buffer, t_scene *scene)
+{
+	int pixel;
+
+	while (*y < scene->drawStart)
+	{
+		pixel = (*y * buffer->line_bytes) + (x * 4);
+		put_pixel(pixel, color, buffer);
+		(*y)++;
+	}
+}
+
+void	draw_wall(int x, int *y, t_walldir side, t_image *buffer, t_scene *scene, t_data *data)
+{
 	int		texX;
 	int		texY;
-	double	texStep;
-	double 	texPos;
-
-	//Get the relative position (between 0 & 1) where the ray hists the wall
-	if (side == EAST || side == WEST)
-		wallX = scene->playerPosY + (scene->rayDirY * scene->perpWallDist);
-	else
-		wallX = scene->playerPosX + (scene->rayDirX * scene->perpWallDist);
-	wallX -= (int)wallX;
+	int 	color;
+	int		pixel;
+	t_image texture;
 	
-	texX = get_texX(wallX, side, scene);
+	texture = load_texture(side, scene, data);
+	texX = get_texX(side, scene);
 
-	//Scale texture to the wall size
-	texStep = 1.0 * TEXTURE_HEIGHT / lineHeight;
-	texPos = (scene->drawStart - SCREEN_HEIGHT / 2 + lineHeight / 2) * texStep;
-
-	while (y < scene->drawEnd)
+	scene->texStep = 1.0 * TEXTURE_HEIGHT / scene->lineHeight;
+	scene->texPos = (scene->drawStart - SCREEN_HEIGHT / 2 + scene->lineHeight / 2) * scene->texStep;
+	while (*y < scene->drawEnd)
 	{
-		texY = (int)texPos & (TEXTURE_HEIGHT - 1);
-		texPos += texStep;
-
-		int pixel = (y * buffer.line_bytes) + (x * 4);
+		texY = (int)scene->texPos % TEXTURE_HEIGHT;
+		scene->texPos += scene->texStep;
+		pixel = (*y * buffer->line_bytes) + (x * 4);
 		color = get_color(texX, texY, &texture);
-		put_pixel(pixel, color, &buffer);
-		y++;
+		put_pixel(pixel, color, buffer);
+		(*y)++;
+	}
+}
+
+void	draw_floor(int x, int *y, int color, t_image *buffer)
+{
+	int pixel;
+
+	while (*y < SCREEN_HEIGHT)
+	{
+		pixel = (*y * buffer->line_bytes) + (x * 4);
+		put_pixel(pixel, color, buffer);
+		(*y)++;
 	}
 }
 
 //Calculate how the wall length to print on the verical line
-// void	draw_wall(int x, int side, int lineHeight, t_scene *scene, t_data *data)
-// {
-// 	int		y;
-// 	int 	color;
-// 	int		pixel_bits;
-// 	int		line_bytes;
-// 	int		endian;
-// 	int		text_pixel_bits;
-// 	int		text_line_bytes;
-// 	int		text_endian;
+void	draw_slice(int x, t_walldir side, t_image *buffer, t_scene *scene, t_data *data)
+{
+	int		y;
 
-// 	char *buffer = mlx_get_data_addr(data->img_buffer, &pixel_bits, &line_bytes, &endian);
-// 	char *text_data = mlx_get_data_addr(scene->no_img, &text_pixel_bits, &text_line_bytes, &text_endian);
-
-// 	y = scene->drawStart;
-// 	double	wallX;
-// 	int		texX;
-// 	int		texY;
-// 	double	texStep;
-// 	double 	texPos;
-
-// 	//Get the relative position (between 0 & 1) where the ray hists the wall
-// 	if (side == EAST || side == WEST)
-// 		wallX = scene->playerPosY + (scene->rayDirY * scene->perpWallDist);
-// 	else
-// 		wallX = scene->playerPosX + (scene->rayDirX * scene->perpWallDist);
-// 	wallX -= (int)wallX;
-
-// 	//Account for mirroring
-// 	texX = (int)(wallX * (double)TEXTURE_WIDTH);
-// 	if ((side == EAST || side == WEST) && scene->rayDirX > 0)
-// 		texX = TEXTURE_WIDTH - texX - 1;
-// 	else if ((side == NORTH || side == SOUTH) && scene->rayDirY > 0)
-// 		texX = TEXTURE_WIDTH - texX - 1;
-
-// 	texX = texX % TEXTURE_WIDTH;
-// 	if (texX < 0) texX += TEXTURE_WIDTH; // Handle negative values correctly
-
-// 	texStep = 1.0 * TEXTURE_HEIGHT / lineHeight;
-// 	texPos = (scene->drawStart - SCREEN_HEIGHT / 2 + lineHeight / 2) * texStep;
-
-// 	while (y < scene->drawEnd)
-// 	{
-// 		texY = (int)texPos & (TEXTURE_HEIGHT - 1);
-// 		texPos += texStep;
-
-// 		int pixel_index = (texY * text_line_bytes) + (texX * (text_pixel_bits / 8));
-//         color = *(unsigned int *)(text_data + pixel_index);
-
-// 		int pixel = (y * line_bytes) + (x * 4);
-
-// 		//Print the pixel color 
-// 		if (endian == 1)        // Most significant (Alpha) byte first
-// 		{
-// 			buffer[pixel + 0] = (color >> 24) & 0xFF;
-// 			buffer[pixel + 1] = (color >> 16) & 0xFF;
-// 			buffer[pixel + 2] = (color >> 8) & 0xFF;
-// 			buffer[pixel + 3] = (color) & 0xFF;
-// 		}
-// 		else if (endian == 0)   // Least significant (Blue) byte first
-// 		{
-// 			buffer[pixel + 0] = (color) & 0xFF;
-// 			buffer[pixel + 1] = (color >> 8) & 0xFF;
-// 			buffer[pixel + 2] = (color >> 16) & 0xFF;
-// 			buffer[pixel + 3] = (color >> 24);
-// 		}
-// 		y++;
-// 	}
-// }
-
+	y = 0;	
+	draw_ceiling(x, &y, data->C_color, buffer, scene);
+	draw_wall(x, &y, side, buffer, scene, data);
+	draw_floor(x, &y, data->F_color, buffer);
+}
 
 int	raycast_and_render(t_data *data)
 {	
 	int 		x;
 	t_walldir	side;
-	int			lineHeight;
-	data->img_buffer = mlx_new_image(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
+	char		*img_buffer;
+	t_image		buffer;
 
 	x = 0;
 	process_input(data);
+	img_buffer = mlx_new_image(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
+	buffer.image = mlx_get_data_addr(img_buffer, &buffer.pixel_bits, &buffer.line_bytes, &buffer.endian);
 	while (x < SCREEN_WIDTH)
 	{
 		get_rays(x, SCREEN_WIDTH, data->scene);
 		get_deltadist(data->scene);
 		get_sidedist(data->scene);
 		side = perform_dda(data->scene, data->map);
-		lineHeight = get_lineheight(side, data->scene);
-		draw_wall(x, side, lineHeight, data->scene, data);
+		parse_slice(side, data->scene);
+		draw_slice(x, side, &buffer, data->scene, data);
 		x++;
 	}
-	mlx_put_image_to_window(data->mlx, data->win, data->img_buffer, 0, 0);
-	mlx_destroy_image(data->mlx, data->img_buffer);
+	mlx_put_image_to_window(data->mlx, data->win, img_buffer, 0, 0);
+	mlx_destroy_image(data->mlx, img_buffer);
 	return (0);
 }

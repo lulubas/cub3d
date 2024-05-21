@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:39:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/21 03:06:55 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/21 12:41:45 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,11 @@ typedef struct s_scene
 	int			stepX;
 	int			stepY;
 	double		perpWallDist;
+	int			lineHeight;
 	int			drawStart;
 	int			drawEnd;
+	double	 	texPos;
+	double		texStep;
 	void		*no_img;
 	void		*so_img;
 	void		*ea_img;
@@ -89,7 +92,6 @@ typedef struct s_data
 	int			**buffer;
 	void		*mlx;
 	void		*win;
-	void		*img_buffer;
 	int			player_x;
 	int			player_y;
 	bool		up_pressed;
