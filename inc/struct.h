@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:39:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/06 12:25:59 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/21 12:41:45 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,62 @@ typedef enum s_tile
 	SPACE,
 	WALL,
 	EMPTY,
-	NORTH,
+	P_NORTH,
+	P_SOUTH,
+	P_EAST,
+	P_WEST
+}	t_tile;
+
+typedef enum s_walldir{
+    NORTH,
 	SOUTH,
 	EAST,
 	WEST
-}	t_tile;
+} t_walldir;
+
+typedef struct s_image
+{
+	char	*image;
+	int		pixel_bits;
+	int		line_bytes;
+	int		endian;
+}	t_image;
 
 typedef struct s_list
 {
 	char			*str;
 	struct s_list	*next;
 }	t_list;
+
+typedef struct s_scene
+{
+	double		playerPosX;
+	double		playerPosY;
+	double		playerDirX;
+	double		playerDirY;
+	double		rayDirX;
+	double		rayDirY;
+	double		planeX;
+	double		planeY;
+	double		sideDistX;
+	double		sideDistY;
+	double		deltaDistX;
+	double		deltaDistY;
+	int			mapX;
+	int			mapY;
+	int			stepX;
+	int			stepY;
+	double		perpWallDist;
+	int			lineHeight;
+	int			drawStart;
+	int			drawEnd;
+	double	 	texPos;
+	double		texStep;
+	void		*no_img;
+	void		*so_img;
+	void		*ea_img;
+	void		*we_img;
+}	t_scene;
 
 typedef struct s_data
 {
@@ -37,33 +82,18 @@ typedef struct s_data
 	char		*so_texture;
 	char		*ea_texture;
 	char		*we_texture;
-	char		**F_color;
-	char		**C_color;
+	int			F_color;
+	int			C_color;
 	int			map_x;
 	int			map_y;
 	t_list		*lst;
 	t_tile		**map;
-	int			width;
-	int			height;
+	t_scene		*scene;
+	int			**buffer;
 	void		*mlx;
 	void		*win;
 	int			player_x;
 	int			player_y;
-	double		playerPosX;
-	double		playerPosY;
-	int			mapX;
-	int			mapY;
-	double		playerDirX;
-	double		playerDirY;
-	double		planeX;
-	double		planeY;
-	double		sideDistX;
-	double		sideDistY;
-	double		deltaDistX;
-	double		deltaDistY;
-	double		perpWallDist;
-	int			stepX;
-	int			stepY;
 	bool		up_pressed;
 	bool		down_pressed;
 	bool		left_pressed;
