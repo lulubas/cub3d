@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 17:25:43 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/21 17:26:25 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/21 17:41:13 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	get_max_x(t_list *lst)
 			max_length = ft_strlen(tmp->str);
 		tmp = tmp->next;
 	}
-	return (max_length);
+	return (max_length + 2);
 }
 
 int	get_y(t_list *lst)
@@ -40,7 +40,7 @@ int	get_y(t_list *lst)
 		index++;
 		tmp = tmp->next;
 	}
-	return (index);
+	return (index + 2);
 }
 
 t_tile	**init_map(t_list *lst, t_data *data)
