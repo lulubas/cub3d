@@ -1,43 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/08 16:40:21 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/06 15:27:49 by lbastien         ###   ########.fr       */
+/*   Created: 2023/05/08 14:38:52 by agheredi          #+#    #+#             */
+/*   Updated: 2024/04/18 21:48:16 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-int	ft_isspace(int c)
+char	*ft_strdup(const char *s1)
 {
-	if (c == 32 || (c >= 9 && c <= 13))
-		return (1);
-	return (0);
-}
+	char	*ptr;
+	size_t	len;
+	size_t	i;
 
-int	ft_atoi(const char *str)
-{
-	int	r;
-	int	n;
-
-	r = 0;
-	n = 1;
-	while (ft_isspace(*str))
-		str++;
-	if (*str == 45 || *str == 43)
+	len = 0;
+	i = 0;
+	while (s1[len] != '\0')
+		len++;
+	ptr = (char *) malloc(sizeof(char) * len + 1);
+	if (ptr == NULL)
+		return (NULL);
+	while (s1[i] != '\0')
 	{
-		if (*str == 45)
-			n *= -1;
-		str++;
+		ptr[i] = s1[i];
+		i++;
 	}
-	while (*str && *str > 47 && *str < 58)
-	{
-		r = (*str - 48) + (r * 10);
-		str++;
-	}
-	return (r * n);
+	ptr[i] = '\0';
+	return (ptr);
 }
-

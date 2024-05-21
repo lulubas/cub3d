@@ -1,43 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/08 16:40:21 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/06 15:27:49 by lbastien         ###   ########.fr       */
+/*   Created: 2024/04/19 03:02:40 by lbastien          #+#    #+#             */
+/*   Updated: 2024/04/19 03:02:52 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-int	ft_isspace(int c)
+char	*ft_strchr(char *s, int c)
 {
-	if (c == 32 || (c >= 9 && c <= 13))
-		return (1);
-	return (0);
-}
+	size_t		i;
 
-int	ft_atoi(const char *str)
-{
-	int	r;
-	int	n;
-
-	r = 0;
-	n = 1;
-	while (ft_isspace(*str))
-		str++;
-	if (*str == 45 || *str == 43)
+	if (!s)
+		return (NULL);
+	i = 0;
+	while (s[i])
 	{
-		if (*str == 45)
-			n *= -1;
-		str++;
+		if (s[i] == (char) c)
+			return (&s[i]);
+		i++;
 	}
-	while (*str && *str > 47 && *str < 58)
-	{
-		r = (*str - 48) + (r * 10);
-		str++;
-	}
-	return (r * n);
+	return (NULL);
 }
-

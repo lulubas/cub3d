@@ -1,43 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/08 16:40:21 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/06 15:27:49 by lbastien         ###   ########.fr       */
+/*   Created: 2023/09/15 12:25:01 by agheredi          #+#    #+#             */
+/*   Updated: 2024/04/17 17:33:45 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-int	ft_isspace(int c)
+int	ft_putnbr(int nb)
 {
-	if (c == 32 || (c >= 9 && c <= 13))
-		return (1);
-	return (0);
-}
+	char	a;
 
-int	ft_atoi(const char *str)
-{
-	int	r;
-	int	n;
-
-	r = 0;
-	n = 1;
-	while (ft_isspace(*str))
-		str++;
-	if (*str == 45 || *str == 43)
+	if (nb == -2147483648)
+		return (write(1, "-2147483648", 11));
+	if (nb < 0)
 	{
-		if (*str == 45)
-			n *= -1;
-		str++;
+		nb = -nb;
+		if (write(1, "-", 1) == -1)
+			return (-1);
 	}
-	while (*str && *str > 47 && *str < 58)
+	if (nb >= 10)
 	{
-		r = (*str - 48) + (r * 10);
-		str++;
+		if (ft_putnbr(nb / 10) == -1)
+			return (-1);
 	}
-	return (r * n);
+	a = nb % 10 + '0';
+	if (write(1, &a, 1) == -1)
+		return (-1);
+	return (1);
 }
-

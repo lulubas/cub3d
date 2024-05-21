@@ -1,43 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/08 16:40:21 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/06 15:27:49 by lbastien         ###   ########.fr       */
+/*   Created: 2024/04/18 22:15:13 by lbastien          #+#    #+#             */
+/*   Updated: 2024/04/18 22:16:08 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-int	ft_isspace(int c)
+int ft_strcmp(const char *s1, const char *s2) 
 {
-	if (c == 32 || (c >= 9 && c <= 13))
-		return (1);
-	return (0);
-}
-
-int	ft_atoi(const char *str)
-{
-	int	r;
-	int	n;
-
-	r = 0;
-	n = 1;
-	while (ft_isspace(*str))
-		str++;
-	if (*str == 45 || *str == 43)
+    while (*s1 && (*s1 == *s2))
 	{
-		if (*str == 45)
-			n *= -1;
-		str++;
-	}
-	while (*str && *str > 47 && *str < 58)
-	{
-		r = (*str - 48) + (r * 10);
-		str++;
-	}
-	return (r * n);
+        s1++;
+        s2++;
+    }
+    return ((unsigned char)*s1 - (unsigned char)*s2);
 }
-

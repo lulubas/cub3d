@@ -1,43 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/08 16:40:21 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/06 15:27:49 by lbastien         ###   ########.fr       */
+/*   Created: 2022/09/05 13:18:14 by lbastien          #+#    #+#             */
+/*   Updated: 2024/04/17 16:56:27 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-int	ft_isspace(int c)
+int	ft_isalnum(int c)
 {
-	if (c == 32 || (c >= 9 && c <= 13))
-		return (1);
-	return (0);
+	char	a;
+
+	a = c;
+	if ((a < 'A' || a > 'Z') && (a < 'a' || a > 'z') && (a < '0' || a > '9'))
+		return (0);
+	return (1);
 }
-
-int	ft_atoi(const char *str)
-{
-	int	r;
-	int	n;
-
-	r = 0;
-	n = 1;
-	while (ft_isspace(*str))
-		str++;
-	if (*str == 45 || *str == 43)
-	{
-		if (*str == 45)
-			n *= -1;
-		str++;
-	}
-	while (*str && *str > 47 && *str < 58)
-	{
-		r = (*str - 48) + (r * 10);
-		str++;
-	}
-	return (r * n);
-}
-

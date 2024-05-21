@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen_n.c                                      :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/19 15:48:49 by damendez          #+#    #+#             */
-/*   Updated: 2024/04/19 15:55:48 by damendez         ###   ########.fr       */
+/*   Created: 2022/09/05 16:10:11 by lbastien          #+#    #+#             */
+/*   Updated: 2024/04/17 17:39:29 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_strlen_n(const char *str)
+size_t	ft_strlen(const char *str)
 {
-	int len;
+	int	i;
 
-	len = 0;
-	while (*str != '\0' || *str != ' ')
+	i = 0;
+	while (*str)
 	{
-		len++;
+		i++;
 		str++;
 	}
-	return (len);
+	return (i);
 }
