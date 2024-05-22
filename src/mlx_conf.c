@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:22:56 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/22 15:49:16 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:05:24 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,31 +22,31 @@ int	key_press(int keycode, t_data *data)
 {
 	if (keycode == ESCAPE)
 		ft_error(data, "Exiting from input", 0);
-	if (keycode == ARROW_UP)
+	if (keycode == KEY_W)
 		data->up_pressed = true;
-	if (keycode == ARROW_DOWN)
+	if (keycode == KEY_A)
+		data->left_pressed = true;
+	if (keycode == KEY_S)
 		data->down_pressed = true;
+	if (keycode == KEY_D)
+		data->right_pressed = true;
 	if (keycode == ARROW_LEFT)
 		data->left_rotate_pressed = true;
 	if (keycode == ARROW_RIGHT)
-		data->right_rotate_pressed = true;
-	if (keycode == KEY_W)
-		data->right_rotate_pressed = true;
-	if (keycode == KEY_S)
-		data->right_rotate_pressed = true;
-	if (keycode == KEY_A)
-		data->right_rotate_pressed = true;
-	if (keycode == KEY_D)
 		data->right_rotate_pressed = true;
 	return (0);
 }
 
 int	key_release(int keycode, t_data *data)
 {
-	if (keycode == ARROW_UP)
+	if (keycode == KEY_W)
 		data->up_pressed = false;
-	if (keycode == ARROW_DOWN)
+	if (keycode == KEY_A)
+		data->left_pressed = false;
+	if (keycode == KEY_S)
 		data->down_pressed = false;
+	if (keycode == KEY_D)
+		data->right_pressed = false;
 	if (keycode == ARROW_LEFT)
 		data->left_rotate_pressed = false;
 	if (keycode == ARROW_RIGHT)
