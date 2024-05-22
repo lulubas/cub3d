@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:14:55 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/07 16:09:19 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:46:49 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@
 #define ARROW_DOWN		125
 #define ARROW_LEFT		123
 #define ARROW_RIGHT		124
+#define KEY_W           13
+#define KEY_A           0
+#define KEY_S           1
+#define KEY_D           2
 #define COLOR_RED		0xFF0000
 #define COLOR_GREEN		0x00FF00
 #define COLOR_BLUE		0x0000FF

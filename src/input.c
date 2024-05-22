@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 14:00:02 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/21 16:24:27 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:43:30 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,11 @@ void	process_input(t_data *data)
 	if (data->down_pressed == true)
 		move_backward(data->scene, data->map);
 	if (data->left_pressed == true)
-		rotate_left(data->scene);
+		move_left(data->scene, data->map);
 	if (data->right_pressed == true)
+		move_right(data->scene, data->map);
+	if (data->left_rotate_pressed == true)
+		rotate_left(data->scene);
+	if (data->right_rotate_pressed == true)
 		rotate_right(data->scene);
 }

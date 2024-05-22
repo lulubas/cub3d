@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:41:19 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/21 12:41:48 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:42:56 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_data *init_data_struct(void)
 	new_data->map_y = -99;
 	new_data->up_pressed = false;
 	new_data->down_pressed = false;
-	new_data->left_pressed = false;
-	new_data->right_pressed = false;
+	new_data->left_rotate_pressed = false;
+	new_data->right_rotate_pressed = false;
 	return(new_data);
 }

@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:39:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/21 15:43:59 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:44:44 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ typedef struct s_data
 	bool		down_pressed;
 	bool		left_pressed;
 	bool		right_pressed;
+	bool		left_rotate_pressed;
+	bool		right_rotate_pressed;
 }	t_data;
 
 #endif /* STRUCT_H */
