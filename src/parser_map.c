@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 17:25:43 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/21 17:41:13 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:03:55 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,8 @@ t_tile	**parse_list_to_array(t_list *lst, t_data *data)
 		while (tmp->str[str_x])
 		{
 			process_tile(tmp->str[str_x], &map[y][x]);
-			if (map[y][x] == NORTH || map[y][x] == SOUTH || \
-				map[y][x] == EAST || map[y][x] == WEST)
+			if (map[y][x] == P_NORTH || map[y][x] == P_SOUTH || \
+				map[y][x] == P_EAST || map[y][x] == P_WEST)
 			{
 				data->player_x = x;
 				data->player_y = y;

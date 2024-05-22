@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 13:27:58 by damendez          #+#    #+#             */
-/*   Updated: 2024/05/08 16:21:30 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:24:37 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	check_closed(t_data *data)
 		{
 			if (data->map[y][x] == SPACE)
 			{
-				printf("checking is surrounded by space or wall: map[%i][%i]\n", y, x);
+				// printf("checking is surrounded by space or wall: map[%i][%i]\n", y, x);
 				if (!is_surrounded_space_or_wall(data, y, x))
 					ft_error(data, "Error: Map is not closed, Invalid map", 1);
 			}

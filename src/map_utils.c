@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:07:45 by damendez          #+#    #+#             */
-/*   Updated: 2024/05/08 16:29:20 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:24:23 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	is_surrounded_space_or_wall(t_data *data, int y, int x)
 			{
 				//if (tmpx != x && tmpy != y)
 				//{
-					printf("map[tmpy: %i][tmpx: %i]\n", tmpy, tmpx);
+					// printf("map[tmpy: %i][tmpx: %i]\n", tmpy, tmpx);
 					if (data->map[tmpy][tmpx] != SPACE && data->map[tmpy][tmpx] != WALL)
 						return (0);
 				//}

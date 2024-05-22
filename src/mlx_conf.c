@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:22:56 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/22 16:05:24 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:59:43 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void	init_mlx(t_data *data)
 	mlx_hook(data->win, 3, 0, key_release, data);
 	mlx_hook(data->win, 17, 0, exit_hook, data);
 	data->scene->no_img =  mlx_xpm_file_to_image(data->mlx, data->no_texture, &text_width, &text_height);
+	if (!data->scene->no_img)
+		ft_error(data, "Failed to load North Wall texture", 1);
 	data->scene->so_img =  mlx_xpm_file_to_image(data->mlx, data->so_texture, &text_width, &text_height);
 	data->scene->ea_img =  mlx_xpm_file_to_image(data->mlx, data->ea_texture, &text_width, &text_height);
 	data->scene->we_img =  mlx_xpm_file_to_image(data->mlx, data->we_texture, &text_width, &text_height);
