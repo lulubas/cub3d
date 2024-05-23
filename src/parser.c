@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:22:37 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/22 16:37:37 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/23 17:54:48 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,20 @@ int	rgb_to_int(char **rgb)
 
 void	process_line(char **array, t_data *data)
 {
-	if (!ft_strcmp(array[0], "NO"))
+	if (!ft_strcmp(array[0], "NO") && data->no_texture == NULL)
 		data->no_texture = strdup(array[1]);
-	else if (!ft_strcmp(array[0], "SO"))
+	else if (!ft_strcmp(array[0], "SO") && data->so_texture == NULL)
 		data->so_texture = strdup(array[1]);
-	else if (!ft_strcmp(array[0], "EA"))
+	else if (!ft_strcmp(array[0], "EA") && data->ea_texture == NULL)
 		data->ea_texture = strdup(array[1]);
-	else if (!ft_strcmp(array[0], "WE"))
+	else if (!ft_strcmp(array[0], "WE") && data->we_texture == NULL)
 		data->we_texture = strdup(array[1]);
-	else if (!ft_strcmp(array[0], "F"))
+	else if (!ft_strcmp(array[0], "F") && data->F_color == -1)
 		data->F_color = rgb_to_int(ft_split(array[1], ','));
-	else if (!ft_strcmp(array[0], "C"))
+	else if (!ft_strcmp(array[0], "C") && data->C_color == -1)
 		data->C_color = rgb_to_int(ft_split(array[1], ','));
+	else
+		ft_error(data, "Duplacted identifier found in map file", 1);
 }
 
 void parse_textures(int fd, t_data *data)

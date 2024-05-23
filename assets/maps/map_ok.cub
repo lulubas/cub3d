@@ -1,7 +1,7 @@
 NO ./assets/textures/grey_bricks1.xpm
 WE ./assets/textures/hitler_dark.xpm
 SO ./assets/textures/grey_bricks2.xpm
-EA ./assets/textures/eagle_dark.xpm
+SO ./assets/textures/eagle_dark.xpm
 
 F 90,90,90
 C 0,40,80
