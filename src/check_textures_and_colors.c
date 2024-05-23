@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:04:28 by damendez          #+#    #+#             */
-/*   Updated: 2024/05/23 17:54:12 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/23 19:48:50 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,16 +74,19 @@ void	check_if_tex(t_data *data, char *line)
 
 void	is_texorcolor(t_data *data, char *line, int *i)
 {
+	printf("ft_strlen_n(line) == %i\n", ft_strlen_n(line));
 	if (ft_strlen_n(line) == 2)
 	{
 		check_if_tex(data, line);
 		++*i;
 		printf("tex counter: i = %i\n", *i);
 	}
-	if (ft_strlen_n(line) == 1)
+	else if (ft_strlen_n(line) == 1)
 	{
 		check_if_color(data, line);
 		++*i;
 		printf("color counter: i = %i\n", *i);
 	}
+	else
+		ft_error(data, "Error: Invalid configuraton found in file", 1);
 }

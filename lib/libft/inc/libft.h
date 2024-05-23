@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 22:45:05 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/06 15:39:05 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/23 19:13:20 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# define BUFFER_SIZE 42
+# define BUFFER_SIZE 1
 
 //External libraries
 
@@ -21,6 +21,7 @@
 # include<stdlib.h>
 # include<stdarg.h>
 #include <stdio.h>
+# include<limits.h>
 
 //Libft functions
 size_t	ft_strlen(const char *str);
@@ -39,7 +40,13 @@ int	    ft_atoi(const char *str);
 
 //Get_next_line
 char	*get_next_line(int fd);
-char	*ft_strjoin_gnl(char *s1, char *s2);
+//char	*ft_strjoin_gnl(char *s1, char *s2);
 char	*ft_fail(char **str);
 
+char	*ft_free(char **str);
+char	*clean_storage(char	*storage);
+char	*new_line(char	*storage);
+char	*read_to_buffer(int fd, char *storage);
+size_t	ft_strlcpy(char *dst, char *src, size_t dstsize);
+char	*ft_strjoin(char *s1, char *s2);
 #endif

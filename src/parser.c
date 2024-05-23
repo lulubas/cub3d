@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:22:37 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/23 17:54:48 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/23 19:22:26 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,21 @@ void parse_textures(int fd, t_data *data)
 	int		textures_found;
 	char	*line;
 
+	array = NULL;
 	textures_found = 0;
 	while(textures_found < 6)
 	{
 		line = get_next_line(fd);
+		//printf("line=%s\n", line);
 		if (!line)
 			break;
 		ft_trimnl(line);
 		array = ft_split(line, ' ');
+		// printf("array[0]= %s, array[1] = %s\n", array[0], array[1]);
+		// printf("textures found before: %i\n", textures_found);
 		if (array && array[0] && array[1])
 		{
+			// printf("textures found 2: %i\n", textures_found);
 			process_line(array, data);
 			textures_found++;
 		}
@@ -126,9 +131,14 @@ void	parse_direction_and_plane(t_data *data)
 
 void	parse_scene(t_data *data)
 {
-	int		fd;
+	int	fd;
 
 	fd = open(data->filepath, O_RDONLY);
+	// for (i = 0; i < 3; i++)
+	// {
+	// 	line = get_next_line(fd);
+	// 	printf("gnl_line=%s", line);
+	// }
 	parse_textures(fd, data);
 	data->lst = parse_map_to_list(fd, data);
 	data->map = parse_list_to_array(data->lst, data);

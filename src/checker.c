@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:41:40 by damendez          #+#    #+#             */
-/*   Updated: 2024/05/21 15:22:30 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/23 20:20:49 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	check_textures_and_colors(t_data *data, int fd)
 
 	line = get_next_line(fd);
 	i = 0;
-	while (line && i < 6)
+	while (line && !is_map_line(line))
 	{
 		if (*line != '\n' && line && !is_map_line(line))
 			is_texorcolor(data, line, &i);
@@ -46,8 +46,10 @@ static void	check_textures_and_colors(t_data *data, int fd)
 			line = get_next_line(fd);
 	}
 	if (i != 6)
-		ft_error(data, "Could not find 4 textures \
+		ft_error(data, "Could not find 4 textures\
 		and 2 colors before the map", 1);
+	else
+		ft_error(data, "Error: Invalid configuraton found in file", 1);
 }
 
 /*

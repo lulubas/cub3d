@@ -3,116 +3,97 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 11:00:10 by agheredi          #+#    #+#             */
-/*   Updated: 2024/04/19 03:03:30 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/23 19:01:12 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_fail(char **str)
+char	*ft_free(char	**str)
 {
 	free(*str);
 	*str = NULL;
 	return (NULL);
 }
 
-char	*ft_readfile(int fd, char *stash)
+char	*clean_storage(char	*storage)
 {
-	char		*tmp;
-	int			fd_read;
+	char	*newlinecharlocation;
+	char	*new_storage;
+	int		length;
 
-	fd_read = 1;
-	tmp = (char *) malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!tmp)
-		return (ft_fail(&stash));
-	while ((!ft_strchr(stash, '\n') && fd_read != 0))
+	newlinecharlocation = ft_strchr(storage, '\n');
+	if (!newlinecharlocation)
 	{
-		fd_read = read(fd, tmp, BUFFER_SIZE);
-		if (fd_read == -1)
-		{
-			free(stash);
-			return (ft_fail(&tmp));
-		}
-		tmp[fd_read] = '\0';
-		stash = ft_strjoin_gnl(stash, tmp);
-		if (!stash)
-			return (ft_fail(&tmp));
+		return (ft_free(&storage));
 	}
-	free(tmp);
-	return (stash);
+	else
+		length = (newlinecharlocation - storage) + 1;
+	if (!storage[length])
+		return (ft_free(&storage));
+	new_storage = ft_substr(storage, length, ft_strlen(storage) - length);
+	ft_free(&storage);
+	if (!new_storage)
+		return (NULL);
+	return (new_storage);
 }
 
-char	*ft_get_line(char *stash)
+char	*new_line(char	*storage)
 {
+	char	*newlinecharlocation;
 	char	*line;
-	int		i;
+	int		length;
 
-	if (!stash[0])
-		return (NULL);
-	i = 0;
-	while (stash[i] && stash[i] != '\n')
-		i++;
-	if (stash[i] == '\n')
-		i++;
-	line = (char *) malloc((i + 1) * sizeof(char));
+	newlinecharlocation = ft_strchr(storage, '\n');
+	length = (newlinecharlocation - storage) + 1;
+	line = ft_substr(storage, 0, length);
 	if (!line)
 		return (NULL);
-	i = 0;
-	while (stash[i] && stash[i] != '\n')
-	{
-		line[i] = stash[i];
-		i++;
-	}
-	if (stash[i] == '\n')
-		line[i++] = '\n';
-	line[i] = '\0';
 	return (line);
 }
 
-char	*ft_move_line(char *stash)
+char	*read_to_buffer(int fd, char	*storage)
 {
-	char	*nwstash;
-	int		i;
-	int		j;
+	int		numbytesread;
+	char	*buffer;
 
-	i = 0;
-	if (!stash)
-		return (NULL);
-	while (stash[i] && stash[i] != '\n')
-		i++;
-	if (stash[i] == '\0')
-		return (ft_fail(&stash));
-	i += (stash[i] == '\n');
-	nwstash = (char *) malloc((ft_strlen(stash) - i + 1));
-	if (!nwstash)
-		return (ft_fail(&stash));
-	j = 0;
-	while (stash[i + j])
+	numbytesread = 1;
+	buffer = malloc (sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buffer)
+		return (ft_free(&storage));
+	buffer[0] = '\0';
+	while (numbytesread > 0 && !ft_strchr(buffer, '\n'))
 	{
-		nwstash[j] = stash[i + j];
-		j++;
+		numbytesread = read (fd, buffer, BUFFER_SIZE);
+		if (numbytesread > 0)
+		{
+			buffer[numbytesread] = '\0';
+			storage = ft_strjoin(storage, buffer);
+		}
 	}
-	nwstash[j] = '\0';
-	free(stash);
-	return (nwstash);
+	free(buffer);
+	if (numbytesread == -1)
+		return (ft_free(&storage));
+	return (storage);
 }
 
 char	*get_next_line(int fd)
 {
+	static char	*storage = {0};
 	char		*line;
-	static char	*stash[FOPEN_MAX];
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0)
 		return (NULL);
-	stash[fd] = ft_readfile(fd, stash[fd]);
-	if (!stash[fd])
+	if ((storage && !ft_strchr(storage, '\n')) || !storage)
+		storage = read_to_buffer (fd, storage);
+	if (!storage)
 		return (NULL);
-	line = ft_get_line(stash[fd]);
-	if (line == NULL)
-		return (ft_fail(&stash[fd]));
-	stash[fd] = ft_move_line(stash[fd]);
+	line = new_line(storage);
+	if (!line)
+		return (ft_free(&storage));
+	storage = clean_storage(storage);
 	return (line);
 }

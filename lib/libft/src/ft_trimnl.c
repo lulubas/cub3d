@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_trimnl.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 00:25:48 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/20 00:27:21 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/23 18:36:08 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ void	ft_trimnl(char *str)
 		return ;
 	len = ft_strlen(str);
 	if (str[len - 1] == '\n')
-		str[len-1] = '\0';
+		str[len - 1] = '\0';
 }
