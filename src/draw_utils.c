@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 16:11:37 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/24 00:52:30 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/24 01:32:43 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	rgb_to_int(char **rgb)
 	return (color);
 }
 
-t_image	load_texture(t_scene *scene, t_data *data)
+t_image	load_texture_data(t_scene *scene, t_data *data)
 {
 	t_image	texture;
 	void	*image_ptr;

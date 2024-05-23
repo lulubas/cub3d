@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:22:56 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/24 01:00:42 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/24 01:37:35 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,26 +54,36 @@ int	key_release(int keycode, t_data *data)
 	return (0);
 }
 
-void	init_mlx(t_data *data)
+void	load_textures_images(t_data *data)
 {
 	int	tex_height;
 	int	tex_width ;
 	int	i;
 
+	i = 0;
 	tex_height = SCREEN_HEIGHT;
 	tex_width = SCREEN_WIDTH;
+	data->textures_path = malloc(sizeof(char *) * 4);
+	if (!data->textures_path)
+		ft_error(data, "Failed to malloc textures array", 1);
+	while (i < 4)
+	{
+		data->textures_ptr[i] = mlx_xpm_file_to_image(data->mlx, \
+			data->textures_path[i], &tex_width, &tex_height);
+		if (!data->textures_ptr[i])
+			ft_error(data, "Failed to load texture image", 1);
+		i++;
+	}
+}
+
+void	init_mlx(t_data *data)
+{	
 	data->mlx = mlx_init();
+	load_textures_images(data);
 	data->win = mlx_new_window(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "cub3d");
 	if (!data->mlx || !data->win)
 		ft_error(data, "Failed to initialise MLX", 1);
 	mlx_hook(data->win, 2, 0, key_press, data);
 	mlx_hook(data->win, 3, 0, key_release, data);
 	mlx_hook(data->win, 17, 0, exit_hook, data);
-	i = 0;
-	while (i < 4)
-	{
-		data->textures_ptr[i] = mlx_xpm_file_to_image(data->mlx, \
-			data->textures_path[i], &tex_width, &tex_height);
-		i++;
-	}
 }

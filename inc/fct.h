@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:22:04 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/24 01:17:49 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/24 01:32:50 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	perform_dda(t_scene *scene, t_tile **map);
 void	split_slice(t_scene *scene);
 void	draw_slice(int x, t_image *buffer, t_data *data);
 int		rgb_to_int(char **rgb);
-t_image	load_texture(t_scene *scene, t_data *data);
+t_image	load_texture_data(t_scene *scene, t_data *data);
 int		get_color(int texX, int texY, t_image *texture);
 void	put_pixel(int pixel, int color, t_image *buffer);
 

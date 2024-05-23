@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:41:19 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/24 01:24:19 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/24 01:31:14 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ t_data	*init_data_struct(void)
 
 	new_data = malloc(sizeof(t_data));
 	new_data->filepath = NULL;
-	new_data->textures_path = malloc(sizeof(char *) * 4);
-	new_data->textures_ptr = malloc(sizeof(void *) * 4);
+	new_data->textures_path = NULL;
+	new_data->textures_ptr = NULL;
 	new_data->floor_color = -1;
 	new_data->ceiling_color = -1;
 	new_data->map_size_x = 0;

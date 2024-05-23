@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:41:40 by damendez          #+#    #+#             */
-/*   Updated: 2024/05/24 01:28:09 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/24 01:38:34 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,7 @@ static void	check_textures_and_colors(t_data *data, int fd)
 			line = get_next_line(fd);
 	}
 	if (i != 6)
-		ft_error(data, "Could not find 4 textures\
-		and 2 colors before the map", 1);
+		ft_error(data, "Could not find 4 textures and 2 colors", 1);
 	else
 		ft_error(data, "Error: Invalid configuraton found in file", 1);
 }

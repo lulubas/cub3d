@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:21:33 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/24 01:25:29 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/24 01:33:00 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	draw_wall(int x, int *y, t_image *buffer, t_data *data)
 		tex_y = (int)tex_pos % TEXTURE_HEIGHT;
 		tex_pos += tex_step;
 		pixel = (*y * buffer->line_bytes) + (x * 4);
-		texture = load_texture(data->scene, data);
+		texture = load_texture_data(data->scene, data);
 		put_pixel(pixel, get_color(get_tex_x(data->scene), tex_y, &texture), \
 			buffer);
 		(*y)++;
