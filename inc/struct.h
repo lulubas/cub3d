@@ -6,12 +6,12 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:39:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/22 15:44:44 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/24 01:24:18 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
-#define STRUCT_H
+# define STRUCT_H
 
 typedef enum s_tile
 {
@@ -24,12 +24,13 @@ typedef enum s_tile
 	P_WEST
 }	t_tile;
 
-typedef enum s_walldir{
-    NORTH,
+typedef enum s_walldir
+{
+	NORTH,
 	SOUTH,
 	EAST,
 	WEST
-} t_walldir;
+}	t_walldir;
 
 typedef struct s_image
 {
@@ -47,46 +48,38 @@ typedef struct s_list
 
 typedef struct s_scene
 {
-	double		playerPosX;
-	double		playerPosY;
-	double		playerDirX;
-	double		playerDirY;
-	double		rayDirX;
-	double		rayDirY;
-	double		planeX;
-	double		planeY;
-	double		sideDistX;
-	double		sideDistY;
-	double		deltaDistX;
-	double		deltaDistY;
-	int			mapX;
-	int			mapY;
-	int			stepX;
-	int			stepY;
+	double		player_posx;
+	double		player_posy;
+	double		player_dirx;
+	double		player_diry;
+	double		ray_dirx;
+	double		ray_diry;
+	double		plane_x;
+	double		plane_y;
+	double		side_distx;
+	double		side_disty;
+	double		delta_distx;
+	double		delta_disty;
+	int			map_x;
+	int			map_y;
+	int			step_x;
+	int			step_y;
 	t_walldir	side;
-	double		perpWallDist;
-	int			lineHeight;
-	int			drawStart;
-	int			drawEnd;
-	double	 	texPos;
-	double		texStep;
-	void		*no_img;
-	void		*so_img;
-	void		*ea_img;
-	void		*we_img;
+	double		perp_walldist;
+	int			line_height;
+	int			draw_start;
+	int			draw_end;
 }	t_scene;
 
 typedef struct s_data
 {
-	char 		*filepath;
-	char		*no_texture;
-	char		*so_texture;
-	char		*ea_texture;
-	char		*we_texture;
-	int			F_color;
-	int			C_color;
-	int			map_x;
-	int			map_y;
+	char		*filepath;
+	char		**textures_path;
+	void		**textures_ptr;
+	int			floor_color;
+	int			ceiling_color;
+	int			map_size_x;
+	int			map_size_y;
 	t_list		*lst;
 	t_tile		**map;
 	t_scene		*scene;

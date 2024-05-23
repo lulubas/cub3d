@@ -6,27 +6,27 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 02:39:50 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/06 15:49:25 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/24 01:23:40 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void print_2darray(char **darray)
+void	print_2darray(char **darray)
 {
-    int i;
+	int	i;
 
-    i = 0;
+	i = 0;
 	if (!darray)
 	{
 		printf("NULL array\n");
 		return ;
 	}
-    while(darray[i])
-    {
-        printf("[%d]:%s ", i, darray[i]);
-        i++;
-    }
+	while (darray[i])
+	{
+		printf("[%d]:%s ", i, darray[i]);
+		i++;
+	}
 	printf("\n");
 }
 
@@ -38,13 +38,13 @@ char	*tile_to_string(t_tile tile)
 		return ("WAL");
 	else if (tile == EMPTY)
 		return ("EMP");
-	else if (tile == NORTH)
+	else if (tile == P_NORTH)
 		return ("NOR");
-	else if (tile == SOUTH)
+	else if (tile == P_SOUTH)
 		return ("SOU");
-	else if (tile == EAST)
+	else if (tile == P_EAST)
 		return ("EAS");
-	else if (tile == WEST)
+	else if (tile == P_WEST)
 		return ("WES");
 	else
 		return ("ERR");
@@ -57,9 +57,9 @@ void	print_map(t_data *data)
 
 	y = 0;
 	x = 0;
-	while (y < data->map_y)
+	while (y < data->map_size_y)
 	{
-		while (x < data->map_x)
+		while (x < data->map_size_x)
 			printf("%s ", tile_to_string(data->map[y][x++]));
 		printf("\n");
 		x = 0;
@@ -67,16 +67,12 @@ void	print_map(t_data *data)
 	}
 }
 
-void    print_data(t_data *data)
+void	print_data(t_data *data)
 {
-    printf("===Data content===\n");
-    printf("filepath=%s\n", data->filepath);
-    printf("no_texture=%s\n", data->no_texture);
-    printf("so_texture=%s\n", data->so_texture);
-    printf("ea_texture=%s\n", data->ea_texture);
-    printf("we_texture=%s\n", data->we_texture);
-	printf("F_color=%d\n", data->F_color);
-	printf("C_color=%d\n", data->C_color);
+	printf("===Data content===\n");
+	printf("filepath=%s\n", data->filepath);
+	printf("floor_color=%d\n", data->floor_color);
+	printf("ceiling_color=%d\n", data->ceiling_color);
 	printf("player_x=%d\n", data->player_x);
 	printf("player_y=%d\n", data->player_y);
 	printf("-----MAP ARRAY------\n");
@@ -87,21 +83,21 @@ void    print_data(t_data *data)
 
 void	print_scene(t_scene *scene)
 {
-	printf("playerPosX=%f\n", scene->playerPosX);
-	printf("playerPosY=%f\n", scene->playerPosY);
-	printf("playerDirX=%f\n", scene->playerDirX);
-	printf("playerDirY=%f\n", scene->playerDirY);
-	printf("rayDirX=%f\n", scene->rayDirX);
-	printf("rayDirY=%f\n", scene->rayDirY);
-	printf("planeX=%f\n", scene->planeX);
-	printf("planeY=%f\n", scene->planeY);
-	printf("sideDistX=%f\n", scene->sideDistX);
-	printf("sideDistY=%f\n", scene->sideDistY);
-	printf("deltaDistX=%f\n", scene->deltaDistX);
-	printf("deltaDistY=%f\n", scene->deltaDistY);
-	printf("mapX=%d\n", scene->mapX);
-	printf("mapY=%d\n", scene->mapY);
-	printf("stepX=%d\n", scene->stepX);
-	printf("stepY=%d\n", scene->stepY);
-	printf("perpWallDist=%f\n", scene->perpWallDist);
+	printf("player_posx=%f\n", scene->player_posx);
+	printf("player_posy=%f\n", scene->player_posy);
+	printf("player_dirx=%f\n", scene->player_dirx);
+	printf("player_diry=%f\n", scene->player_diry);
+	printf("ray_dirx=%f\n", scene->ray_dirx);
+	printf("ray_diry=%f\n", scene->ray_diry);
+	printf("plane_x=%f\n", scene->plane_x);
+	printf("plane_y=%f\n", scene->plane_y);
+	printf("side_distx=%f\n", scene->side_distx);
+	printf("side_disty=%f\n", scene->side_disty);
+	printf("delta_distx=%f\n", scene->delta_distx);
+	printf("delta_disty=%f\n", scene->delta_disty);
+	printf("map_x=%d\n", scene->map_x);
+	printf("map_y=%d\n", scene->map_y);
+	printf("step_x=%d\n", scene->step_x);
+	printf("step_y=%d\n", scene->step_y);
+	printf("perp_walldist=%f\n", scene->perp_walldist);
 }

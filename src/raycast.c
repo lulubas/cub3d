@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 17:39:01 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/22 16:11:18 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/24 01:23:59 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,93 +15,95 @@
 //Side distances from Player to next grid lines
 void	parse_sidedist(t_scene *scene)
 {
-	if (scene->rayDirX < 0)
-		{
-			scene->stepX = -1;
-			scene->sideDistX = (scene->playerPosX - scene->mapX) * scene->deltaDistX;
-		}
-		else
-		{
-			scene->stepX =   1;
-			scene->sideDistX = (scene->mapX + 1 - scene->playerPosX) * scene->deltaDistX;
-		}
-	if (scene->rayDirY < 0)
-		{
-			scene->stepY = -1;
-			scene->sideDistY = (scene->playerPosY - scene->mapY) * scene->deltaDistY;
-		}
-		else
-		{
-			scene->stepY = 1;
-			scene->sideDistY = (scene->mapY + 1.0 - scene->playerPosY) * scene->deltaDistY;
-		}
+	if (scene->ray_dirx < 0)
+	{
+		scene->step_x = -1;
+		scene->side_distx = (scene->player_posx - scene->map_x) \
+		* scene->delta_distx;
+	}
+	else
+	{
+		scene->step_x = 1;
+		scene->side_distx = (scene->map_x + 1 - scene->player_posx) \
+		* scene->delta_distx;
+	}
+	if (scene->ray_diry < 0)
+	{
+		scene->step_y = -1;
+		scene->side_disty = (scene->player_posy - scene->map_y) \
+		* scene->delta_disty;
+	}
+	else
+	{
+		scene->step_y = 1;
+		scene->side_disty = (scene->map_y + 1.0 - scene->player_posy) \
+		* scene->delta_disty;
+	}
 }
 
 //Get Rays vectors from the Player through the plane
 //and initial position of rays
-void init_rays(int x, int width, t_scene *scene)
+void	init_rays(int x, int width, t_scene *scene)
 {
-	double camX;
-		camX = 2 * x / (double)width - 1;
-	scene->rayDirX = scene->playerDirX + scene->planeX * camX;
-	scene->rayDirY = scene->playerDirY + scene->planeY * camX;
-	scene->mapX = (int)scene->playerPosX;
-	scene->mapY = (int)scene->playerPosY;
-	if (scene->rayDirX == 0)
-		scene->deltaDistX = 1e42;
+	double	cam_x;
+
+	cam_x = 2 * x / (double)width - 1;
+	scene->ray_dirx = scene->player_dirx + scene->plane_x * cam_x;
+	scene->ray_diry = scene->player_diry + scene->plane_y * cam_x;
+	scene->map_x = (int)scene->player_posx;
+	scene->map_y = (int)scene->player_posy;
+	if (scene->ray_dirx == 0)
+		scene->delta_distx = 1e42;
 	else
-		scene->deltaDistX = fabs(1 / scene->rayDirX);
-	if (scene->rayDirY == 0)
-		scene->deltaDistY = 1e42;
+		scene->delta_distx = fabs(1 / scene->ray_dirx);
+	if (scene->ray_diry == 0)
+		scene->delta_disty = 1e42;
 	else
-		scene->deltaDistY = fabs(1 / scene->rayDirY);
+		scene->delta_disty = fabs(1 / scene->ray_diry);
 	parse_sidedist(scene);
 }
 
 //DDA aLgorythm to find which wall is hit first
 void	perform_dda(t_scene *scene, t_tile **map)
 {
-	t_walldir hit_side;
-
 	while (1)
 	{
-		if (scene->sideDistX < scene->sideDistY)
+		if (scene->side_distx < scene->side_disty)
 		{
-			scene->sideDistX += scene->deltaDistX;
-			scene->mapX += scene->stepX;
-			if (scene->stepX > 0)
-				hit_side = WEST;
+			scene->side_distx += scene->delta_distx;
+			scene->map_x += scene->step_x;
+			if (scene->step_x > 0)
+				scene->side = WEST;
 			else
-				hit_side = EAST;
+				scene->side = EAST;
 		}
 		else
 		{
-			scene->sideDistY += scene->deltaDistY;
-			scene->mapY += scene->stepY;
-			if (scene->stepY > 0)
-				hit_side = NORTH;
+			scene->side_disty += scene->delta_disty;
+			scene->map_y += scene->step_y;
+			if (scene->step_y > 0)
+				scene->side = NORTH;
 			else
-				hit_side = SOUTH;
+				scene->side = SOUTH;
 		}
-		if (map[scene->mapY][scene->mapX] == WALL)
+		if (map[scene->map_y][scene->map_x] == WALL)
 			break ;
 	}
-	scene->side = hit_side;
 }
 
 //Calculate perpendicalr distance of the wall to the plane
-//and the lineheight zith the the start and end of the wall slice
+//and the line_height zith the the start and end of the wall slice
 void	split_slice(t_scene *scene)
-{	
+{
 	if (scene->side == EAST || scene->side == WEST)
-		scene->perpWallDist = scene->sideDistX - scene->deltaDistX;
+		scene->perp_walldist = scene->side_distx - scene->delta_distx;
 	else
-		scene->perpWallDist = scene->sideDistY - scene->deltaDistY;
-	scene->lineHeight = (int)((double)SCREEN_HEIGHT / scene->perpWallDist);
-	scene->drawStart = -scene->lineHeight / 2 + SCREEN_HEIGHT / 2;
-	if(scene->drawStart < 0)
-		scene->drawStart = 0;
-	scene->drawEnd = scene->lineHeight / 2 + SCREEN_HEIGHT / 2;
-	if(scene->drawEnd >= SCREEN_HEIGHT)
-		scene->drawEnd = SCREEN_HEIGHT - 1;
+		scene->perp_walldist = scene->side_disty - scene->delta_disty;
+	scene->line_height = (int)((double)SCREEN_HEIGHT / scene->perp_walldist);
+	scene->draw_start = -scene->line_height / 2 + SCREEN_HEIGHT / 2;
+	if (scene->draw_start < 0)
+		scene->draw_start = 0;
+	scene->draw_end = scene->line_height / 2 + SCREEN_HEIGHT / 2;
+	if (scene->draw_end >= SCREEN_HEIGHT)
+		scene->draw_end = SCREEN_HEIGHT - 1;
 }

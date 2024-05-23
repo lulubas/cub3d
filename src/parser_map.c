@@ -6,70 +6,13 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 17:25:43 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/22 17:03:55 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/24 01:23:26 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	get_max_x(t_list *lst)
-{
-	t_list	*tmp;
-	size_t	max_length;
-
-	max_length = 0;
-	tmp = lst;
-	while (tmp)
-	{
-		if (ft_strlen(tmp->str) > max_length)
-			max_length = ft_strlen(tmp->str);
-		tmp = tmp->next;
-	}
-	return (max_length + 2);
-}
-
-int	get_y(t_list *lst)
-{
-	t_list	*tmp;
-	int		index;
-
-	index = 0;
-	tmp = lst;
-	while (tmp)
-	{
-		index++;
-		tmp = tmp->next;
-	}
-	return (index + 2);
-}
-
-t_tile	**init_map(t_list *lst, t_data *data)
-{
-	t_tile	**new_map;
-	int		i;
-	int		j;
-	
-	i = 0;
-	j = 0;
-	data->map_x = get_max_x(lst);
-	data->map_y = get_y(lst);
-	new_map = (t_tile **)malloc(sizeof(t_tile *) * data->map_y);
-	if (!new_map)
-		ft_error(data, "Failed to allocate map", 1);
-	while (i < data->map_y)
-	{
-		new_map[i] = (t_tile *)malloc(sizeof(t_tile) * data->map_x);
-		if (!new_map[i])
-			ft_error(data, "Failed to allocate map tiles", 1);
-		while (j < data->map_x)
-			new_map[i][j++] = SPACE;
-		j = 0;
-		i++;
-	}
-	return (new_map);
-}
-
-void	process_tile(char c, t_tile *tile)
+void	parse_tile(char c, t_tile *tile)
 {
 	if (c == ' ')
 		*tile = SPACE;
@@ -84,7 +27,19 @@ void	process_tile(char c, t_tile *tile)
 	else if (c == 'E')
 		*tile = P_EAST;
 	else if (c == 'W')
-		*tile = P_WEST;		
+		*tile = P_WEST;
+}
+
+void	parse_player(int x, int y, t_tile **map, t_data *data)
+{
+	if (map[y][x] == P_NORTH || map[y][x] == P_SOUTH || \
+		map[y][x] == P_EAST || map[y][x] == P_WEST)
+	{
+		data->player_x = x;
+		data->player_y = y;
+		data->scene->player_posx = x + 0.5;
+		data->scene->player_posy = y + 0.5;
+	}
 }
 
 t_tile	**parse_list_to_array(t_list *lst, t_data *data)
@@ -93,30 +48,19 @@ t_tile	**parse_list_to_array(t_list *lst, t_data *data)
 	t_list	*tmp;
 	int		x;
 	int		y;
-	int		str_x;
 
 	map = init_map(lst, data);
 	tmp = lst;
-	str_x = 0;
 	x = 1;
 	y = 1;
-	while(tmp)
+	while (tmp)
 	{
-		while (tmp->str[str_x])
+		while (tmp->str[x - 1])
 		{
-			process_tile(tmp->str[str_x], &map[y][x]);
-			if (map[y][x] == P_NORTH || map[y][x] == P_SOUTH || \
-				map[y][x] == P_EAST || map[y][x] == P_WEST)
-			{
-				data->player_x = x;
-				data->player_y = y;
-				data->scene->playerPosX = x + 0.5;
-				data->scene->playerPosY = y + 0.5;
-			}
-			str_x++;
+			parse_tile(tmp->str[x - 1], &map[y][x]);
+			parse_player(x, y, map, data);
 			x++;
 		}
-		str_x = 0;
 		x = 1;
 		y++;
 		tmp = tmp->next;

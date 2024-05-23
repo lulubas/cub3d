@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   check_textures_and_colors.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:04:28 by damendez          #+#    #+#             */
-/*   Updated: 2024/04/26 14:04:12 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/24 01:17:49 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 static int	check_color_values(t_data *data, char *line)
-{	
+{
 	char	**split;
 	int		r;
 	int		g;
@@ -32,13 +32,13 @@ static int	check_color_values(t_data *data, char *line)
 	{
 		printf("Color is valid\n");
 		free_split(split);
-		return (0);	
+		return (0);
 	}
 	free_split(split);
 	return (1);
 }
 
-void	check_if_color(t_data *data, char *line)
+void	check_ifloor_color(t_data *data, char *line)
 {
 	if (line[0] == 'F' || line[0] == 'C')
 	{
@@ -58,7 +58,6 @@ void	check_if_tex(t_data *data, char *line)
 		ft_error(data, "Malloc error", 1);
 	if (ft_ptrlen(split) != 2)
 		ft_error(data, "Texture syntax error in map file", 1);
-	// here we could save map.tex variables
 	if (line[0] == 'N' && line[1] == 'O')
 		printf("North texture identifier found\n");
 	else if (line[0] == 'S' && line[1] == 'O')
@@ -82,7 +81,7 @@ void	is_texorcolor(t_data *data, char *line, int *i)
 	}
 	if (ft_strlen_n(line) == 1)
 	{
-		check_if_color(data, line);
+		check_ifloor_color(data, line);
 		++*i;
 		printf("color counter: i = %i\n", *i);
 	}
