@@ -1,31 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 14:45:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/23 22:59:49 by lbastien         ###   ########.fr       */
+/*   Created: 2024/05/24 01:02:38 by lbastien          #+#    #+#             */
+/*   Updated: 2024/05/24 01:04:59 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char **argv)
+void	free_2darray(char ***array)
 {
-	t_data	*data;
+	int	i;
 
-	data = init_data_struct();
-	if (!data)
-		return (1);
-	check_scene(argc, argv, data);
-	parse_scene(data);
-	check_map(data);
-	print_data(data);
-	init_mlx(data);
-	mlx_loop_hook(data->mlx, raycast_and_render, data);
-	mlx_loop(data->mlx);
-	free_all(data);
-	return (0);
+	i = 0;
+	while ((*array)[i])
+	{
+		free((*array)[i]);
+		i++;
+	}
+	free(*array);
+	*array = NULL;
+}
+
+void	free_tex_paths(char ***array)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		free((*array)[i]);
+		i++;
+	}
+	free(*array);
+	*array = NULL;
+}
+
+void	free_tex_ptr(void ***array)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		free((*array)[i]);
+		i++;
+	}
+	free(*array);
+	*array = NULL;
 }

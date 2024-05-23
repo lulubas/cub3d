@@ -6,15 +6,15 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:22:56 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/22 18:00:54 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/24 01:00:42 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int exit_hook(t_data *data)
+int	exit_hook(t_data *data)
 {
-    ft_error(data, "Exiting from input", 0);
+	ft_error(data, "Exiting from input", 0);
 	return (1);
 }
 
@@ -56,11 +56,12 @@ int	key_release(int keycode, t_data *data)
 
 void	init_mlx(t_data *data)
 {
-	int text_height;
-	int text_width ;
+	int	tex_height;
+	int	tex_width ;
+	int	i;
 
-	text_height = SCREEN_HEIGHT;
-	text_width = SCREEN_WIDTH;
+	tex_height = SCREEN_HEIGHT;
+	tex_width = SCREEN_WIDTH;
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "cub3d");
 	if (!data->mlx || !data->win)
@@ -68,10 +69,11 @@ void	init_mlx(t_data *data)
 	mlx_hook(data->win, 2, 0, key_press, data);
 	mlx_hook(data->win, 3, 0, key_release, data);
 	mlx_hook(data->win, 17, 0, exit_hook, data);
-	data->scene->no_img =  mlx_xpm_file_to_image(data->mlx, data->no_texture, &text_width, &text_height);
-	data->scene->so_img =  mlx_xpm_file_to_image(data->mlx, data->so_texture, &text_width, &text_height);
-	data->scene->ea_img =  mlx_xpm_file_to_image(data->mlx, data->ea_texture, &text_width, &text_height);
-	data->scene->we_img =  mlx_xpm_file_to_image(data->mlx, data->we_texture, &text_width, &text_height);
-	if (!data->scene->no_img || !data->scene->so_img || !data->scene->ea_img || !data->scene->we_img)
-		ft_error(data, "Failed to load texture. Check that texture file exists.", 1);
+	i = 0;
+	while (i < 4)
+	{
+		data->textures_ptr[i] = mlx_xpm_file_to_image(data->mlx, \
+			data->textures_path[i], &tex_width, &tex_height);
+		i++;
+	}
 }

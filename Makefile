@@ -3,10 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: damendez <damendez@student.42.fr>          +#+  +:+       +#+         #
+#    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 17:07:24 by lbastien          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2024/05/23 17:24:03 by damendez         ###   ########.fr        #
+=======
+#    Updated: 2024/05/24 01:04:55 by lbastien         ###   ########.fr        #
+>>>>>>> louis
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +27,10 @@ MLX_DIR = lib/mlx
 LIB_DIR = lib/libft
 
 # Source filenames
-FILES = cub3d init free checker parser print list_utils map_utils check_map \
-		check_textures_and_colors render parser_map raycast input utils mlx_conf draw draw_utils
+FILES = cub3d init free checker parser \
+		print list_utils map_utils check_map check_textures_and_colors \
+		render parser_map raycast input utils \
+		mlx_conf draw draw_utils moves free_utils
 
 # Generating source objects and depedency files
 SRC = $(FILES:%=$(SRC_DIR)/%.c)

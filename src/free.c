@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:59:26 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/21 17:20:59 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/24 01:14:25 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	free_map(t_tile ***map, t_data *data)
 	int	y;
 
 	y = 0;
-	while (y < data->map_y)
+	while (y < data->map_size_y)
 	{
 		free((*map)[y]);
 		y++;
@@ -26,37 +26,10 @@ void	free_map(t_tile ***map, t_data *data)
 	*map = NULL;
 }
 
-void	free_2darray(char ***array)
-{
-	int	i;
-
-	i = 0;
-	while ((*array)[i])
-	{
-		free((*array)[i]);
-		i++;
-	}
-	free(*array);
-	*array = NULL;
-}
-
 void	free_mlx(t_data *data )
 {
 	if (data->win)
 		mlx_destroy_window(data->mlx, data->win);
-}
-
-void free_scene(t_scene *scene)
-{
-	if (scene->no_img)
-		free(scene->no_img);
-	if (scene->so_img)
-		free(scene->so_img);
-	if (scene->ea_img)
-		free(scene->ea_img);
-	if (scene->we_img)
-		free(scene->we_img);
-	free(scene);
 }
 
 void	free_all(t_data *data)
@@ -66,20 +39,14 @@ void	free_all(t_data *data)
 		free_mlx(data);
 		if (data->filepath)
 			free(data->filepath);
-		if (data->no_texture)
-			free(data->no_texture);
-		if (data->so_texture)
-			free(data->so_texture);
-		if (data->ea_texture)
-			free(data->ea_texture);
-		if (data->we_texture)
-			free(data->we_texture);
+		if (data->textures_path)
+			free_tex_paths(&data->textures_path);
 		if (data->lst)
 			free_list(&data->lst);
 		if (data->map)
 			free_map(&data->map, data);
 		if (data->scene)
-			free_scene(data->scene);
+			free(data->scene);
 		data->scene = NULL;
 	}
 	free(data);

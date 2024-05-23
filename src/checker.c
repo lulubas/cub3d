@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:41:40 by damendez          #+#    #+#             */
-/*   Updated: 2024/05/23 20:20:49 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/24 01:28:09 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@ static int	check_file_type(char *str)
 }
 
 /*
- * 1. Keep getting_next_line from fd until we found 6 lines that are textures/colors
- * 2. If line is valid and not a mapline, check if its a correct texture/color and increment line num counter
+ * 1. Keep getting_next_line from fd until we found 6 
+	linesthat are textures/colors
+ * 2. If line is valid and not a mapline, check if its
+	a correct texture/color and increment line num counter
 */
 static void	check_textures_and_colors(t_data *data, int fd)
 {
@@ -40,7 +42,7 @@ static void	check_textures_and_colors(t_data *data, int fd)
 		if (*line != '\n' && line && !is_map_line(line))
 			is_texorcolor(data, line, &i);
 		if (line && *line != '\n' && is_map_line(line) && i < 6)
-			ft_error(data, "Could not find 4 textures and 2 colors before the map", 1);
+			ft_error(data, "Could not find 4 textures and 2 colors", 1);
 		free(line);
 		if (i < 6)
 			line = get_next_line(fd);
@@ -70,7 +72,6 @@ void	check_scene(int argc, char **argv, t_data *data)
 	if (fd < 0)
 		ft_error(data, "Map file could not be opened", 1);
 	check_textures_and_colors(data, fd);
-	//Adding filepath to the struct for the parser and closing the fd
 	data->filepath = ft_strdup(argv[1]);
 	close(fd);
 }

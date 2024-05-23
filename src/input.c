@@ -6,91 +6,44 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 14:00:02 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/22 16:02:56 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/24 01:21:23 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	move_forward(t_scene *scene, t_tile **map)
-{
-	double	new_playerPosX;
-	double	new_playerPosY;
-
-	new_playerPosX = scene->playerPosX + (scene->playerDirX * MOVE_SPEED);
-	new_playerPosY = scene->playerPosY + (scene->playerDirY * MOVE_SPEED);
-	if(map[(int)(new_playerPosY)][(int)(new_playerPosX)] != WALL)
-	{
-		scene->playerPosX = new_playerPosX;
-		scene->playerPosY = new_playerPosY;
-	}
-}
-
-void	move_backward(t_scene *scene, t_tile **map)
-{
-	double new_playerPosX;
-	double new_playerPosY;
-
-	new_playerPosX = scene->playerPosX - (scene->playerDirX * MOVE_SPEED);
-	new_playerPosY = scene->playerPosY - (scene->playerDirY * MOVE_SPEED);
-	if(map[(int)(new_playerPosY)][(int)(new_playerPosX)] != WALL)
-	{
-		scene->playerPosX = new_playerPosX;
-		scene->playerPosY = new_playerPosY;
-	}
-}
-
-void	move_left(t_scene *scene, t_tile **map)
-{
-	double new_playerPosX;
-	double new_playerPosY;
-
-	new_playerPosX = scene->playerPosX - (scene->planeX * MOVE_SPEED);
-	new_playerPosY = scene->playerPosY - (scene->planeY * MOVE_SPEED);
-	if(map[(int)(new_playerPosY)][(int)(new_playerPosX)] != WALL)
-	{
-		scene->playerPosX = new_playerPosX;
-		scene->playerPosY = new_playerPosY;
-	}
-}
-void	move_right(t_scene *scene, t_tile **map)
-{
-	double new_playerPosX;
-	double new_playerPosY;
-
-	new_playerPosX = scene->playerPosX + (scene->planeX * MOVE_SPEED);
-	new_playerPosY = scene->playerPosY + (scene->planeY * MOVE_SPEED);
-	if(map[(int)(new_playerPosY)][(int)(new_playerPosX)] != WALL)
-	{
-		scene->playerPosX = new_playerPosX;
-		scene->playerPosY = new_playerPosY;
-	}
-}
-
 void	rotate_left(t_scene *scene)
 {
-	double old_playerDirX;
-	double old_planeX;
+	double	old_playerdirx;
+	double	old_plane_x;
 
-	old_playerDirX = scene->playerDirX;
-	old_planeX = scene->planeX;
-	scene->playerDirX = scene->playerDirX * cos(-ROT_SPEED) - scene->playerDirY * sin(-ROT_SPEED);
-	scene->playerDirY = old_playerDirX * sin(-ROT_SPEED) + scene->playerDirY * cos(-ROT_SPEED);
-	scene->planeX = scene->planeX * cos(-ROT_SPEED) - scene->planeY * sin(-ROT_SPEED);
-	scene->planeY = old_planeX * sin(-ROT_SPEED) + scene->planeY * cos(-ROT_SPEED);
+	old_playerdirx = scene->player_dirx;
+	old_plane_x = scene->plane_x;
+	scene->player_dirx = scene->player_dirx * cos(-ROT_SPEED) -\
+						scene->player_diry * sin(-ROT_SPEED);
+	scene->player_diry = old_playerdirx * sin(-ROT_SPEED) + \
+						scene->player_diry * cos(-ROT_SPEED);
+	scene->plane_x = scene->plane_x * cos(-ROT_SPEED) - \
+						scene->plane_y * sin(-ROT_SPEED);
+	scene->plane_y = old_plane_x * sin(-ROT_SPEED) + \
+						scene->plane_y * cos(-ROT_SPEED);
 }
 
 void	rotate_right(t_scene *scene)
 {
-	double old_playerDirX;
-	double old_planeX;
+	double	old_playerdirx;
+	double	old_plane_x;
 
-	old_playerDirX = scene->playerDirX;
-	old_planeX = scene->planeX;
-	scene->playerDirX = scene->playerDirX * cos(ROT_SPEED) - scene->playerDirY * sin(ROT_SPEED);
-	scene->playerDirY = old_playerDirX * sin(ROT_SPEED) + scene->playerDirY * cos(ROT_SPEED);
-	scene->planeX = scene->planeX * cos(ROT_SPEED) - scene->planeY * sin(ROT_SPEED);
-	scene->planeY = old_planeX * sin(ROT_SPEED) + scene->planeY * cos(ROT_SPEED);
+	old_playerdirx = scene->player_dirx;
+	old_plane_x = scene->plane_x;
+	scene->player_dirx = scene->player_dirx * cos(ROT_SPEED) - \
+						scene->player_diry * sin(ROT_SPEED);
+	scene->player_diry = old_playerdirx * sin(ROT_SPEED) + \
+						scene->player_diry * cos(ROT_SPEED);
+	scene->plane_x = scene->plane_x * cos(ROT_SPEED) - \
+						scene->plane_y * sin(ROT_SPEED);
+	scene->plane_y = old_plane_x * sin(ROT_SPEED) + \
+						scene->plane_y * cos(ROT_SPEED);
 }
 
 void	process_input(t_data *data)

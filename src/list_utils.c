@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 01:41:06 by lbastien          #+#    #+#             */
-/*   Updated: 2024/04/20 03:10:43 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/23 19:35:38 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_list	*list_new(char *str)
 void	list_addback(t_list *new, t_list **lst, t_data *data)
 {
 	t_list	*tmp;
-	
+
 	if (!new)
 		ft_error(data, "Failed to allocate list node", 1);
 	tmp = *lst;
@@ -35,7 +35,7 @@ void	list_addback(t_list *new, t_list **lst, t_data *data)
 		*lst = new;
 	else
 	{
-		while(tmp->next)
+		while (tmp->next)
 			tmp = tmp->next;
 		tmp->next = new;
 	}
@@ -68,7 +68,8 @@ void	free_list(t_list **lst)
 
 void	print_list(t_list *lst)
 {
-	t_list *tmp;
+	t_list	*tmp;
+
 	tmp = lst;
 	while (tmp)
 	{

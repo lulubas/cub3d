@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 13:27:58 by damendez          #+#    #+#             */
-/*   Updated: 2024/05/23 19:43:59 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/24 01:27:06 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	 check_player_count(t_data *data)
+void	check_player_count(t_data *data)
 {
-	int	x;
-	int	flag;
-	t_list *tmp;
+	int		x;
+	int		flag;
+	t_list	*tmp;
 
 	flag = 0;
 	tmp = data->lst;
@@ -45,16 +45,15 @@ void	check_closed(t_data *data)
 
 	x = 0;
 	y = 0;
-	while (y < data->map_y)
+	while (y < data->map_size_y)
 	{
 		x = 0;
-		while (x < data->map_x)
+		while (x < data->map_size_x)
 		{
 			if (data->map[y][x] == SPACE)
 			{
-				// printf("checking is surrounded by space or wall: map[%i][%i]\n", y, x);
 				if (!is_surrounded_space_or_wall(data, y, x))
-					ft_error(data, "Error: Map is not closed, Invalid map", 1);
+					ft_error(data, "Error: Map is not closed", 1);
 			}
 			x++;
 		}
@@ -70,10 +69,10 @@ void	check_playable(t_data *data)
 
 	y = 0;
 	flag = 0;
-	while (y < data->map_y)
+	while (y < data->map_size_y)
 	{
 		x = 0;
-		while (x < data->map_x)
+		while (x < data->map_size_x)
 		{
 			if (data->map[y][x] == EMPTY)
 				flag++;

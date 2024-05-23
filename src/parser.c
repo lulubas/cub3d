@@ -3,49 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:22:37 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/23 19:22:26 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/24 01:28:43 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	rgb_to_int(char **rgb)
-{
-	int	red;
-	int green;
-	int blue;
-	int color;
-
-	red = ft_atoi(rgb[0]) << 16;
-	green = ft_atoi(rgb[1]) << 8;
-	blue = ft_atoi(rgb[2]);
-	color = (red | green | blue);
-	free(rgb);
-	return(color);
-}
-
 void	process_line(char **array, t_data *data)
 {
-	if (!ft_strcmp(array[0], "NO") && data->no_texture == NULL)
-		data->no_texture = strdup(array[1]);
-	else if (!ft_strcmp(array[0], "SO") && data->so_texture == NULL)
-		data->so_texture = strdup(array[1]);
-	else if (!ft_strcmp(array[0], "EA") && data->ea_texture == NULL)
-		data->ea_texture = strdup(array[1]);
-	else if (!ft_strcmp(array[0], "WE") && data->we_texture == NULL)
-		data->we_texture = strdup(array[1]);
-	else if (!ft_strcmp(array[0], "F") && data->F_color == -1)
-		data->F_color = rgb_to_int(ft_split(array[1], ','));
-	else if (!ft_strcmp(array[0], "C") && data->C_color == -1)
-		data->C_color = rgb_to_int(ft_split(array[1], ','));
-	else
-		ft_error(data, "Duplacted identifier found in map file", 1);
+	if (!ft_strcmp(array[0], "NO"))
+		data->textures_path[0] = strdup(array[1]);
+	else if (!ft_strcmp(array[0], "SO"))
+		data->textures_path[1] = strdup(array[1]);
+	else if (!ft_strcmp(array[0], "EA"))
+		data->textures_path[2] = strdup(array[1]);
+	else if (!ft_strcmp(array[0], "WE"))
+		data->textures_path[3] = strdup(array[1]);
+	else if (!ft_strcmp(array[0], "F"))
+		data->floor_color = rgb_to_int(ft_split(array[1], ','));
+	else if (!ft_strcmp(array[0], "C"))
+		data->ceiling_color = rgb_to_int(ft_split(array[1], ','));
 }
 
-void parse_textures(int fd, t_data *data)
+void	parse_textures(int fd, t_data *data)
 {
 	char	**array;
 	int		textures_found;
@@ -53,12 +36,12 @@ void parse_textures(int fd, t_data *data)
 
 	array = NULL;
 	textures_found = 0;
-	while(textures_found < 6)
+	while (textures_found < 6)
 	{
 		line = get_next_line(fd);
 		//printf("line=%s\n", line);
 		if (!line)
-			break;
+			break ;
 		ft_trimnl(line);
 		array = ft_split(line, ' ');
 		// printf("array[0]= %s, array[1] = %s\n", array[0], array[1]);
@@ -74,9 +57,9 @@ void parse_textures(int fd, t_data *data)
 	}
 }
 
-t_list *parse_map_to_list(int fd, t_data *data)
+t_list	*parse_map_to_list(int fd, t_data *data)
 {
-	char 	*line;
+	char	*line;
 	t_list	*lst;
 
 	lst = NULL;
@@ -99,33 +82,25 @@ t_list *parse_map_to_list(int fd, t_data *data)
 
 void	parse_direction_and_plane(t_data *data)
 {
-	if(data->map[data->player_y][data->player_x] == P_NORTH)
+	if (data->map[data->player_y][data->player_x] == P_NORTH)
 	{
-		data->scene->playerDirX = 0;
-		data->scene->playerDirY = -1;
-		data->scene->planeX = 0.66;
-		data->scene->planeY = 0;
+		data->scene->player_diry = -1;
+		data->scene->plane_x = 0.66;
 	}
-	else if(data->map[data->player_y][data->player_x] == P_SOUTH)
+	else if (data->map[data->player_y][data->player_x] == P_SOUTH)
 	{
-		data->scene->playerDirX = 0;
-		data->scene->playerDirY = 1;
-		data->scene->planeX = 0.66;
-		data->scene->planeY = 0;
+		data->scene->player_diry = 1;
+		data->scene->plane_x = 0.66;
 	}
-	else if(data->map[data->player_y][data->player_x] == P_EAST)
+	else if (data->map[data->player_y][data->player_x] == P_EAST)
 	{
-		data->scene->playerDirX = 1;
-		data->scene->playerDirY = 0;
-		data->scene->planeX = 0;
-		data->scene->planeY = 0.66;
+		data->scene->player_dirx = 1;
+		data->scene->plane_y = 0.66;
 	}
-	else if(data->map[data->player_y][data->player_x] == P_WEST)
+	else if (data->map[data->player_y][data->player_x] == P_WEST)
 	{
-		data->scene->playerDirX = -1;
-		data->scene->playerDirY = 0;
-		data->scene->planeX = 0;
-		data->scene->planeY = 0.66;
+		data->scene->player_dirx = -1;
+		data->scene->plane_y = 0.66;
 	}
 }
 
