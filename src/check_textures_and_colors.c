@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:04:28 by damendez          #+#    #+#             */
-/*   Updated: 2024/05/24 17:22:47 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/24 19:10:18 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int	all_nums_doub(char **split)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (split[i])
@@ -23,13 +23,8 @@ static int	all_nums_doub(char **split)
 		j = 0;
 		while (split[i][j] != '\0' && split[i][j] != '\n')
 		{
-			//printf("split[%i][%i] = %c\n", i, j, split[i][j]);
 			if (!is_num_or_space(split[i][j]))
-			{
-				//printf("split[%i][%i] = %c\n", i, j, split[i][j]);
-				//printf("Error: alpha char found in color value\n");
 				return (0);
-			}
 			j++;
 		}
 		i++;
@@ -65,14 +60,13 @@ static int	check_color_values(t_data *data, char *line)
 
 void	check_color(t_data *data, char *line)
 {
-
 	if (line[0] == 'F' || line[0] == 'C')
 	{
 		if (check_color_values(data, line))
 			ft_error(data, "Invalid value used for color", 1);
 	}
 	else
-		ft_error(data, "Invalid configuraton found in file", 1);		
+		ft_error(data, "Invalid configuraton found in file", 1);
 }
 
 void	check_if_tex(t_data *data, char *line)

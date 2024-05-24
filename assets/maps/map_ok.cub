@@ -3,7 +3,6 @@ EA ./assets/textures/eagle_dark.xpm
 WE ./assets/textures/hitler_dark.xpm
 SO ./assets/textures/grey_bricks2.xpm   
 
-
 C 0,40,80
 F 90,90,90
 

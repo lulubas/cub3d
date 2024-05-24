@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:22:37 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/24 18:25:25 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/24 19:11:11 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,17 @@ void	process_line(char **array, t_data *data)
 	else if (!ft_strcmp(array[0], "WE") && !data->textures_path[3])
 		data->textures_path[3] = strdup(array[1]);
 	else if (!ft_strcmp(array[0], "F") && data->floor_color == -1)
+	{
+		printf("floor parsed RGB=%s\n", array[1]);
 		data->floor_color = rgb_to_int(ft_split(array[1], ','));
+	}
 	else if (!ft_strcmp(array[0], "C") && data->ceiling_color == -1)
+	{
+		printf("ceiling parsed RGB=%s\n", array[1]);
 		data->ceiling_color = rgb_to_int(ft_split(array[1], ','));
+	}
 	else
 		ft_error(data, "Incorrect/duplicate identifier", 1);
-
 }
 
 void	parse_textures(int fd, t_data *data)
@@ -72,6 +77,8 @@ t_list	*parse_map_to_list(int fd, t_data *data)
 	}
 	while (line)
 	{
+		if (line[0] == '\n')
+			ft_error(data, "Empty line in or after the map", 1);
 		ft_trimnl(line);
 		list_addback(list_new(line), &lst, data);
 		free(line);

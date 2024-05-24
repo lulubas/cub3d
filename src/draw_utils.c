@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 16:11:37 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/24 16:50:22 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/24 18:30:56 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	rgb_to_int(char **rgb)
 	green = ft_atoi(rgb[1]) << 8;
 	blue = ft_atoi(rgb[2]);
 	color = (red | green | blue);
+	printf("color=%d\n", color);
 	free(rgb);
 	return (color);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 17:25:43 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/24 18:09:02 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/24 18:50:54 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	parse_tile(char c, t_tile *tile, t_data *data)
 	else if (c == 'W')
 		*tile = P_WEST;
 	else
-		ft_error(data, "Wrong Character in map", 1);
+		ft_error(data, "Wrong character present", 1);
 }
 
 void	parse_player(int x, int y, t_tile **map, t_data *data)

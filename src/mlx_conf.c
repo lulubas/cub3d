@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_conf.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:22:56 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/24 16:58:44 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/24 19:12:09 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	load_textures_images(t_data *data)
 		ft_error(data, "Failed to malloc textures ptr", 1);
 	while (i < 4)
 	{
-		printf("path0=%s\n", data->textures_path[0]);
 		data->textures_ptr[i] = mlx_xpm_file_to_image(data->mlx, \
 			data->textures_path[i], &tex_width, &tex_height);
 		if (!data->textures_ptr[i])
@@ -78,7 +77,7 @@ void	load_textures_images(t_data *data)
 }
 
 void	init_mlx(t_data *data)
-{	
+{
 	data->mlx = mlx_init();
 	load_textures_images(data);
 	data->win = mlx_new_window(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "cub3d");

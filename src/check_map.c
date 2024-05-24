@@ -6,10 +6,9 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 13:27:58 by damendez          #+#    #+#             */
-/*   Updated: 2024/05/24 18:24:50 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/24 19:11:35 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "cub3d.h"
 
@@ -89,5 +88,4 @@ void	check_map(t_data *data)
 	check_closed(data);
 	check_player_count(data);
 	check_playable(data);
-
 }
