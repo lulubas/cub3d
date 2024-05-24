@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:40:21 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/24 14:36:08 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/24 15:36:28 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int	ft_atoi(const char *str)
 		r = (*str - 48) + (r * 10);
 		str++;
 	}
+	if (*str < 48 || *str > 57)
+		return (1);
 	return (r * n);
 }
 

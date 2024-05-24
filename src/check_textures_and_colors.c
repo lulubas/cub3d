@@ -6,11 +6,36 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:04:28 by damendez          #+#    #+#             */
-/*   Updated: 2024/05/24 13:47:50 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/24 17:22:47 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static int	all_nums_doub(char **split)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (split[i])
+	{
+		j = 0;
+		while (split[i][j] != '\0' && split[i][j] != '\n')
+		{
+			//printf("split[%i][%i] = %c\n", i, j, split[i][j]);
+			if (!is_num_or_space(split[i][j]))
+			{
+				//printf("split[%i][%i] = %c\n", i, j, split[i][j]);
+				//printf("Error: alpha char found in color value\n");
+				return (0);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
 
 static int	check_color_values(t_data *data, char *line)
 {
@@ -22,7 +47,7 @@ static int	check_color_values(t_data *data, char *line)
 	split = ft_split(line + 2, ',');
 	if (!split)
 		ft_error(data, "Malloc error", 1);
-	if (ft_ptrlen(split) != 3)
+	if (ft_ptrlen(split) != 3 || !all_nums_doub(split))
 		ft_error(data, "Color syntax error in map file", 1);
 	r = ft_atoi(split[0]);
 	g = ft_atoi(split[1]);
@@ -38,15 +63,16 @@ static int	check_color_values(t_data *data, char *line)
 	return (1);
 }
 
-void	check_ifloor_color(t_data *data, char *line)
+void	check_color(t_data *data, char *line)
 {
+
 	if (line[0] == 'F' || line[0] == 'C')
 	{
 		if (check_color_values(data, line))
 			ft_error(data, "Invalid value used for color", 1);
 	}
 	else
-		ft_error(data, "Invalid identifier used for color", 1);
+		ft_error(data, "Invalid configuraton found in file", 1);		
 }
 
 void	check_if_tex(t_data *data, char *line)
@@ -67,27 +93,23 @@ void	check_if_tex(t_data *data, char *line)
 	else if (line[0] == 'W' && line[1] == 'E')
 		printf("West texture identifier found\n");
 	else
-		ft_error(data, "Invalid identifier used for texture", 1);
+		ft_error(data, "Invalid configuraton found in file", 1);
 	free_split(split);
 }
 
 void	is_texorcolor(t_data *data, char *line, int *i)
 {
-	while (*line == ' ')
-		line++;
-	printf("ft_strlen_n(line) == %i\n", ft_strlen_n(line));
+	skip_spaces(line);
 	if (ft_strlen_n(line) == 2)
 	{
 		check_if_tex(data, line);
 		++*i;
-		printf("tex counter: i = %i\n", *i);
 	}
 	else if (ft_strlen_n(line) == 1)
 	{
-		check_ifloor_color(data, line);
+		check_color(data, line);
 		++*i;
-		printf("color counter: i = %i\n", *i);
 	}
 	else
-		ft_error(data, "Error: Invalid configuraton found in file", 1);
+		ft_error(data, "Invalid configuraton found in file", 1);
 }

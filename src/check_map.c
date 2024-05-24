@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 13:27:58 by damendez          #+#    #+#             */
-/*   Updated: 2024/05/24 01:27:06 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/24 17:43:14 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,5 @@ void	check_map(t_data *data)
 	check_closed(data);
 	check_player_count(data);
 	check_playable(data);
+
 }

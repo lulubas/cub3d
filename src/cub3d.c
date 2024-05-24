@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 14:45:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/24 13:54:33 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/24 17:43:14 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char **argv)
 		return (1);
 	check_scene(argc, argv, data);
 	parse_scene(data);
-	//check_map(data);
+	check_map(data);
 	//print_data(data);
 	//init_mlx(data);
 	//mlx_loop_hook(data->mlx, raycast_and_render, data);

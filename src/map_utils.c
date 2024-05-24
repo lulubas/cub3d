@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:07:45 by damendez          #+#    #+#             */
-/*   Updated: 2024/05/24 01:14:25 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/24 17:53:10 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	is_map_line(char *line)
 	{
 		if (*line != ' ' && *line != '0' && *line != '1' && \
 			*line != 'N' && *line != 'S' && *line != 'E' && *line \
-			!= 'E' && *line != '\n')
+			!= 'E' && *line != 'S')
 			return (0);
 		++line;
 	}

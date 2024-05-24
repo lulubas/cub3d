@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:41:40 by damendez          #+#    #+#             */
-/*   Updated: 2024/05/24 14:51:06 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/24 18:14:26 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,33 +30,66 @@ static int	check_file_type(char *str)
  * 2. If line is valid and not a mapline, check if its
 	a correct texture/color and increment line num counter
 */
+// static void	check_textures_and_colors(t_data *data, int fd)
+// {
+// 	char	*line;
+// 	int		i;
+
+// 	line = get_next_line(fd);
+// 	i = 0;
+// 	while (line && i < 6)
+// 	{
+// 		ft_trimnl(line);
+// 		if (line && *line != '\0' && !is_map_line(line))
+// 			is_texorcolor(data, line, &i);
+// 		if (line && *line != '\0' && is_map_line(line) && i < 6)
+// 			ft_error(data, "Could not find 4 textures and 2 colors", 1);
+// 		free(line);
+// 		if (i < 6)
+// 			line = get_next_line(fd);
+// 	}
+// 	if (i != 6)
+// 		ft_error(data, "Could not find 4 textures and 2 colors", 1);
+// }
+
+// static void	check_rest(t_data *data, int fd)
+// {
+// 	char	*line;
+
+// 	line = get_next_line(fd);
+// 	ft_trimnl(line);
+// 	while (*line == '\0')
+// 	{
+// 		free(line);
+// 		line = get_next_line(fd);
+// 		ft_trimnl(line);
+// 	}
+// 	if (!is_map_line(line))
+// 		ft_error(data, "Invalid configuraton found in file", 1);
+// }
+
 static void	check_textures_and_colors(t_data *data, int fd)
 {
 	char	*line;
 	int		i;
 
-	line = get_next_line(fd);
 	i = 0;
-	while (line && i < 6)
+	line = get_next_line(fd);
+	ft_trimnl(line);
+	while ((!is_map_line(line) || *line == '\0') && i < 6)
 	{
-		if (*line != '\n' && line && !is_map_line(line))
+		if (line && *line != '\0')
 			is_texorcolor(data, line, &i);
-		if (line && *line != '\n' && is_map_line(line) && i < 6)
-			ft_error(data, "Could not find 4 textures and 2 colors", 1);
 		free(line);
-		if (i < 6)
-			line = get_next_line(fd);
+		line = get_next_line(fd);
+		ft_trimnl(line);
 	}
 	if (i != 6)
-		ft_error(data, "Could not find 4 textures and 2 colors", 1);
-}
-/*
- * 1. After the textures and colors have been checked and
- * are correct, 
-*/
-void	check_invalid_config(t_data *data, int fd)
-{
-
+		ft_error(data, "Invalid configuraton found in file", 1);
+	// else if (*line == '\0')
+	// 	check_rest(data, fd);
+	// else if (!is_map_line(line))
+	// 	ft_error(data, "Invalid configuraton found in file", 1);
 }
 
 /*

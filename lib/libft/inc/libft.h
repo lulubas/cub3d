@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 22:45:05 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/24 01:39:20 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/24 17:15:09 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ char	*ft_strchr(char *s, int c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	**ft_split(char const *s, char c);
 int	    ft_atoi(const char *str);
+int		ft_isalpha(int a);
 
 //Get_next_line
 char	*get_next_line(int fd);
