@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:41:40 by damendez          #+#    #+#             */
-/*   Updated: 2024/05/24 01:38:34 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/24 14:51:06 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	check_file_type(char *str)
 
 /*
  * 1. Keep getting_next_line from fd until we found 6 
-	linesthat are textures/colors
+	lines that are textures/colors
  * 2. If line is valid and not a mapline, check if its
 	a correct texture/color and increment line num counter
 */
@@ -37,7 +37,7 @@ static void	check_textures_and_colors(t_data *data, int fd)
 
 	line = get_next_line(fd);
 	i = 0;
-	while (line && !is_map_line(line))
+	while (line && i < 6)
 	{
 		if (*line != '\n' && line && !is_map_line(line))
 			is_texorcolor(data, line, &i);
@@ -49,8 +49,14 @@ static void	check_textures_and_colors(t_data *data, int fd)
 	}
 	if (i != 6)
 		ft_error(data, "Could not find 4 textures and 2 colors", 1);
-	else
-		ft_error(data, "Error: Invalid configuraton found in file", 1);
+}
+/*
+ * 1. After the textures and colors have been checked and
+ * are correct, 
+*/
+void	check_invalid_config(t_data *data, int fd)
+{
+
 }
 
 /*
@@ -71,6 +77,7 @@ void	check_scene(int argc, char **argv, t_data *data)
 	if (fd < 0)
 		ft_error(data, "Map file could not be opened", 1);
 	check_textures_and_colors(data, fd);
+	//check_invalid_config(data, fd);
 	data->filepath = ft_strdup(argv[1]);
 	close(fd);
 }

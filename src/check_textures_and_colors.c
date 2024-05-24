@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_textures_and_colors.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:04:28 by damendez          #+#    #+#             */
-/*   Updated: 2024/05/24 01:27:51 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/24 13:47:50 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ void	check_if_tex(t_data *data, char *line)
 
 void	is_texorcolor(t_data *data, char *line, int *i)
 {
+	while (*line == ' ')
+		line++;
 	printf("ft_strlen_n(line) == %i\n", ft_strlen_n(line));
 	if (ft_strlen_n(line) == 2)
 	{

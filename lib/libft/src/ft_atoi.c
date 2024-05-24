@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:40:21 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/06 15:27:49 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/24 14:36:08 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	ft_atoi(const char *str)
 
 	r = 0;
 	n = 1;
+
 	while (ft_isspace(*str))
 		str++;
 	if (*str == 45 || *str == 43)
