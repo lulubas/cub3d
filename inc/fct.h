@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:22:04 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/24 17:11:03 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/24 18:23:42 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 //Initialisation
 t_data	*init_data_struct(void);
-t_tile	**init_map(t_list *lst, t_data *data);
 
 //Parser
 void	check_scene(int argc, char **argv, t_data *data);

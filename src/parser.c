@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:22:37 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/24 18:16:44 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/24 18:25:25 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,6 @@
 
 void	process_line(char **array, t_data *data)
 {
-	data->textures_path = malloc(sizeof(char *) * 4);
-	if (!data->textures_path)
-		ft_error(data, "failed to malloc images array", 1);
-	data->textures_path[0] = NULL;
-	data->textures_path[1] = NULL;
-	data->textures_path[2] = NULL;
-	data->textures_path[3] = NULL;
 	if (!ft_strcmp(array[0], "NO") && !data->textures_path[0])
 		data->textures_path[0] = strdup(array[1]);
 	else if (!ft_strcmp(array[0], "SO") && !data->textures_path[1])
@@ -72,12 +65,12 @@ t_list	*parse_map_to_list(int fd, t_data *data)
 
 	lst = NULL;
 	line = get_next_line(fd);
-	while (!ft_strchr(line, '1'))
+	while (line[0] == '\n')
 	{
 		free(line);
 		line = get_next_line(fd);
 	}
-	while (line && ft_strchr(line, '1'))
+	while (line)
 	{
 		ft_trimnl(line);
 		list_addback(list_new(line), &lst, data);

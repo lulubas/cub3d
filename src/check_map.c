@@ -6,36 +6,36 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 13:27:58 by damendez          #+#    #+#             */
-/*   Updated: 2024/05/24 17:43:14 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/24 18:24:50 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "cub3d.h"
 
 void	check_player_count(t_data *data)
 {
-	int		x;
-	int		flag;
-	t_list	*tmp;
+	int	x;
+	int	y;
+	int	player_count;
 
-	flag = 0;
-	tmp = data->lst;
-	while (tmp != NULL)
+	x = 0;
+	y = 0;
+	player_count = 0;
+	while (y < data->map_size_y)
 	{
 		x = 0;
-		while (tmp->str[x] != '\0')
+		while (x < data->map_size_x)
 		{
-			if (is_player(tmp->str[x++]))
-			{
-				flag++;
-				if (flag > 1)
-					ft_error(data, "Error: Too many players in map", 1);
-			}
+			if (data->map[y][x] == P_NORTH || data->map[y][x] == P_SOUTH \
+				|| data->map[y][x] == P_EAST || data->map[y][x] == P_WEST)
+				player_count++;
+			x++;
 		}
-		tmp = tmp->next;
+		y++;
 	}
-	if (flag == 0)
-		ft_error(data, "Error: Player needed in map", 1);
+	if (player_count != 1)
+		ft_error(data, "There needs to be 1 Player", 1);
 }
 
 void	check_closed(t_data *data)
