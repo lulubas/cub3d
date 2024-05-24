@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:41:40 by damendez          #+#    #+#             */
-/*   Updated: 2024/05/24 14:51:06 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/24 15:06:35 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ static void	check_textures_and_colors(t_data *data, int fd)
  * 1. After the textures and colors have been checked and
  * are correct, 
 */
-void	check_invalid_config(t_data *data, int fd)
-{
+// void	check_invalid_config(t_data *data, int fd)
+// {
 
-}
+// }
 
 /*
  * 1. Check number of input arguments 
