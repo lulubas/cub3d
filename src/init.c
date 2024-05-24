@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:41:19 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/24 01:31:14 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/24 17:14:43 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,29 @@ t_scene	*init_scene(void)
 	return (new_scene);
 }
 
+void	init_tex_arrays(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	data->textures_path = malloc(sizeof(char *) * 4);
+	data->textures_ptr = malloc(sizeof(char *) * 4);
+	if (!data->textures_path || !data->textures_ptr)
+		ft_error(data, "Failed to malloc textures array", 1);
+	while (i < 4)
+	{
+		data->textures_path[i] = NULL;
+		data->textures_ptr[i] = NULL;
+		i++;
+	}
+}
+
 t_data	*init_data_struct(void)
 {
 	t_data	*new_data;
 
 	new_data = malloc(sizeof(t_data));
 	new_data->filepath = NULL;
-	new_data->textures_path = NULL;
-	new_data->textures_ptr = NULL;
 	new_data->floor_color = -1;
 	new_data->ceiling_color = -1;
 	new_data->map_size_x = 0;
@@ -64,62 +79,6 @@ t_data	*init_data_struct(void)
 	new_data->down_pressed = false;
 	new_data->left_rotate_pressed = false;
 	new_data->right_rotate_pressed = false;
+	init_tex_arrays(new_data);
 	return (new_data);
-}
-
-int	get_max_x(t_list *lst)
-{
-	t_list	*tmp;
-	size_t	max_length;
-
-	max_length = 0;
-	tmp = lst;
-	while (tmp)
-	{
-		if (ft_strlen(tmp->str) > max_length)
-			max_length = ft_strlen(tmp->str);
-		tmp = tmp->next;
-	}
-	return (max_length + 2);
-}
-
-int	get_y(t_list *lst)
-{
-	t_list	*tmp;
-	int		index;
-
-	index = 0;
-	tmp = lst;
-	while (tmp)
-	{
-		index++;
-		tmp = tmp->next;
-	}
-	return (index + 2);
-}
-
-t_tile	**init_map(t_list *lst, t_data *data)
-{
-	t_tile	**new_map;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	data->map_size_x = get_max_x(lst);
-	data->map_size_y = get_y(lst);
-	new_map = (t_tile **)malloc(sizeof(t_tile *) * data->map_size_y);
-	if (!new_map)
-		ft_error(data, "Failed to allocate map", 1);
-	while (i < data->map_size_y)
-	{
-		new_map[i] = (t_tile *)malloc(sizeof(t_tile) * data->map_size_x);
-		if (!new_map[i])
-			ft_error(data, "Failed to allocate map tiles", 1);
-		while (j < data->map_size_x)
-			new_map[i][j++] = SPACE;
-		j = 0;
-		i++;
-	}
-	return (new_map);
 }

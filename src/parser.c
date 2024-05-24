@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:22:37 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/24 14:48:57 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/24 18:14:27 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,6 @@
 
 void	process_line(char **array, t_data *data)
 {
-	data->textures_path = malloc(sizeof(char *) * 4);
-	if (!data->textures_path)
-		ft_error(data, "failed to malloc images array", 1);
-	data->textures_path[0] = NULL;
-	data->textures_path[1] = NULL;
-	data->textures_path[2] = NULL;
-	data->textures_path[3] = NULL;
 	if (!ft_strcmp(array[0], "NO") && !data->textures_path[0])
 		data->textures_path[0] = strdup(array[1]);
 	else if (!ft_strcmp(array[0], "SO") && !data->textures_path[1])
@@ -57,7 +50,6 @@ void	parse_textures(int fd, t_data *data)
 		{
 			if (array[2])
 				ft_error(data, "Wrong color/texture format", 1);
-			// printf("textures found 2: %i\n", textures_found);
 			process_line(array, data);
 			textures_found++;
 		}
@@ -73,12 +65,12 @@ t_list	*parse_map_to_list(int fd, t_data *data)
 
 	lst = NULL;
 	line = get_next_line(fd);
-	while (!ft_strchr(line, '1'))
+	while (line[0] == '\n')
 	{
 		free(line);
 		line = get_next_line(fd);
 	}
-	while (line && ft_strchr(line, '1'))
+	while (line)
 	{
 		ft_trimnl(line);
 		list_addback(list_new(line), &lst, data);
@@ -118,11 +110,6 @@ void	parse_scene(t_data *data)
 	int	fd;
 
 	fd = open(data->filepath, O_RDONLY);
-	// for (i = 0; i < 3; i++)
-	// {
-	// 	line = get_next_line(fd);
-	// 	printf("gnl_line=%s", line);
-	// }
 	parse_textures(fd, data);
 	data->lst = parse_map_to_list(fd, data);
 	data->map = parse_list_to_array(data->lst, data);
