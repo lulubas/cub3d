@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:22:37 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/24 18:16:11 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/24 18:16:44 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	parse_textures(int fd, t_data *data)
 		{
 			if (array[2])
 				ft_error(data, "Wrong color/texture format", 1);
-			// printf("textures found 2: %i\n", textures_found);
 			process_line(array, data);
 			textures_found++;
 		}
