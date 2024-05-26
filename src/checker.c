@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:41:40 by damendez          #+#    #+#             */
-/*   Updated: 2024/05/24 19:11:26 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/26 19:59:55 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static void	check_textures_and_colors(t_data *data, int fd)
 	}
 	if (i != 6)
 		ft_error(data, "Invalid configuraton found in file", 1);
+	free(line);
 }
 
 void	check_scene(int argc, char **argv, t_data *data)

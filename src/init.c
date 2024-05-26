@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:41:19 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/24 17:14:43 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/26 21:22:43 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,14 @@ t_data	*init_data_struct(void)
 	new_data->lst = NULL;
 	new_data->map = NULL;
 	new_data->scene = init_scene();
-	new_data->buffer = NULL;
 	new_data->mlx = NULL;
 	new_data->win = NULL;
 	new_data->map_size_x = -99;
 	new_data->map_size_y = -99;
 	new_data->up_pressed = false;
 	new_data->down_pressed = false;
+	new_data->left_pressed = false;
+	new_data->right_pressed = false;
 	new_data->left_rotate_pressed = false;
 	new_data->right_rotate_pressed = false;
 	init_tex_arrays(new_data);

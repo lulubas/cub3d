@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fct.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:22:04 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/24 18:23:42 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/26 20:20:32 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_error(t_data *data, char *str, int status);
 void	free_all(t_data *data);
 void	free_2darray(char ***array);
 void	free_tex_paths(char ***array);
-void	free_tex_ptr(void ***array);
+void	free_tex_ptr(void ***array, t_data *data);
 void	free_list(t_list **lst);
 
 /*		checker		*/

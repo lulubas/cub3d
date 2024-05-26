@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 01:02:38 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/24 01:04:59 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/26 21:52:14 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,15 @@ void	free_tex_paths(char ***array)
 	*array = NULL;
 }
 
-void	free_tex_ptr(void ***array)
+void	free_tex_ptr(void ***array, t_data *data)
 {
 	int	i;
 
 	i = 0;
 	while (i < 4)
 	{
-		free((*array)[i]);
+		if ((*array)[i])
+			mlx_destroy_image(data->mlx, (*array)[i]);
 		i++;
 	}
 	free(*array);

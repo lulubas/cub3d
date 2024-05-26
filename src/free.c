@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:59:26 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/24 01:14:25 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/26 21:47:32 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,18 @@ void	free_map(t_tile ***map, t_data *data)
 	*map = NULL;
 }
 
-void	free_mlx(t_data *data )
-{
-	if (data->win)
-		mlx_destroy_window(data->mlx, data->win);
-}
-
 void	free_all(t_data *data)
 {
 	if (data)
 	{
-		free_mlx(data);
+		if (data->win)
+			mlx_destroy_window(data->mlx, data->win);
 		if (data->filepath)
 			free(data->filepath);
 		if (data->textures_path)
 			free_tex_paths(&data->textures_path);
+		if (data->textures_ptr)
+			free_tex_ptr(&data->textures_ptr, data);
 		if (data->lst)
 			free_list(&data->lst);
 		if (data->map)

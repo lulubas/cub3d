@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 19:42:43 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/24 19:04:17 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/26 19:48:00 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	move_forward(t_scene *scene, t_tile **map)
 
 	new_playerpos_x = scene->player_posx + (scene->player_dirx * MOVE_SPEED);
 	new_playerpos_y = scene->player_posy + (scene->player_diry * MOVE_SPEED);
-	if (map[(int)(new_playerpos_y + 0.1)][(int)(new_playerpos_x + 0.1)] != WALL)
+	if (map[(int)(new_playerpos_y)][(int)(new_playerpos_x)] != WALL)
 	{
 		scene->player_posx = new_playerpos_x;
 		scene->player_posy = new_playerpos_y;
