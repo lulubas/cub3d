@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 01:02:38 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/26 21:52:14 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/28 17:05:58 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,11 @@ void	free_tex_ptr(void ***array, t_data *data)
 	i = 0;
 	while (i < 4)
 	{
-		if ((*array)[i])
+		printf("accessing ptr[%d] to free\n", i);
+		if ((*array)[i]){
+			printf("freeing ptr[%d]\n", i);
 			mlx_destroy_image(data->mlx, (*array)[i]);
+		}
 		i++;
 	}
 	free(*array);

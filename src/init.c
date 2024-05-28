@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:41:19 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/26 21:22:43 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/28 17:05:57 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	init_tex_arrays(t_data *data)
 
 	i = 0;
 	data->textures_path = malloc(sizeof(char *) * 4);
-	data->textures_ptr = malloc(sizeof(char *) * 4);
+	data->textures_ptr = malloc(sizeof(void *) * 4);
 	if (!data->textures_path || !data->textures_ptr)
 		ft_error(data, "Failed to malloc textures array", 1);
 	while (i < 4)

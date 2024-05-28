@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_conf.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:22:56 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/26 21:48:53 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/28 17:07:22 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,16 @@ void	load_textures_images(t_data *data)
 	i = 0;
 	tex_height = SCREEN_HEIGHT;
 	tex_width = SCREEN_WIDTH;
-	if (!data->textures_ptr)
-		ft_error(data, "Failed to malloc textures ptr", 1);
 	while (i < 4)
 	{
+		printf("allocing ptr[%d]\n", i);
 		data->textures_ptr[i] = mlx_xpm_file_to_image(data->mlx, \
 			data->textures_path[i], &tex_width, &tex_height);
 		if (!data->textures_ptr[i])
+		{
+			printf("failled to alloc  %d\n", i);
 			ft_error(data, "Failed to load texture image", 1);
+		}
 		i++;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vars.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:14:55 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/26 19:44:41 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:16:28 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 # define VARS_H
 # define SCREEN_WIDTH	1000
 # define SCREEN_HEIGHT	800
-# define TEXTURE_WIDTH	128
-# define TEXTURE_HEIGHT	128
+# define TEXTURE_WIDTH	64
+# define TEXTURE_HEIGHT	64
 # define ESCAPE			53
 # define ARROW_UP		126
 # define ARROW_DOWN		125
@@ -31,7 +31,7 @@
 # define COLOR_BLUE		0x0000FF
 # define COLOR_WHITE	0xFFFFFF
 # define COLOR_YELLOW	0xFFFF00
-# define MOVE_SPEED		0.13
-# define ROT_SPEED		0.11
+# define MOVE_SPEED		0.10
+# define ROT_SPEED		0.05
 
 #endif /* VARS_H */
