@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:41:19 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/28 17:05:57 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:51:09 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ t_data	*init_data_struct(void)
 	new_data->scene = init_scene();
 	new_data->mlx = NULL;
 	new_data->win = NULL;
-	new_data->map_size_x = -99;
-	new_data->map_size_y = -99;
+	new_data->player_x = -99;
+	new_data->player_y = -99;
 	new_data->up_pressed = false;
 	new_data->down_pressed = false;
 	new_data->left_pressed = false;

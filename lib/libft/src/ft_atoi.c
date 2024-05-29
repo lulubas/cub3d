@@ -6,10 +6,9 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:40:21 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/24 19:01:03 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:23:42 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 int	ft_isspace(int c)
 {
@@ -25,7 +24,6 @@ int	ft_atoi(const char *str)
 
 	r = 0;
 	n = 1;
-
 	while (ft_isspace(*str))
 		str++;
 	if (*str == 45 || *str == 43)

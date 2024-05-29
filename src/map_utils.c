@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:07:45 by damendez          #+#    #+#             */
-/*   Updated: 2024/05/24 17:53:10 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/29 15:03:46 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	is_surrounded_space_or_wall(t_data *data, int y, int x)
 
 int	is_map_line(char *line)
 {
+	if (!line)
+		return (0);
 	while (*line != '\0')
 	{
 		if (*line != ' ' && *line != '0' && *line != '1' && \

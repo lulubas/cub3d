@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 01:02:38 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/28 17:05:58 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:16:51 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,8 @@ void	free_tex_ptr(void ***array, t_data *data)
 	i = 0;
 	while (i < 4)
 	{
-		printf("accessing ptr[%d] to free\n", i);
-		if ((*array)[i]){
-			printf("freeing ptr[%d]\n", i);
+		if ((*array)[i])
 			mlx_destroy_image(data->mlx, (*array)[i]);
-		}
 		i++;
 	}
 	free(*array);

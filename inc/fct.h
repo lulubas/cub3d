@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fct.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:22:04 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/26 20:20:32 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:16:07 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	free_tex_ptr(void ***array, t_data *data);
 void	free_list(t_list **lst);
 
 /*		checker		*/
+void	ft_check_tex(t_data *data, char *texture_path);
 void	check_scene(int argc, char **argv, t_data *data);
 void	check_if_tex(t_data *data, char *line);
 void	check_color(t_data *data, char *line);

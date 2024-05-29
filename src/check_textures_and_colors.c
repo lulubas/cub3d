@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:04:28 by damendez          #+#    #+#             */
-/*   Updated: 2024/05/24 19:10:18 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:35:42 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ static int	check_color_values(t_data *data, char *line)
 	if ((r >= 0 && r <= 255) && (g >= 0 && g <= 255) \
 	&& (b >= 0 && b <= 255))
 	{
-		printf("Color is valid\n");
 		free_split(split);
 		return (0);
 	}
@@ -78,16 +77,15 @@ void	check_if_tex(t_data *data, char *line)
 		ft_error(data, "Malloc error", 1);
 	if (ft_ptrlen(split) != 2)
 		ft_error(data, "Texture syntax error in map file", 1);
-	if (line[0] == 'N' && line[1] == 'O')
-		printf("North texture identifier found\n");
-	else if (line[0] == 'S' && line[1] == 'O')
-		printf("South texture identifier found\n");
-	else if (line[0] == 'E' && line[1] == 'A')
-		printf("East texture identifier found\n");
-	else if (line[0] == 'W' && line[1] == 'E')
-		printf("West texture identifier found\n");
-	else
+	ft_check_tex(data, split[1]);
+	if (line[0] != 'N' && line[1] != 'O' && \
+		line[0] != 'S' && line[1] != 'O' && \
+		line[0] != 'E' && line[1] != 'A' && \
+		line[0] != 'W' && line[1] != 'E')
+	{
+		free_split(split);
 		ft_error(data, "Invalid configuraton found in file", 1);
+	}
 	free_split(split);
 }
 

@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:41:40 by damendez          #+#    #+#             */
-/*   Updated: 2024/05/26 19:59:55 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/29 15:06:11 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	ft_check_tex(t_data *data, char *texture_path)
+{
+	int	fd;
+
+	if (ft_strncmp(".xpm", texture_path + ft_strlen(texture_path) - 4, 4))
+		ft_error(data, "Invalid texture file format", 1);
+	fd = open(texture_path, O_RDONLY);
+	if (fd == -1)
+		ft_error(data, "Failed to open texture", 1);
+}
+
 /*
  * 1. Check if string length is valid ( > .cub'\0')
  * 2. Check that the last for chars are ".cub"
@@ -32,7 +44,7 @@ static void	check_textures_and_colors(t_data *data, int fd)
 	i = 0;
 	line = get_next_line(fd);
 	ft_trimnl(line);
-	while ((!is_map_line(line) || *line == '\0') && i < 6)
+	while (line && (!is_map_line(line) || *line == '\0') && i < 6)
 	{
 		if (line && *line != '\0')
 			is_texorcolor(data, line, &i);

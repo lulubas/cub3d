@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 22:45:05 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/24 17:15:09 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:22:21 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,18 @@
 
 //External libraries
 
-# include<unistd.h>
-# include<string.h>
-# include<stdlib.h>
-# include<stdarg.h>
-#include <stdio.h>
-# include<limits.h>
+# include <unistd.h>
+# include <string.h>
+# include <stdlib.h>
+# include <stdarg.h>
+# include <stdio.h>
+# include <limits.h>
 
 //Libft functions
 size_t	ft_strlen(const char *str);
 void	ft_trimnl(char *str);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-int 	ft_strcmp(const char *s1, const char *s2);
+int		ft_strcmp(const char *s1, const char *s2);
 char	*ft_strdup(const char *s1);
 int		ft_putnbr(int nb);
 int		ft_nbrlen(int n);
@@ -36,7 +36,7 @@ int		ft_putstr(char *s);
 char	*ft_strchr(char *s, int c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	**ft_split(char const *s, char c);
-int	    ft_atoi(const char *str);
+int		ft_atoi(const char *str);
 int		ft_isalpha(int a);
 
 //Get_next_line

@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:22:56 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/28 17:07:22 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:18:37 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,10 @@ void	load_textures_images(t_data *data)
 	tex_width = SCREEN_WIDTH;
 	while (i < 4)
 	{
-		printf("allocing ptr[%d]\n", i);
 		data->textures_ptr[i] = mlx_xpm_file_to_image(data->mlx, \
 			data->textures_path[i], &tex_width, &tex_height);
 		if (!data->textures_ptr[i])
-		{
-			printf("failled to alloc  %d\n", i);
 			ft_error(data, "Failed to load texture image", 1);
-		}
 		i++;
 	}
 }

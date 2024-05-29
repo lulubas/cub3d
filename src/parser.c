@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:22:37 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/24 19:11:11 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/29 16:35:42 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,9 @@ void	process_line(char **array, t_data *data)
 	else if (!ft_strcmp(array[0], "WE") && !data->textures_path[3])
 		data->textures_path[3] = strdup(array[1]);
 	else if (!ft_strcmp(array[0], "F") && data->floor_color == -1)
-	{
-		printf("floor parsed RGB=%s\n", array[1]);
 		data->floor_color = rgb_to_int(ft_split(array[1], ','));
-	}
 	else if (!ft_strcmp(array[0], "C") && data->ceiling_color == -1)
-	{
-		printf("ceiling parsed RGB=%s\n", array[1]);
 		data->ceiling_color = rgb_to_int(ft_split(array[1], ','));
-	}
 	else
 		ft_error(data, "Incorrect/duplicate identifier", 1);
 }
@@ -70,11 +64,13 @@ t_list	*parse_map_to_list(int fd, t_data *data)
 
 	lst = NULL;
 	line = get_next_line(fd);
-	while (line[0] == '\n')
+	while (line && line[0] == '\n')
 	{
 		free(line);
 		line = get_next_line(fd);
 	}
+	if (!line)
+		ft_error(data, "No map found", 1);
 	while (line)
 	{
 		if (line[0] == '\n')
@@ -98,7 +94,7 @@ void	parse_direction_and_plane(t_data *data)
 	else if (data->map[data->player_y][data->player_x] == P_SOUTH)
 	{
 		data->scene->player_diry = 1;
-		data->scene->plane_x = 0.66;
+		data->scene->plane_x = -0.66;
 	}
 	else if (data->map[data->player_y][data->player_x] == P_EAST)
 	{
@@ -108,7 +104,7 @@ void	parse_direction_and_plane(t_data *data)
 	else if (data->map[data->player_y][data->player_x] == P_WEST)
 	{
 		data->scene->player_dirx = -1;
-		data->scene->plane_y = 0.66;
+		data->scene->plane_y = -0.66;
 	}
 }
 
@@ -120,5 +116,6 @@ void	parse_scene(t_data *data)
 	parse_textures(fd, data);
 	data->lst = parse_map_to_list(fd, data);
 	data->map = parse_list_to_array(data->lst, data);
-	parse_direction_and_plane(data);
+	if (data->player_x >= 0 && data->player_y >= 0)
+		parse_direction_and_plane(data);
 }

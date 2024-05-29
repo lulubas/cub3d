@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 13:27:58 by damendez          #+#    #+#             */
-/*   Updated: 2024/05/24 19:11:35 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/29 16:35:24 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	check_player_count(t_data *data)
 		}
 		y++;
 	}
+	printf("playerscount=%d\n", player_count);
 	if (player_count != 1)
 		ft_error(data, "There needs to be 1 Player", 1);
 }

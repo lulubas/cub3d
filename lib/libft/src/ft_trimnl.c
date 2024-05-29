@@ -6,7 +6,7 @@
 /*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 00:25:48 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/23 18:36:08 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:27:25 by damendez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_trimnl(char *str)
 {
-	int len;
+	int	len;
 
 	if (!str)
 		return ;
