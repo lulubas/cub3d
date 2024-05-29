@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_conf.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:22:56 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/29 14:18:37 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/29 17:34:40 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,15 @@ void	load_textures_images(t_data *data)
 	int	i;
 
 	i = 0;
-	tex_height = SCREEN_HEIGHT;
-	tex_width = SCREEN_WIDTH;
 	while (i < 4)
 	{
 		data->textures_ptr[i] = mlx_xpm_file_to_image(data->mlx, \
 			data->textures_path[i], &tex_width, &tex_height);
 		if (!data->textures_ptr[i])
 			ft_error(data, "Failed to load texture image", 1);
+		if (tex_height != TEXTURE_HEIGHT || \
+			tex_width != TEXTURE_WIDTH)
+			ft_error(data, "Texture has the wrong size (check vars.h)", 1);
 		i++;
 	}
 }

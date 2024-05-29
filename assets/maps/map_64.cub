@@ -1,6 +1,6 @@
-NO ./assets/textures/bricks_128.xpm
+NO ./assets/textures/eaglelight_64.xpm
 SO ./assets/textures/eagledark_64.xpm
-EA ./assets/textures/redwood_128.xpm
+EA ./assets/textures/hitlerdark_64.xpm
 WE ./assets/textures/hitlerlight_64.xpm
 
 C 0,180,80
