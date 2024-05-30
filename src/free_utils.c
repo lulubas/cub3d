@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: damendez <damendez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 01:02:38 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/29 14:16:51 by damendez         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:13:41 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	free_tex_paths(char ***array)
 	while (i < 4)
 	{
 		free((*array)[i]);
+		(*array)[i] = NULL;
 		i++;
 	}
 	free(*array);

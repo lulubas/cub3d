@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:59:26 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/26 21:47:32 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:53:35 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,10 @@ void	free_all(t_data *data)
 		if (data->scene)
 			free(data->scene);
 		data->scene = NULL;
+		free(data->mlx);
+		free(data);
+		data = NULL;
 	}
-	free(data);
-	data = NULL;
 }
 
 void	ft_error(t_data *data, char *str, int status)

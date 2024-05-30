@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 14:45:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/26 21:46:00 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:32:38 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(data->mlx, raycast_and_render, data);
 	mlx_loop(data->mlx);
 	free_all(data);
-	return (0);
+	exit(0);
 }

@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:22:56 by lbastien          #+#    #+#             */
-/*   Updated: 2024/05/29 17:34:40 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:53:10 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,11 @@ void	load_textures_images(t_data *data)
 			ft_error(data, "Failed to load texture image", 1);
 		if (tex_height != TEXTURE_HEIGHT || \
 			tex_width != TEXTURE_WIDTH)
-			ft_error(data, "Texture has the wrong size (check vars.h)", 1);
+			{
+				mlx_destroy_image(data->mlx, data->textures_ptr[i]);
+				data->textures_ptr[i] = NULL;
+				ft_error(data, "Texture has the wrong size (check vars.h)", 1);
+			}
 		i++;
 	}
 }

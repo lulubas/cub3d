@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: damendez <damendez@student.42.fr>          +#+  +:+       +#+         #
+#    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 17:07:24 by lbastien          #+#    #+#              #
-#    Updated: 2024/05/29 16:36:14 by damendez         ###   ########.fr        #
+#    Updated: 2024/05/30 16:47:16 by lbastien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Compiler settings/flags
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g #-fsanitize=address
 MLX_FLAGS =	-L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 
 # Directories
